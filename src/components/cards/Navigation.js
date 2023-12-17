@@ -12,19 +12,25 @@ export default function Navigation() {
 
     function FetchNavigation () {
         setNavigator([
-            { label: "BSA", link: routes.login },
-            { label: "help", link: routes.login }
+            { id: 0, label: "BSA", link: routes.login, icon: <ion-icon name="home-outline"></ion-icon> },
+            { id: 1, label: "help", link: routes.login, icon: <ion-icon name="bookmark-outline"></ion-icon> }
         ]);
     }
 
     return (
         
         <div>
-            <nav className="flex flex-col w-1/2 bg-slate-700 border-gray-200 dark:bg-gray-900 dark:border-gray-700 text-black">
-                <ul>
+            <nav className="flex flex-col justify-start  items-start bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-700 w-64 h-screen text-black">
+                <ul className='p-5'> 
                     {navigator.map((item, index) => (
-                        <li key={index}>
-                            <a href={item.link} class="dark:text-black ">{item.label}</a>
+                        <li key={index} className='p-2'>
+                            <a href={item.link} className="dark:text-black w-48">
+                                <div className='w-48  rounded-[10px] border border-gray hover:shadow-lg'>
+                                    <div className='p-3 text-[16px]'>
+                                        {item.icon} &nbsp; {item.label}
+                                    </div>
+                                </div>
+                            </a>
                         </li>
                     ))}
                 </ul>
