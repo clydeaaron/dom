@@ -37,6 +37,7 @@ module.exports = {
         // LogoHackDesk: "url('../src/img/HackDeskLogo.webp')",
         // LogoBg: "url('../src/img/Vector2.jpeg')",
         // GrayLogo: "url('../src/img/GrayLogo.svg')",
+        Logo: "url('../src/assets/image/cvsulogo.png')"
         
       },
       fontFamily: {
