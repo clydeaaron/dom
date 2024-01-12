@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import React from 'react'
 import * as Yup from "yup";
 
-export default function AddStudent() {
+export default function AddStudent(data) {
 
     const validationSchema = Yup.object().shape({
         FirstName: Yup.string().label("First Name").required(),
@@ -11,7 +11,6 @@ export default function AddStudent() {
         Birthdate: Yup.date().label("Birthdate").default(() => new Date()),
         Year: Yup.number().integer().positive().label("Year").required(),
         Course: Yup.string().label("Course").required(),
-
     })
 
     async function onSubmit(value){
@@ -32,7 +31,6 @@ export default function AddStudent() {
             Birthdate: "",
             Year: 0,
             Course: "",
-            Type: "",
         },
         validationSchema,
         onSubmit

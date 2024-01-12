@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Popup from 'reactjs-popup'
 import Header from '../../components/cards/header'
 import Navigation from '../../components/cards/Navigation'
+import GradeCreation from '../../components/cards/GradeCreation';
 
 export default function Home() {
 
     const [students, setStudent] = useState([]);
     const [filter, setFilter] = useState("");
     const [id, setID] = useState("");
+    const [open, setOpen] = React.useState(false)
 
     useEffect(() => {
         fetch_student();
@@ -17,8 +19,8 @@ export default function Home() {
 
     const fetch_student = async() => {
         setStudent([
-            {student_no: 92, course: 'BSE', year: "4th", name: "dylan" },
-            {student_no: 69, course: 'BSA', year: "3rd", name: "palacio" }
+            {student_no: 92, course: 'BSE', year: "4th", FirstName: "dylan", MiddleName: "sample", LastName: "alaban"},
+            {student_no: 69, course: 'BSA', year: "3rd", FirstName: "palacio", LastName: "Kabayo" }
         ]);
     }
 
@@ -40,22 +42,28 @@ export default function Home() {
     
         return datatable;
     };
-
-
-
+    const handleBackgroundClick = () => {
+        // Handle background click action here
+        console.log('Background clicked!');
+        // Close the popup or perform other actions as needed
+    };
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
-            <div className='bg-slate-700 shadow-md w-screen'>
+            <div className='bg-white shadow-md w-full'>
                 <Header />
             </div>
-            <div className='flex  w-screen h-screen'>
-                <div className='w-72'>
+            <div className='flex pt-1 w-screen h-screen'>
+                <div className='w-64'>
                     <Navigation/>
                 </div>
-                <div className='flex flex-row justify-center items-center static h-80 w-screen pl-12 pr-2 pt-2 shadow-lg min-w-[1300px] border'>
+                <div className='flex flex-row justify-center items-center static h-80 w-screen pl-12 pr-2 pt-2 shadow-lg min-w-[1300px]'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='flex flex-row justify-end items-end p-4'>
-                            <div className='pr-5'>Search Name: </div>
+                        <Popup trigger={<button className='bg-slate-500 p-1 rounded-md text-white'> Add Student</button>} position="center"  onBackgroundClick={handleBackgroundClick}>
+                            {/* <AddStudent/> */}
+                            <GradeCreation datas={students[0]}/>
+                        </Popup>
+                            <div className='px-5'>Search Name: </div>
                             <input type='text' className='rounded-sm border p-1' id="filter_name" onChange={(e) => setFilter(e.target.value)} placeholder='Search'/>
                         </div>
                         <div className='w-full rounded border'>
