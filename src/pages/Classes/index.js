@@ -1,34 +1,52 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
-import Popup from 'reactjs-popup'
 import routes from '../pagename';
+import { ViewAllClass, ViewSpecifyClasses } from '../../functions';
 
 export default function Rooms() {
-    const [classs, setClasses] = useState([
-        { class: "class 1", student: 40 },
-        { class: "class 2", student: 50 },
-        { class: "class 3", student: 70 }
-    ]);
+    const [classs, setClasses] = useState([]);
+
 
     useEffect(() => {
-        setClasses([
-            { class: "class 1", student: 40, course: "BSE" },
-            { class: "class 2", student: 50, course: "BSA"},
-            { class: "class 3", student: 70, course: "BSIT" },
-            { class: "class 3", student: 70, course: "BSIT" },
-        ])
+        ViewClasses()
     }, [])
+
+    async function ViewClasses() {
+        const response = await ViewAllClass();
+        console.log(response)
+
+        if(response.valid) {
+            setClasses(response.data);
+        } else {
+            console.log(response.error)
+        }
+    }
+
+    async function ViewSpecifyClass(name) {
+        setClasses([]);
+        const response = await ViewSpecifyClasses(name);
+
+        if(name === "") {
+            return ViewClasses();
+        }
+
+        if(response.valid) {
+            return setClasses(response.data);
+        } else {
+            return console.log(response.error)
+        }
+    }
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
             <div className='bg-white shadow-md w-full'>
                 <Header />
             </div>
-            <div className='flex w-screen h-screen border'>
-                <div className='w-80 '>
+            <div className='flex flex-row w-screen h-screen border'>
+                <div className='min-w-[300px] '>
                     <AdminNavigation />
                 </div>
-                <div className='flex flex-row static min-h-[500px] w-screen pl-12 pr-2 pt-2 shadow-lg min-w-[1300px]'>
+                <div className='flex h-screen  min-w-[1000px] pt-5'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='w-full rounded'>
                             <h2 className='text-[30px] font-bold'>Class List</h2>
@@ -38,7 +56,7 @@ export default function Rooms() {
                                 </div>
                                 <div className='flex justify-end items-end gap-4 w-full rounded'>
                                     <h1 className='font-bold'>Search Student: </h1>
-                                    <input type='text' id="Search" className='border rounded-md'/>
+                                    <input type='text' id="Search" className='border rounded-md px-2' onChange={e => ViewSpecifyClass(e.target.value)}/>
                                 </div>
                             </div>
                         </div>
@@ -47,19 +65,19 @@ export default function Rooms() {
                                 {
                                     classs.map((item, index) => {
                                         return (
-                                            <div className='h-[250px] w-[300px] border rounded-md bg-white cursor-pointer'>
+                                            <div className='h-[250px] w-[250px] border rounded-md bg-white cursor-pointer'>
                                                 <div className='m-2 border h-[100px] rounded-md'>
                                                     Logo
                                                 </div>
-                                                <div className='p-2 text-[18px] text-[#287128]'>
+                                                <div className='p-2 text-[14px] text-[#287128]'>
                                                     <div className='font-sans'>
-                                                        Class: { item.class }
+                                                        Class: { item.room }
                                                     </div>
                                                     <div className='font-sans'>
-                                                        Student Number: { item.student }
+                                                        Student Number: { item.course }
                                                     </div>
                                                     <div className='font-sans'>
-                                                        Course: { item.course }
+                                                        Course: { item.year }
                                                     </div>
                                                     <div className='text-[12px] flex items-center justify-center pt-3'>
                                                         Click here to view class!

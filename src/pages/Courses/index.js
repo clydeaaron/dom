@@ -1,23 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import Popup from 'reactjs-popup'
 import CreateCourse from '../../components/cards/CreateCourse';
+import { ViewAllCourse, ViewSpecifyCourse } from '../../functions';
 
 export default function Courses() {
 
-    const courses = useState([]);
+    const [courses, setCourses] = useState([]);
+    useEffect(() => {
+        ViewCourse()
+    },[])
+
+    async function ViewCourse(){
+        const response = await ViewAllCourse();
+        console.log(courses)
+
+        setCourses(response.data)
+        
+    }
+
+    async function SpecifyCourse(course) {
+        const response = await ViewSpecifyCourse({course: course});
+
+        if(course === "") {
+            return ViewCourse();
+        }
+        if(response.valid) return setCourses(response.data)
+    }
 
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
             <div className='bg-white shadow-md w-full'>
                 <Header />
             </div>
-            <div className='flex w-screen h-screen border'>
-                <div className='w-80 '>
+            <div className='flex flex-row w-screen h-screen border'>
+                <div className='min-w-[300px] '>
                     <AdminNavigation />
                 </div>
-                <div className='flex flex-row static min-h-[500px] w-screen pl-12 pr-2 pt-2 shadow-lg min-w-[1300px]'>
+                <div className='flex h-screen  min-w-[1000px] pt-5'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='w-full rounded'>
                             <h2 className='text-[30px] font-bold'>Courses List</h2>
@@ -43,7 +64,19 @@ export default function Courses() {
                                         <th className='bg-green p-2 rounded-tr-md'>Actions</th>
                                     </tr>
                                 </thead>
-                                
+                                <tbody>
+                                    {courses.map((item, index) => {
+                                        return (
+                                            <tr>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.course_name}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.shortcut}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.years}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'></td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
                             </table>
                         </div>
                     </div>

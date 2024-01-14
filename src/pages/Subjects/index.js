@@ -1,20 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import Popup from 'reactjs-popup'
 import AdditionalSubject from '../../components/cards/AdditionalSubject.js'
+import { ViewAllSubject } from '../../functions/index.js'
 
 export default function Subjects() {
+
+    const [subject, setSubject] = useState([]);
+
+    useEffect(() => {
+        ViewSubject()
+    }, []);
+
+    async function ViewSubject() {
+        const response = await ViewAllSubject();
+        setSubject(response.data);
+    }
+
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
             <div className='bg-white shadow-md w-full'>
                 <Header />
             </div>
-            <div className='flex  w-screen h-screen border'>
-                <div className='w-80 '>
+            <div className='flex flex-row w-screen h-screen border'>
+                <div className='min-w-[300px] '>
                     <AdminNavigation />
                 </div>
-                <div className='flex flex-row justify-center items-center static h-80 w-screen pl-12 pr-2 pt-2 min-w-[1300px]'>
+                <div className='flex h-screen  min-w-[1000px] pt-5'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='w-full rounded bg-[]'>
                             <h2 className='text-[30px] font-bold text-black'>Subject List</h2>
@@ -38,13 +51,20 @@ export default function Subjects() {
                                     <tr>
                                         <th className='bg-green p-2 rounded-tl-md'>Code</th>
                                         <th className='bg-green p-2'>Subject Name</th>
-                                        <th className='bg-green p-2'>Year & Course</th>
+                                        <th className='bg-green p-2'>Type</th>
                                         <th className='bg-green p-2'>Status</th>
                                         <th className='bg-green p-2 rounded-tr-md'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    {subject.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.id}</td>
+                                            <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.label}</td>
+                                            <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.subject_type}</td>
+                                            <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

@@ -5,6 +5,7 @@ import Admin from "./Admin";
 import Rooms from "./Classes";
 import Courses from "./Courses";
 import CreateClasses from "./CreateClasses";
+import Students from "./Students";
 
 export {
     Login,
@@ -14,4 +15,5 @@ export {
     Rooms,
     Courses,
     CreateClasses,
+    Students
 }

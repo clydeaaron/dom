@@ -6,13 +6,12 @@ import { insertSubject } from '../../functions';
 export default function AdditionalSubject() {
     const validationSchema = Yup.object().shape({
         Subjects: Yup.string().label("Subjects").required(),
-        Course: Yup.string().label("Course").required(),
         Type: Yup.string().label("Subject Type").required(),
     })
 
 
     async function onSubmit(value) {
-        const response = await insertSubject({Subject: value?.Subjects, Course: value?.Course, Type: value?.Type});
+        const response = await insertSubject({Subject: value?.Subjects, Type: value?.Type});
         console.log(response)
         alert(response.msg);
     }
@@ -20,7 +19,6 @@ export default function AdditionalSubject() {
     const formik = useFormik ({
         initialValues: {
             Subjects: "",
-            Course: "",
             Type: "",
         },
         validationSchema,
@@ -42,10 +40,6 @@ export default function AdditionalSubject() {
                             <div className='flex p-2'>
                                 <div className='px-3'>Subject Name:<span className='text-red'>*</span></div>
                                 <input type='text' id="Subjects" className='border rounded-md p-1' onChange={formik.handleChange}/>
-                            </div>
-                            <div className='flex p-2'>
-                                <div className='px-5'>Course: </div>
-                                <input type='text' id="Course" className='border rounded-md p-1' onChange={formik.handleChange}/>
                             </div>
                             <div className='flex p-2'>
                                 <div className='px-6'>Subject Type:<span className='text-red'>*</span></div>

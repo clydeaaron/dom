@@ -5,7 +5,7 @@ const routes = {
     student: "/student_list",
     room: "/Rooms",
     courses: "/Courses",
-    createclass: "CreateClass"
+    createclass: "/CreateClass"
 }
 
 export default routes;
