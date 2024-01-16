@@ -138,7 +138,7 @@ export default function UpdateUser(data) {
                         </div>
                             
                         <div className='flex flex-row justify-end items-end'>
-                            <button type="submit" className='border rounded-md p-2 bg-[#00A36C] text-white' onClick={e => console.log(formik)}>Submit</button>
+                            <button type="submit" className='border rounded-md p-2 bg-[#00A36C] text-white' onClick={formik.handleSubmit}>Submit</button>
                         </div>
                     </div>
                 </div>
