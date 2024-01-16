@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import Navigation from '../../components/cards/Navigation'
 import Header from '../../components/cards/header'
-import { EditClassGrade, FetchEnroll } from '../../functions';
+import { EditClassGrade, FetchEnroll, ViewAllSubject } from '../../functions';
 
 export default function UpdateClassRoom() {
     const [student, setStudent] = useState([]);
+    const [subjects, setSubjects] = useState([]);
+    const [classSubject, setClassSubject] = useState("")
     const [classroom, setClassroom] = useState("");
     const [filter, setFilter] = useState("");
 
     useEffect(() => {
+        FetchSubject()
         const urlParams = new URLSearchParams(window.location.search);
         setClassroom(urlParams.get('classroom'));
         FetchStudents({classs: urlParams.get('classroom')})
     },[])
 
+    async function FetchSubject() {
+        const response = await ViewAllSubject();
+        const { valid, data } = response;
+        if(valid) setSubjects(data)
+    }
     async function FetchStudents({classs}) {
         console.log(classs)
         const response = await FetchEnroll({id: classs});
@@ -44,6 +52,9 @@ export default function UpdateClassRoom() {
                 <div className='flex flex-row  static h-[600px] w-screen pl-12 pr-2 pt-2 shadow-lg min-w-[1300px]'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='flex flex-row justify-end items-end p-4'>
+                            <div className='px-5'>
+                            
+                            </div>
                             <div className='px-5'>Search Student: </div>
                             <input type='text' className='rounded-sm border p-1' id="filter_name" onChange={e => setFilter(e.target.value)} placeholder='Search'/>
                         </div>
