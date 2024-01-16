@@ -68,7 +68,7 @@ export default function Navigation() {
                     {
                         navigator.map((link) => (
                             <li key={link.label} className='md:flex justify-center items-center bg-slate-50 p-5 w-full text-[19px] font-sansserif font-semibold my-2'>
-                                <a href={link.link} className='text-black hover:text-white duration-500 '><span>{link.icon}</span>{link.name}</a>
+                                <a href={link.link} className='text-black hover:text-white duration-500 '>{link.icon}<span>{link.label}</span></a>
                             </li>
                         ))
                     }
