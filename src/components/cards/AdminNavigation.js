@@ -4,7 +4,7 @@ import routes from '../../pages/pagename';
 export default function AdminNavigation() {
     
     let Links = [
-        { name: "Dashboard", link: routes.Dashboard },
+        // { name: "Dashboard", link: routes.Dashboard },
         { name: "Students", link: routes.student },
         { name: "Subject", link: routes.subjects },
         { name: "Courses", link: routes.courses },
