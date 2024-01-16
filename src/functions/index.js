@@ -444,7 +444,7 @@ async function ViewAllUser() {
     }
 }
 
-async function CreateUser({ user, email, password, fname, mname, lname, birthdate, gender }) {
+async function CreateUser({ user, email, password, fname, mname, lname, birthdate, gender, type}) {
     try {
         const response = await axios.post('http://localhost/DOM_PHP/CreateUser/', {
             user: user,
@@ -455,6 +455,7 @@ async function CreateUser({ user, email, password, fname, mname, lname, birthdat
             lname: lname,
             birthdate: birthdate,
             gender: gender,
+            type: type
         }, {
             headers: {  
             'Content-Type': 'application/json'
