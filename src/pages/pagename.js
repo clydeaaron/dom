@@ -1,11 +1,14 @@
 const routes = {
     login: "/",
-    home: "/Create_Grade",
+    home: "/Home",
     subjects: "/subject_list",
     student: "/student_list",
     room: "/Rooms",
     courses: "/Courses",
-    createclass: "/CreateClass"
+    createclass: "/CreateClass",
+    user: "/Users",
+    enroll: "/Enroll",
+    EditClassroom: "/EditClassroom"
 }
 
 export default routes;

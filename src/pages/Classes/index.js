@@ -3,6 +3,8 @@ import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import routes from '../pagename';
 import { ViewAllClass, ViewSpecifyClasses } from '../../functions';
+import Popup from 'reactjs-popup';
+import UpdateClass from '../../components/update/UpdateClass';
 
 export default function Rooms() {
     const [classs, setClasses] = useState([]);
@@ -42,7 +44,7 @@ export default function Rooms() {
             <div className='bg-white shadow-md w-full'>
                 <Header />
             </div>
-            <div className='flex flex-row w-screen h-screen border'>
+            <div className='flex flex-row w-screen h-screen border overflow-hidden'>
                 <div className='min-w-[300px] '>
                     <AdminNavigation />
                 </div>
@@ -61,34 +63,39 @@ export default function Rooms() {
                             </div>
                         </div>
                         <hr className='mt-5'></hr>
-                            <div className='grid grid-cols-4 gap-3 p-5'>
-                                {
-                                    classs.map((item, index) => {
-                                        return (
-                                            <div className='h-[250px] w-[250px] border rounded-md bg-white cursor-pointer'>
-                                                <div className='m-2 border h-[100px] rounded-md'>
-                                                    Logo
-                                                </div>
-                                                <div className='p-2 text-[14px] text-[#287128]'>
-                                                    <div className='font-sans'>
+                        <div className='flex flex-col h-[400px] gap-3 p-5 overflow-auto'>
+                            {
+                                classs.map((item, index) => {
+                                    return (
+                                        
+                                        <Popup trigger={
+                                            <div className='h-[125px] w-full border rounded-md bg-white hover:cursor-pointer text-[14px] text-[#287128]'>
+                                                
+                                                <div className='flex p-2 text-[14px] text-[#287128]'>
+                                                    <div className=' w-full font-sans'>
                                                         Class: { item.room }
                                                     </div>
-                                                    <div className='font-sans'>
-                                                        Student Number: { item.course }
+                                                    <div className='flex justify-end items-end w-full font-sans'>
+                                                        Course: { item.course }
                                                     </div>
-                                                    <div className='font-sans'>
-                                                        Course: { item.year }
-                                                    </div>
-                                                    <div className='text-[12px] flex items-center justify-center pt-3'>
-                                                        Click here to view class!
-                                                    </div>
+                                                    
                                                 </div>
-                                            </div>
-                                        )
-                                        
-                                    })
-                                }
-                            </div>
+                                                <div className='p-2 font-sans '>
+                                                    Year Level: { item.year }
+                                                </div>
+                                                <div className='text-[12px] flex items-center justify-center pt-3'>
+                                                    Click here to view class!
+                                                </div>
+                                            </div>  
+                                        }>
+                                            <UpdateClass data={item} />
+                                        </Popup>
+                                            
+                                    )
+                                    
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,90 +1,89 @@
 import React, { useEffect, useState } from 'react'
-import Popup from 'reactjs-popup'
 import Header from '../../components/cards/header'
 import Navigation from '../../components/cards/Navigation'
-import GradeCreation from '../../components/cards/GradeCreation';
+import { ViewAllClass } from '../../functions';
+import routes from '../pagename';
 
 export default function Home() {
-
-    const [students, setStudent] = useState([]);
+    const [students, setStudents] = useState([]);
     const [filter, setFilter] = useState("");
-    const [id, setID] = useState("");
-    const [open, setOpen] = React.useState(false)
+    const [ids, setID] = useState("");
 
     useEffect(() => {
-        fetch_student();
         const urlParams = new URLSearchParams(window.location.search);
         setID(urlParams.get('id'));
+        ViewClasses();
     }, []);
-
-    const fetch_student = async() => {
-        setStudent([
-            {student_no: 92, course: 'BSE', year: "4th", FirstName: "dylan", MiddleName: "sample", LastName: "alaban"},
-            {student_no: 69, course: 'BSA', year: "3rd", FirstName: "palacio", LastName: "Kabayo" }
-        ]);
-    }
-
-    const DataTable = (names) => {
-        // Assuming students is defined somewhere in your component or passed as a prop
-        const datatable = students.map((item, index) => {
-            // Check if keys are provided
-            if (id === item.course || names === item.name) {
-                return (
-                    <tr key={index}>
-                        <td align="center">{item.student_no}</td>
-                        <td align="center">{item.name}</td>
-                        <td align="center">{item.course + " - " + item.year}</td>
-                    </tr>
-                );
-            }
-            return null; 
-        });
     
-        return datatable;
-    };
-    const handleBackgroundClick = () => {
-        // Handle background click action here
-        console.log('Background clicked!');
-        // Close the popup or perform other actions as needed
-    };
+    async function ViewClasses() {
+        try {
+            const response = await ViewAllClass();
+            const { valid, data, error } = response;
+            console.log(data)
+            if (valid) {
+                setStudents(data);
+            } else {
+                console.error(error);
+            }
+        } catch (error) {
+            console.error("Error fetching classes:", error);
+        }
+    }
+    
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
             <div className='bg-white shadow-md w-full'>
                 <Header />
             </div>
-            <div className='flex pt-1 w-screen h-screen'>
-                <div className='w-64'>
-                    <Navigation/>
+            <div className='flex flex-row w-screen h-screen border'>
+                <div className='min-w-[250px] '>
+                    <Navigation />
                 </div>
-                <div className='flex flex-row justify-center items-center static h-80 w-screen pl-12 pr-2 pt-2 shadow-lg min-w-[1300px]'>
+                <div className='flex h-screen  min-w-[1000px] pt-5'>
+                <div className='flex flex-row  static h-[600px] w-screen pl-12 pt-2 shadow-lg min-w-[1300px] pr-3'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='flex flex-row justify-end items-end p-4'>
-                        <Popup trigger={<button className='bg-slate-500 p-1 rounded-md text-white'> Add Student</button>} position="center"  onBackgroundClick={handleBackgroundClick}>
-                            {/* <AddStudent/> */}
-                            <GradeCreation datas={students[0]}/>
-                        </Popup>
-                            <div className='px-5'>Search Name: </div>
+                            <div className='px-5'>Search Classroom: </div>
                             <input type='text' className='rounded-sm border p-1' id="filter_name" onChange={(e) => setFilter(e.target.value)} placeholder='Search'/>
                         </div>
-                        <div className='w-full rounded border'>
-                            <table className='table-auto text-center w-full ronded-md '>
-                                <thead className='bg-slate-700'>
-                                    <tr>
-                                        <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Student ID</th>
-                                        <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Student Name</th>
-                                        <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Year & Section</th>
-                                        <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>asda</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    { DataTable(filter) }
-                                </tbody>
-                            </table>
+                        <div className='max-h-[500px] overflow-auto border '>
+                            <div className='w-full rounded '>
+                                <table className='table-auto text-center w-full rounded-md '>
+                                    <thead className='bg-slate-700'>
+                                        <tr>
+                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Classroom ID</th>
+                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Year & Section</th>
+                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Status</th>
+                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {students
+                                        // .f ilter((item) => {
+                                        //     console.log(item.course.toUpperCase())
+                                        //     return  item.course.toUpperCase() === ids.toUpperCase() && (item.room.toUpperCase() === filter.toUpperCase() || filter === "");
+                                        // })
+                                        .map((item, index) => {
+                                            
+                                            return (
+                                            <tr key={index}>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.room}</td>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.course + " - " + item.year}</td>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.status}</td>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'> 
+                                                    <a href={routes.EditClassroom + "?classroom=" +item.room} className='p-3 bg-blue rounded-md'>View</a>
+                                                </td>
+                                            </tr>
+                                        )}
+                                    )}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     )
 }

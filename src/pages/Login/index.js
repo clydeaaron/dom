@@ -53,7 +53,7 @@ export default function Login() {
                         </div>
                         <div className='p-4'>
                             <div>Enter Password: </div>
-                            <input type="text" placeholder='Enter Password...' id="Password" className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} />
+                            <input type="password" placeholder='Enter Password...' id="Password" className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} />
                             {formik.touched.Password && formik.errors.Password ? (
                                     <div className='text-red text-[10px] py-2'>{formik.errors.Password}</div>
                                 ) : null}

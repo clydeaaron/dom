@@ -3,7 +3,8 @@ import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import Popup from 'reactjs-popup'
 import CreateCourse from '../../components/cards/CreateCourse';
-import { ViewAllCourse, ViewSpecifyCourse } from '../../functions';
+import { ViewAllCourse } from '../../functions';
+import UpdateCourse from '../../components/update/UpdateCourse';
 
 export default function Courses() {
 
@@ -20,14 +21,14 @@ export default function Courses() {
         
     }
 
-    async function SpecifyCourse(course) {
-        const response = await ViewSpecifyCourse({course: course});
+    // async function SpecifyCourse(course) {
+    //     const response = await ViewSpecifyCourse({course: course});
 
-        if(course === "") {
-            return ViewCourse();
-        }
-        if(response.valid) return setCourses(response.data)
-    }
+    //     if(course === "") {
+    //         return ViewCourse();
+    //     }
+    //     if(response.valid) return setCourses(response.data)
+    // }
 
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
@@ -72,7 +73,13 @@ export default function Courses() {
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.shortcut}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.years}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
-                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'></td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
+                                                    <Popup trigger={
+                                                        <button className='shadow rounded-md p-1 text-white bg-green mx-2'> View </button>
+                                                    }>
+                                                        <UpdateCourse data={item} />
+                                                    </Popup>
+                                                </td>
                                             </tr>
                                         )
                                     })}

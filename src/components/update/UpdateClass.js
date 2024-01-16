@@ -1,27 +1,26 @@
 import { useFormik } from 'formik'
 import * as Yup from "yup";
-import React, { useState } from 'react'
-import Header from '../../components/cards/header'
-import AdminNavigation from '../../components/cards/AdminNavigation'
-import { CreateClass, ViewAllSubject } from '../../functions';
+import React, { useEffect, useState } from 'react'
+import { UpdateClassroom, ViewAllSubject, ViewClassDetail } from '../../functions';
+import routes from '../../pages/pagename';
 
-export default function CreateClasses() {
+export default function UpdateClass(data) {
+    const { room, course, year } = data.data
     const [rowsData, setRowsData] = useState([]);
     const [count, setCount] = useState(0);
     const [getSubject, setGetSubjects] = useState([]);
 
+    useEffect(() => {
+        fetchDetails(formik.values.Room)
+        ViewSubject(course);
+    }, [])
+
     const generateValidationSchema = () => {
-        const rowSchema = Yup.object().shape({
-            Subject: Yup.string().label("Subject").required(),
-            Type: Yup.string().label("Subject Type").required(),
-            Time: Yup.string().label("Time").required(),
-        });
         
         return Yup.object().shape({
             Room: Yup.string().label("Classroom").required(),
             course: Yup.string().label("Course").required(),
             level: Yup.number().integer().label("Year Level").required(),
-            Details: Yup.array().of(rowSchema).required(),
         });
     };
     
@@ -62,23 +61,31 @@ export default function CreateClasses() {
         }
 
         setGetSubjects(response.data);
-        console.log(course);
     };
 
     async function onSubmit(value) {
-        console.log(value)
-        const response = await CreateClass({ Room: value?.Room, course: value?.course, level: value?.level, Subject: value?.Details });
-
-
-        alert(response)
+        const subjectsData = rowsData.map((data) => ({
+            Subject: data.Subject,
+            Type: data.Type,
+            Time: data.Time,
+        }));
+    
+        const response = await UpdateClassroom({
+            Room: value?.Room,
+            course: value?.course,
+            level: value?.level,
+            Subject: subjectsData,
+        });
+    
+        alert(response);
         // return  window.location.href = routes.room
     }
 
     const formik = useFormik({
         initialValues: {
-                Room: "",
-                course: "",
-                level: "", 
+                Room: room,
+                course: course,
+                level: year, 
                 Details: [{}],
             },
         validationSchema,
@@ -86,42 +93,55 @@ export default function CreateClasses() {
     });
 
 
+    async function fetchDetails(id) {
+        const response = await ViewClassDetail({id: id});
+        console.log(response);
+        const { data } = response;
+        if(response.valid) {
+            data.map((item, index) => {
+                setRowsData([{
+                    counter: index,
+                    Subject: item.subject,
+                    Type: item.type,
+                    Time: item.time,
+                }])
+            })
+            
+            setCount(response.data.length)
+        } else {
+            
+        console.log(response.msg)
+        }
+    }
+
     return (
-        <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
-            <div className='bg-white shadow-md w-full'>
-                <Header />
-            </div>
-            <div className='flex flex-row w-screen h-screen border'>
-                <div className='min-w-[300px] '>
-                    <AdminNavigation />
-                </div>
-                <div className='flex h-screen min-w-[1000px] pt-5'>
-                    <div className='flex-col justify-center bg-white w-auto h-auto rounded-xl'>
-                        <div className='flex flex-row justify-start items-start bg-slate-100 w-full rounded-t-md h-auto p-5 '>
-                            <h1 className='w-full'>Add New Class</h1>
-                            <div className='flex justify-end items-end w-full'>
-                                <button><ion-icon name="close-outline"></ion-icon></button>
-                            </div>
-                        </div>
-                        <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
-                            <div className='flex flex-row'>
-                                <div className='flex p-2'>
-                                    <div className='px-3'>Classroom:<span className='text-red'>*</span></div>
-                                    <input type='text' id="Room" className='border rounded-md p-1' onChange={formik.handleChange}/>
+
+        <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>
+            <div className='flex h-screen justify-center items-center '>
+                <div className='flex-col justify-center bg-white w-auto min-w-[1000px] min-h-[80px] rounded-xl overflow-auto'>
+                    <div className='pl-5 pt-10 text-[18px]'>
+                            Update Class
+                        </div>  
+                    <div className='flex h-[500px]  w-full pt-3'>
+                        <div className='w-full px-3 bg-slate-100'>
+                            <div className='flex flex-row justify-start items-start  w-full rounded-t-md h-auto p-5 '>
+                                <div className='flex flex-col p-2 w-full'>
+                                    <div>Classroom:<span className='text-red'>*</span></div>
+                                    <input type='text' id="Room" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Room}/>
                                     {formik.touched.Room && formik.errors.Room ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.Room}</div>
                                     ) : null}
                                 </div>
-                                <div className='flex p-2'>
-                                    <div className='px-5'>Course: </div>
-                                    <input type='text' id="course" className='border rounded-md p-1' onChange={handleCourse}/>
+                                <div className='flex flex-col p-2'>
+                                    <div>Course: </div>
+                                    <input type='text' id="course" className='border rounded-md p-1' onChange={handleCourse} defaultValue={formik.values.course}/>
                                     {formik.touched.course && formik.errors.course ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.course}</div>
                                     ) : null}
                                 </div>
-                                <div className='flex p-2'>
-                                    <div className='px-6'>Year Level:<span className='text-red'>*</span></div>
-                                    <input type="number" id="level" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div className='flex flex-col p-2'>
+                                    <div>Year Level:<span className='text-red'>*</span></div>
+                                    <input type="number" id="level" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.level}/>
                                     {formik.touched.level && formik.errors.level ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.level}</div>
                                     ) : null}
@@ -132,6 +152,8 @@ export default function CreateClasses() {
                                     <button type="submit" className=' px-4 h-full hover:bg-red bg-[#cc2609]  text-white rounded-md text-sm whitespace-nowrap' onClick={addFields}>
                                         Add Subject
                                     </button>
+                                    
+                                    <a href={routes.enroll + "?id="+formik.values.Room}> Enroll Student</a>
                                 </div>
                                 
                                 {/**
@@ -148,12 +170,13 @@ export default function CreateClasses() {
                                                 name={`Details[${index}].Subject`}
                                                 className="border block w-full rounded-sm text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px]  bg-slightwhite  py-2 px-3"
                                                 onChange={(e) => {
-                                                    formik.handleChange(e);
+                                                    data['Subject'] = e.target.value;
                                                     // Assuming you have a function like handleSubjectChange to update the selected value
                                                     // handleSubjectChange(e.target.value);
                                                 }}
+                                                defaultValue={data.Subject != null ? data.Subject : null}
                                                 >
-                                                <option selected disabled> -- Select Subject --</option>
+                                                <option disabled> -- Select Subject --</option>
                                                 {getSubject.map((item, idx) => (
                                                     <option key={idx} value={item.label}>
                                                     {item.label}
@@ -168,11 +191,12 @@ export default function CreateClasses() {
                                                 name={`Details[${index}].Type`}
                                                 className="border block w-full rounded-sm text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px]  bg-slightwhite  py-2 px-3 "
                                                 onChange={(e) => {
-                                                    formik.handleChange(e);
+                                                    data['Type'] = e.target.value;
                                                     // handleTypeChange(e.target.value);
                                                 }}
+                                                defaultValue={data.Type != null ? data.Type : null}
                                                 >
-                                                <option selected disabled>-- Select Subject Type --</option>
+                                                <option disabled>-- Select Subject Type --</option>
                                                 <option value="Minor">Minor</option>
                                                 <option value="Major">Major</option>
                                                 </select>
@@ -182,7 +206,10 @@ export default function CreateClasses() {
                                                 type="text"
                                                 id={`Details[${index}].Time`}
                                                 name={`Details[${index}].Time`}
-                                                onChange={formik.handleChange}
+                                                onChange={(e) => 
+                                                    data['Time'] = e.target.value
+                                                }
+                                                defaultValue={data.Time != null ? data.Time : null}
                                                 className='border h-9 w-full bg-slightwhite px-2 py-2 font-light text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] placeholder:italic placeholder:text-lightgray  rounded-r-sm '
                                                 placeholder='Time'
                                                 />
@@ -200,7 +227,7 @@ export default function CreateClasses() {
                                 }
                             </div>
                             <div className='flex flex-row justify-end items-end p-3'>
-                                <button type="submit" className='border rounded-md p-2 bg-[#00A36C] text-white' onClick={formik.handleSubmit}>Submit</button>
+                                <button type="submit" className='border rounded-md p-2 bg-[#00A36C] text-white' onClick={formik.handleSubmit}>Update</button>
                             </div>
                         </div>
                     </div>

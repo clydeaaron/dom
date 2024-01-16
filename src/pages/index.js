@@ -6,6 +6,9 @@ import Rooms from "./Classes";
 import Courses from "./Courses";
 import CreateClasses from "./CreateClasses";
 import Students from "./Students";
+import Users from "./Users"
+import Enroll from "./Enroll";
+import UpdateClassRoom from "./UpdateClassRoom";
 
 export {
     Login,
@@ -15,5 +18,8 @@ export {
     Rooms,
     Courses,
     CreateClasses,
-    Students
+    Students,
+    Users,
+    Enroll,
+    UpdateClassRoom
 }
