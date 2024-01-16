@@ -8,6 +8,11 @@ export default function Navigation() {
 
     useEffect(() => {
         fetchNavigations();
+        navigator.push({
+            id: "Logout",
+            label: "Logout",
+            link: routes.login,
+        })
     }, []);
 
     async function fetchNavigations() {
