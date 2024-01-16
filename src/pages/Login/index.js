@@ -14,10 +14,17 @@ export default function Login() {
 
     async function onSubmit(value) {
         const response = await LoginValid({ Email: value?.Email, Password: value?.Password});
-        console.log(response);
+        const { valid , data } = response
 
-        if(response?.valid) {
-            window.location.href = routes.student;
+        if(valid) {
+            switch(data) {
+                case "Admin":
+                    window.location.href = routes.student;
+                    break;
+                case "Prof":
+                    window.location.href = routes.home;
+                    break;
+            }
         } else {
             alert(response.msg)
         }
