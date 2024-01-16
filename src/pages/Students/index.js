@@ -54,7 +54,7 @@ export default function Students() {
                             <h2 className='text-[30px] font-bold'>Student List</h2>
                             <div className='flex justify-end items-end gap-4 w-full rounded'>
                                 <Popup trigger={
-                                    <button className='p-2 rounded border bg-slate-400'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
+                                    <button className='p-2 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
                                 } >
                                     <AddStudent />
                                 </Popup>

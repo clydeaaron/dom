@@ -54,7 +54,7 @@ export default function Admin() {
                             <div className='flex w-full pt-4'>
                                 <div className='flex w-full'>
                                     <Popup trigger={
-                                        <button className='p-1 rounded border bg-slate-400'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
+                                        <button className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
                                     } >
                                         <AddStudent />
                                     </Popup>

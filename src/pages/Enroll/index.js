@@ -128,7 +128,7 @@ export default function Enroll() {
                             <div className='flex flex-col'>
                                 <div className="flex flex-row gap-2 h-9 justify-center items-center ">
                                     <Popup trigger={
-                                        <button className=' px-4 h-full hover:bg-red bg-[#cc2609]  text-white rounded-md text-sm whitespace-nowrap'> Search Student </button>
+                                        <button className=' px-4 h-full hover:bg-red bg-[#468f29]  text-white rounded-md text-sm whitespace-nowrap'> Search Student </button>
                                         }>
                                             <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>
                                                 <div className='flex h-screen justify-center items-center '>

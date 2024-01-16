@@ -129,7 +129,7 @@ export default function CreateClasses() {
                             </div>
                             <div className='flex flex-col'>
                                 <div className="flex flex-row gap-2 h-9 justify-center items-center ">
-                                    <button type="submit" className=' px-4 h-full hover:bg-red bg-[#cc2609]  text-white rounded-md text-sm whitespace-nowrap' onClick={addFields}>
+                                    <button type="submit" className=' px-4 h-full hover:bg-red bg-[#468f29] text-white rounded-md text-sm whitespace-nowrap' onClick={addFields}>
                                         Add Subject
                                     </button>
                                 </div>

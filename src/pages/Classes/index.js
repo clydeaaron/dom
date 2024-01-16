@@ -54,7 +54,7 @@ export default function Rooms() {
                             <h2 className='text-[30px] font-bold'>Class List</h2>
                             <div className='flex w-full pt-4'>
                                 <div className='flex w-full'>
-                                        <a href={routes.createclass} className='p-1 rounded border bg-slate-400'><ion-icon name="add-circle-outline"></ion-icon> Add Classes</a>
+                                        <a href={routes.createclass} className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Classes</a>
                                 </div>
                                 <div className='flex justify-end items-end gap-4 w-full rounded'>
                                     <h1 className='font-bold'>Search Student: </h1>

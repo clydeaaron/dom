@@ -36,7 +36,7 @@ export default function Users() {
                             <div className='flex flex-row w-full rounded pt-4'>
                                 <div className='flex justify-start items-start w-full'>
                                     <Popup trigger={
-                                        <button className='p-1 rounded border bg-slate-400'><ion-icon name="add-circle-outline"></ion-icon> Add New User</button>
+                                        <button className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add New User</button>
                                     } >
                                         <AdditionalUser />
                                     </Popup>
