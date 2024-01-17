@@ -71,7 +71,7 @@ export default function CreateClasses() {
 
 
         alert(response)
-        // return  window.location.href = routes.room
+        window.history.back()
     }
 
     const formik = useFormik({

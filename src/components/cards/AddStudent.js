@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import * as Yup from "yup";
 import { InsertStudent, ViewAllCourse } from '../../functions';
+import routes from '../../pages/pagename';
 
 export default function AddStudent() {
     const [courses, setCourses] = useState([]);
@@ -42,6 +43,7 @@ export default function AddStudent() {
 
         console.log(response)
         alert(response.msg);
+        window.location.href = routes.student
     }
 
     const formik = useFormik({

@@ -34,8 +34,8 @@ export default function UpdateCourse(data) {
 
         const { msg, valid } = response;
         if (valid) {
-        alert(msg);
-        // window. location.href = routes.courses;
+            alert(msg);
+            window.location.href = routes.courses;
         } else {
         alert(msg);
         }

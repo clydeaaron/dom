@@ -7,7 +7,7 @@ const routes = {
     courses: "/Courses",
     createclass: "/CreateClass",
     user: "/Users",
-    enroll: "/Enroll",
+    enroll: "/Enroll", 
     EditClassroom: "/EditClassroom"
 }
 

@@ -13,8 +13,10 @@ export default function UpdateSubject(data) {
     })
 
     async function onSubmit(value) {
-        const response = await UpdateSubjects({ id: value?.id, Subject: value?.Subject, Type: value?.Type });
+        const response = await UpdateSubjects({ id: value?.id, Subject: value?.Subjects, Type: value?.Type });
         alert(response.msg)
+        
+        window.location.href = routes.subjects;
     }
 
     async function onDelete(id) {
@@ -58,7 +60,7 @@ export default function UpdateSubject(data) {
                             <div className='flex p-2'>
                                 <div className='px-6'>Subject Type:<span className='text-red'>*</span></div>
                                 <select id="Type" className='border rounded-md p-1' onChange={formik.handleChange} value={formik.values.Type}>
-                                    <option disabled>-- Selected Subject Type --</option>
+                                    <option value="" disabled>-- Selected Subject Type --</option>
                                     <option value="Minor">Minor</option>
                                     <option value="Major">Major</option>
                                 </select>

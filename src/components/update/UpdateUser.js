@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
 import { UpdateUsers } from '../../functions'
+import routes from '../../pages/pagename'
 
 export default function UpdateUser(data) {
     const { id, first_name, middle_name, last_name, username, email, password, birthdate, gender, course, user_type } = data.data
@@ -34,6 +35,8 @@ export default function UpdateUser(data) {
                 type: values?.user_type
             });
             alert(response.msg);
+            
+            window.location.href = routes.user;
         } catch (error) {
             console.error(error);
             alert("An error occurred during the user update. Please try again."); // Handle error more gracefully

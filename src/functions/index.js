@@ -218,9 +218,8 @@ async function InsertCourse({Course, Shorten, years}) {
                 'Content-Type': 'application/json'
             }
         });
-        const { msg } = response.data
-        
-        return msg;
+
+        return response.data;
     } catch (err) {
         console.log(err);
         throw new Error("An error occurred during the course insertion")
@@ -286,7 +285,7 @@ async function UpdateSubjects({ id, Subject, Type }) {
                 'Content-Type': 'application/json'
             }
         })
-
+        console.log(response)
         return response.data
     } catch(err) {
         console.log(err)

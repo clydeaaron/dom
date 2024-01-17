@@ -77,8 +77,9 @@ export default function UpdateClass(data) {
             Subject: subjectsData,
         });
     
-        alert(response);
-        // return  window.location.href = routes.room
+        const { msg } = response
+        alert(msg);
+        window.history.back()
     }
 
     const formik = useFormik({

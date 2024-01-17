@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
 import { CreateUser } from '../../functions'
+import routes from '../../pages/pagename';
 
 export default function AdditionalUser() {
     const validationSchema = Yup.object().shape({
@@ -31,6 +32,7 @@ export default function AdditionalUser() {
         });
 
         alert(response.msg);
+        window.location.href = routes.user
     }
 
     const formik = useFormik({

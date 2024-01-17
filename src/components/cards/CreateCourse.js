@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import Header from './header'
 import AdminNavigation from './AdminNavigation'
 import { InsertCourse } from '../../functions'
+import routes from '../../pages/pagename'
 
 export default function CreateCourse() {
     const validationSchema = Yup.object().shape({
@@ -26,6 +27,7 @@ export default function CreateCourse() {
         const response = await InsertCourse({Course: value?.Course, Shorten: value?.Shorten, years: value?.Years});
 
         alert(response.msg);
+        window.location.href = routes.courses
     }
 
     return (

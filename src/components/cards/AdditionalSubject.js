@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
 import { insertSubject } from '../../functions';
+import routes from '../../pages/pagename';
 
 export default function AdditionalSubject() {
     const validationSchema = Yup.object().shape({
@@ -14,6 +15,8 @@ export default function AdditionalSubject() {
         const response = await insertSubject({Subject: value?.Subjects, Type: value?.Type});
         console.log(response)
         alert(response.msg);
+        
+        window.location.href = routes.subjects
     }
 
     const formik = useFormik ({

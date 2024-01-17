@@ -39,6 +39,7 @@ export default function UpdateClassRoom() {
 
         const { valid, msg } = response;
         alert(msg)
+        window.history.back()
     }
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>

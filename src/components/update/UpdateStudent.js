@@ -57,6 +57,7 @@ export default function UpdateStudent( data ) {
 
         console.log(response)
         alert(response.msg);
+        window.location.href = routes.student;
     }
 
     const formik = useFormik({
