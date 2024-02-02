@@ -8,11 +8,7 @@ export default function Navigation() {
 
     useEffect(() => {
         fetchNavigations();
-        navigator.push({
-            id: "Logout",
-            label: "Logout",
-            link: routes.login,
-        })
+        
     }, []);
 
     async function fetchNavigations() {
@@ -72,6 +68,9 @@ export default function Navigation() {
                             </li>
                         ))
                     }
+                    <li className='md:flex justify-center items-center bg-slate-50 p-5 w-full text-[19px] font-sansserif font-semibold my-2'>
+                        <a href={routes.login} className='text-black hover:text-white duration-500 '><ion-icon name="log-out-outline"></ion-icon><span>Logout</span></a>
+                    </li>
                 </ul>
         </div>
     );

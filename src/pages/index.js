@@ -9,6 +9,9 @@ import Students from "./Students";
 import Users from "./Users"
 import Enroll from "./Enroll";
 import UpdateClassRoom from "./UpdateClassRoom";
+import CreateCourse from "./CreateCrouse";
+import GradeCreation from "./GradeCreation";
+import UpdateCourse from "./UpdateCourse";
 
 export {
     Login,
@@ -21,5 +24,8 @@ export {
     Students,
     Users,
     Enroll,
-    UpdateClassRoom
+    UpdateClassRoom,
+    CreateCourse,
+    GradeCreation,
+    UpdateCourse
 }

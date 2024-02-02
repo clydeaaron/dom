@@ -266,7 +266,6 @@ async function ViewAllSubject() {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response)
         return response.data;
     } catch(err) {
         console.log(err)
@@ -310,13 +309,14 @@ async function DeleteSubject({ id }) {
     }
 }
 
-async function UpdateCourses({ id, course, shortcut, years}) {
+async function UpdateCourses({ id, course, shorten, years, details}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateCourse/', {
+        const response = await axios.post('http://localhost/DOM_PHP/UpdateCourses/', {
             id: id,
             course: course,
-            shortcut: shortcut,
-            years: years
+            shortcut: shorten,
+            years: years,
+            detail: details
         }, {
             header: {
                 'Content-Type': 'application/json'
@@ -559,6 +559,119 @@ async function EditClassGrade({ students }) {
         throw new Error("An error occurred during the data update")
     }
 }
+
+async function CreationCourse({course, shorten, year, details}) {
+    try{
+        const response = await axios.post('http://localhost/DOM_PHP/CreationCourse/', JSON.stringify({
+            course: course,
+            shorten: shorten,
+            years: year,
+            detail: details
+        }), {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.data
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function EditCourse({ id, course, shorten, year, details}) {
+    try {
+        const response = await axios.post('http://localhost/DOM_PHP/EditCourse/', JSON.stringify({
+            course: course,
+            shorten: shorten,
+            years: year,
+            detail: details
+        }), {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.data
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function ViewSpecificCourse ({id}) {
+    try{
+        const response = await axios.post('http://localhost/DOM_PHP/SpecificCourse/', {
+            id: id
+        }, {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.data
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function ViewStudentNo({ids}) {
+    try{
+        const response = await axios.post('http://localhost/DOM_PHP/ViewSpecificGrades/', {
+            student: ids
+        }, {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.data
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function UpdateGrades ({ id, prelim, midterm, prefi, finals }) {
+    try {
+        const response = await axios.post('http://localhost/DOM_PHP/UpdateGrade/', {
+            id: id,
+            prelim: prelim,
+            midterm: midterm,
+            prefi: prefi,
+            finals: finals
+        }, {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function UpdateCourse({id, course, shorten, years, details}) {
+    try {
+        const response = await axios.post('http://localhost/DOM_PHP/UpdateCourses/', {
+            id: id,
+            course: course,
+            shorten: shorten,
+            years: years,
+            detail: details
+        }, {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
 export {
     LoginValid,
     insertSubject,
@@ -588,4 +701,11 @@ export {
     UpdateStudents,
     UpdateCourses,
     UpdateClassroom,
+
+    CreationCourse,
+    EditCourse,
+    ViewSpecificCourse,
+    ViewStudentNo,
+    UpdateGrades,
+    UpdateCourse
 }

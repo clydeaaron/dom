@@ -8,7 +8,6 @@ export default function AdminNavigation() {
         { name: "Students", link: routes.student },
         { name: "Subject", link: routes.subjects },
         { name: "Courses", link: routes.courses },
-        { name: "Classes", link: routes.room },
         { name: "Users", link: routes.user },
         { name: "Logout", link: routes.login }
     ];

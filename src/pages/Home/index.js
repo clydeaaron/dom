@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import Navigation from '../../components/cards/Navigation'
-import { ViewAllClass } from '../../functions';
+import { ViewAllClass, ViewAllStudent } from '../../functions';
 import routes from '../pagename';
+import { getName } from '../../helper';
 
 export default function Home() {
     const [students, setStudents] = useState([]);
@@ -12,23 +13,19 @@ export default function Home() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         setID(urlParams.get('id'));
-        ViewClasses();
+        FetchAllStudent();
     }, []);
     
-    async function ViewClasses() {
-        try {
-            const response = await ViewAllClass();
-            const { valid, data, error } = response;
-            console.log(data)
-            if (valid) {
-                setStudents(data);
-            } else {
-                console.error(error);
-            }
-        } catch (error) {
-            console.error("Error fetching classes:", error);
+    async function FetchAllStudent() {
+        const response = await ViewAllStudent();
+        const { valid, data, error } = response;
+        if (valid) {
+            setStudents(data);
+        } else {
+            console.error(error);
         }
     }
+
     
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
@@ -51,7 +48,8 @@ export default function Home() {
                                 <table className='table-auto text-center w-full rounded-md '>
                                     <thead className='bg-slate-700'>
                                         <tr>
-                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Classroom ID</th>
+                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Student No</th>
+                                            <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Student Name</th>
                                             <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Year & Section</th>
                                             <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Status</th>
                                             <th className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 bg-green w-1/7'>Action</th>
@@ -67,11 +65,12 @@ export default function Home() {
                                             
                                             return (
                                             <tr key={index}>
-                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.room}</td>
-                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.course + " - " + item.year}</td>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.student_id}</td>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</td>
+                                                <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.course + " - " + item.year_level}</td>
                                                 <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'>{item.status}</td>
                                                 <td className='text-center p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] py-3 w-1/7'> 
-                                                    <a href={routes.EditClassroom + "?classroom=" +item.room} className='p-3 bg-blue rounded-md'>View</a>
+                                                    <a href={routes.createGrade + "?id=" +item.student_id} className='p-3 bg-blue rounded-md'>View</a>
                                                 </td>
                                             </tr>
                                         )}

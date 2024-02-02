@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
-import Popup from 'reactjs-popup'
-import CreateCourse from '../../components/cards/CreateCourse';
 import { ViewAllCourse } from '../../functions';
-import UpdateCourse from '../../components/update/UpdateCourse';
+import routes from '../pagename';
 
 export default function Courses() {
 
@@ -45,11 +43,7 @@ export default function Courses() {
                             <h2 className='text-[30px] font-bold'>Courses List</h2>
                             <div className='flex w-full pt-4'>
                                 <div className='flex w-full'>
-                                    <Popup trigger={
-                                        <button className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Course</button>
-                                    } >
-                                        <CreateCourse />
-                                    </Popup>
+                                    <a href={routes.course_creation} className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Course</a>
                                 </div>
                             </div>
                             
@@ -74,11 +68,12 @@ export default function Courses() {
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.years}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
-                                                    <Popup trigger={
+                                                    {/* <Popup trigger={
                                                         <button className='shadow rounded-md p-1 text-white bg-green mx-2'> View </button>
                                                     }>
                                                         <UpdateCourse data={item} />
-                                                    </Popup>
+                                                    </Popup> */}
+                                                    <a href={routes.updateCourse + "?id=" + item.id} className='shadow rounded-md p-1 text-white bg-green mx-2' >View</a>
                                                 </td>
                                             </tr>
                                         )

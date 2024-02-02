@@ -8,7 +8,10 @@ const routes = {
     createclass: "/CreateClass",
     user: "/Users",
     enroll: "/Enroll", 
-    EditClassroom: "/EditClassroom"
+    EditClassroom: "/EditClassroom",
+    course_creation: "/NewCourse",
+    createGrade: "/GradeCreation",
+    updateCourse: "/CourseUpdate"
 }
 
 export default routes;
