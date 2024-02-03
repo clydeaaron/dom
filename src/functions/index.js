@@ -307,7 +307,7 @@ async function DeleteSubject({ id }) {
         console.log(err)
         throw new Error("An error occurred during the data update")
     }
-}
+} 
 
 async function UpdateCourses({ id, course, shorten, years, details}) {
     try{
