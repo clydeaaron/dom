@@ -47,6 +47,9 @@ export default function AdminNavigation() {
                         )
                     })
                 }
+                <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold indent-14 hover:bg-green active:bg-green focus:bg-green' onClick={() => navigate(routes.login)}>
+                    <ion-icon name="log-out-outline"></ion-icon> <span>logout</span>
+                </button>
             </div>
         </div>
     )
