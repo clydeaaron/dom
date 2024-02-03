@@ -15,7 +15,7 @@ export default function Courses() {
         const response = await ViewAllCourse();
         console.log(courses)
 
-        setCourses((prev) => [...prev, ...response.data])
+        setCourses(response.data)
     }
 
     // async function SpecifyCourse(course) {
