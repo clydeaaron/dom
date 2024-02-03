@@ -32,7 +32,7 @@ export default function AdditionalUser() {
         });
 
         alert(response.msg);
-        window.location.href = routes.user
+        return window.location.href = routes.user
     }
 
     const formik = useFormik({

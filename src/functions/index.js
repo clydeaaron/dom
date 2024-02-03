@@ -2,7 +2,7 @@ import axios from "axios"
 
 // async function LoginValid({ Email, Password}) { 
 //         await axios.post (
-//             "http://localhost/DOM_PHP/LoginValidation",
+//             "https://sbaesthetic.online/DOM_PHP/LoginValidation",
 //             {
 //                 Email: Email,
 //                 Password: Password
@@ -25,7 +25,7 @@ import axios from "axios"
 
 async function LoginValid({ Email, Password }) {
     try {
-        const response = await axios.post('http://localhost/DOM_PHP/LoginValidation/', JSON.stringify({
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/LoginValidation/', JSON.stringify({
             Email: Email,
             Password: Password
         }), {
@@ -44,7 +44,7 @@ async function LoginValid({ Email, Password }) {
 async function insertSubject({ Subject, Type }) {
     try {
         const response = await axios.post(
-            'http://localhost/DOM_PHP/AddSubject/',
+            'https://sbaesthetic.online/DOM_PHP/AddSubject/',
             {
                 Subject: Subject,
                 Type: Type
@@ -65,7 +65,7 @@ async function insertSubject({ Subject, Type }) {
 
 async function ViewSubjectCourse({courses}) {
     try {  
-        const response = await axios.post('http://localhost/DOM_PHP/ViewSubjectCourse/',
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSubjectCourse/',
         {
             course: courses
         },
@@ -84,7 +84,7 @@ async function ViewSubjectCourse({courses}) {
 
 async function ViewAllClass() {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewAllClass/', {},
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewAllClass/', {},
         {
             header: {
                 'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ async function ViewAllClass() {
 
 async function ViewSpecifyClasses(name) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewSpecifyClasses/', 
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecifyClasses/', 
         {
             class: name
         },
@@ -119,7 +119,7 @@ async function ViewSpecifyClasses(name) {
 
 async function ViewAllStudent() {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewAllStudent/', {},
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewAllStudent/', {},
         {
             header: {
                 'Content-Type': 'application/json'
@@ -135,7 +135,7 @@ async function ViewAllStudent() {
 
 async function ViewSpecifyStudent(name) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewSpecifyClasses/', 
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecifyClasses/', 
         {
             student: name
         },
@@ -153,7 +153,7 @@ async function ViewSpecifyStudent(name) {
 
 async function CreateClass ({ Room, course, level, Subject }) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/CreateClass/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreateClass/', {
             Room: Room,
             course: course,
             level: level,
@@ -182,7 +182,7 @@ async function CreateClass ({ Room, course, level, Subject }) {
 
 async function InsertStudent({firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/AddStudent/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddStudent/', {
             first_name: firstname,
             middle_name: middlename,
             last_name: lastname,
@@ -209,7 +209,7 @@ async function InsertStudent({firstname, middlename,lastname, Gender, Birthdate,
 
 async function InsertCourse({Course, Shorten, years}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/CreateCourse/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreateCourse/', {
             course: Course,
             shorten: Shorten,
             years: years
@@ -228,7 +228,7 @@ async function InsertCourse({Course, Shorten, years}) {
 
 async function ViewAllCourse() {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewAllCourse/', {},
+        const response = await axios.post('https://www.sbaesthetic.online/DOM_PHP/ViewAllCourse/', {},
         {
             header: {
                 'Content-Type': 'application/json'
@@ -243,7 +243,7 @@ async function ViewAllCourse() {
 
 async function ViewSpecifyCourse({course}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewSpecifyCourse/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecifyCourse/', {
             course: course
         },
         {
@@ -260,7 +260,7 @@ async function ViewSpecifyCourse({course}) {
 
 async function ViewAllSubject() {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewAllSubject/', {},
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewAllSubject/', {},
         {
             header: {
                 'Content-Type': 'application/json'
@@ -275,7 +275,7 @@ async function ViewAllSubject() {
 
 async function UpdateSubjects({ id, Subject, Type }) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateSubject/',{
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateSubject/',{
             id: id,
             subject: Subject,
             type: Type
@@ -294,7 +294,7 @@ async function UpdateSubjects({ id, Subject, Type }) {
 
 async function DeleteSubject({ id }) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/DeleteSubject/',{
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/DeleteSubject/',{
             id: id,
         }, {
             header: {
@@ -305,13 +305,13 @@ async function DeleteSubject({ id }) {
         return response.data
     } catch(err) {
         console.log(err)
-        throw new Error("An error occurred during the data update")
+        throw new Error("An error occurred during the data update") 
     }
 } 
 
 async function UpdateCourses({ id, course, shorten, years, details}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateCourses/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateCourses/', {
             id: id,
             course: course,
             shortcut: shorten,
@@ -332,7 +332,7 @@ async function UpdateCourses({ id, course, shorten, years, details}) {
 
 async function DeleteCourse({id}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/DeleteCourse/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/DeleteCourse/', {
             id: id
         }, {
             header: {
@@ -348,7 +348,7 @@ async function DeleteCourse({id}) {
 
 async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateStudent/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateStudent/', {
             id: id,
             first_name: firstname,
             middle_name: middlename,
@@ -376,7 +376,7 @@ async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birth
 
 async function DeleteStudent({id}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/DeleteStudent/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/DeleteStudent/', {
             id: id
         }, {
             header: {
@@ -392,7 +392,7 @@ async function DeleteStudent({id}) {
 
 async function ViewClassDetail({id}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewClassDetail/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewClassDetail/', {
             id: id
         }, {
             header: {
@@ -409,7 +409,7 @@ async function ViewClassDetail({id}) {
 
 async function UpdateClassroom({ Room, course, level, Subject  }){
     try{ 
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateClass/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateClass/', {
             room: Room,
             course: course,
             level: level,
@@ -429,7 +429,7 @@ async function UpdateClassroom({ Room, course, level, Subject  }){
 
 async function ViewAllUser() {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewAllUsers/', {},
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewAllUsers/', {},
         {
             header: {
                 'Content-Type': 'application/json'
@@ -445,7 +445,7 @@ async function ViewAllUser() {
 
 async function CreateUser({ user, email, password, fname, mname, lname, birthdate, gender, type}) {
     try {
-        const response = await axios.post('http://localhost/DOM_PHP/CreateUser/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreateUser/', {
             user: user,
             email: email,
             password: password,
@@ -466,7 +466,7 @@ async function CreateUser({ user, email, password, fname, mname, lname, birthdat
         } catch (err) {
         console.error(err);
     
-        // Handle different HTTP status codes if needed
+        // Handle different https status codes if needed
         if (err.response) {
             // The request was made and the server responded with a status code
             console.error('Server responded with non-2xx status:', err.response.status, err.response.data);
@@ -484,7 +484,7 @@ async function CreateUser({ user, email, password, fname, mname, lname, birthdat
 
 async function UpdateUsers({ id, user, email, password, fname, mname, lname, birthdate, gender, type}) {
     try{ 
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateUser/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateUser/', {
             id: id,
             user: user,
             email: email,
@@ -510,7 +510,7 @@ async function UpdateUsers({ id, user, email, password, fname, mname, lname, bir
 
 async function EnrollClass({ id, student }) {
     try{ 
-        const response = await axios.post('http://localhost/DOM_PHP/EnrollClass/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/EnrollClass/', {
             id: id,
             student: student
         },{ 
@@ -528,7 +528,7 @@ async function EnrollClass({ id, student }) {
 
 async function FetchEnroll({ id }) {
     try{ 
-        const response = await axios.post('http://localhost/DOM_PHP/ViewSpecifyEnroll/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecifyEnroll/', {
             room: id
         },{ 
             header: {
@@ -545,7 +545,7 @@ async function FetchEnroll({ id }) {
 
 async function EditClassGrade({ students }) {
     try{ 
-        const response = await axios.post('http://localhost/DOM_PHP/EditClassGrade/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/EditClassGrade/', {
             students: students
         },{ 
             header: {
@@ -562,7 +562,7 @@ async function EditClassGrade({ students }) {
 
 async function CreationCourse({course, shorten, year, details}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/CreationCourse/', JSON.stringify({
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreationCourse/', JSON.stringify({
             course: course,
             shorten: shorten,
             years: year,
@@ -581,7 +581,7 @@ async function CreationCourse({course, shorten, year, details}) {
 
 async function EditCourse({ id, course, shorten, year, details}) {
     try {
-        const response = await axios.post('http://localhost/DOM_PHP/EditCourse/', JSON.stringify({
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/EditCourse/', JSON.stringify({
             course: course,
             shorten: shorten,
             years: year,
@@ -600,7 +600,7 @@ async function EditCourse({ id, course, shorten, year, details}) {
 
 async function ViewSpecificCourse ({id}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/SpecificCourse/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/SpecificCourse/', {
             id: id
         }, {
             header: {
@@ -616,7 +616,7 @@ async function ViewSpecificCourse ({id}) {
 
 async function ViewStudentNo({ids}) {
     try{
-        const response = await axios.post('http://localhost/DOM_PHP/ViewSpecificGrades/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecificGrades/', {
             student: ids
         }, {
             header: {
@@ -632,7 +632,7 @@ async function ViewStudentNo({ids}) {
 
 async function UpdateGrades ({ id, prelim, midterm, prefi, finals }) {
     try {
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateGrade/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateGrade/', {
             id: id,
             prelim: prelim,
             midterm: midterm,
@@ -653,7 +653,7 @@ async function UpdateGrades ({ id, prelim, midterm, prefi, finals }) {
 
 async function UpdateCourse({id, course, shorten, years, details}) {
     try {
-        const response = await axios.post('http://localhost/DOM_PHP/UpdateCourses/', {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateCourses/', {
             id: id,
             course: course,
             shorten: shorten,

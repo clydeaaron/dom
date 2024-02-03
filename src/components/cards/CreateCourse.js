@@ -27,7 +27,7 @@ export default function CreateCourse() {
         const response = await InsertCourse({Course: value?.Course, Shorten: value?.Shorten, years: value?.Years});
 
         alert(response.msg);
-        window.location.href = routes.courses
+        return window.location.href = routes.courses
     }
 
     return (

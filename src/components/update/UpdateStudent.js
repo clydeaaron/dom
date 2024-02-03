@@ -60,6 +60,11 @@ export default function UpdateStudent( data ) {
         window.location.href = routes.student;
     }
 
+    async function onDelete(id) {
+        const response = await DeleteStudent({id: id});
+        alert(response.msg)
+    }
+
     const formik = useFormik({
         initialValues: {
             StudentID: student_id,
@@ -143,6 +148,7 @@ export default function UpdateStudent( data ) {
                             </div>
                         </div>
                         <div className='flex flex-row justify-end items-end'>
+                            <button className='border rounded-md p-2 bg-red text-white' onClick={() => onDelete(student_id)}> Delete</button>
                             <button type="submit" className='border rounded-md p-2 bg-[#00A36C] text-white' onClick={formik.handleSubmit}>Submit</button>
                         </div>
                     </div>

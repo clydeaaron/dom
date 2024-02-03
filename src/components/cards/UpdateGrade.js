@@ -18,6 +18,7 @@ export default function UpdateGrade(data) {
         const { msg } = response;
 
         alert(msg)
+        return window.location.reload()
     }
     
     const formik = useFormik({

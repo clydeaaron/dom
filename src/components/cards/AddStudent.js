@@ -40,10 +40,9 @@ export default function AddStudent() {
             Course: value?.Course,
             Contact: value?.Contact
         });
-
-        console.log(response)
+        
         alert(response.msg);
-        window.location.href = routes.student
+        // return window.location.href = routes.student
     }
 
     const formik = useFormik({

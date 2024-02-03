@@ -16,7 +16,7 @@ export default function AdditionalSubject() {
         console.log(response)
         alert(response.msg);
         
-        window.location.href = routes.subjects
+        return window.location.href = routes.subjects
     }
 
     const formik = useFormik ({
