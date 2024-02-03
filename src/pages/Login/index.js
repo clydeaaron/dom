@@ -15,6 +15,7 @@ export default function Login() {
     async function onSubmit(value) {
         const response = await LoginValid({ Email: value?.Email, Password: value?.Password});
         const { valid , data } = response
+        console.log(response)
 
         if(valid) {
             switch(data) {
