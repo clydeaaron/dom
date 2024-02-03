@@ -46,7 +46,7 @@ export default function Subjects() {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center justify-center mt-2 pt-5 h-[500px] overflow-auto'>
+                        <div className='flex items-center justify-center mt-2 pt-5 h-full overflow-auto'>
                             <table className='w-full'>
                                 <thead>
                                     <tr>

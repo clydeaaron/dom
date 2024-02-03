@@ -113,7 +113,16 @@ export default function CreateCourse() {
                                                 <div className='text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] '>#{index+1}</div>
                                                 <div className="flex rounded-l-sm w-full h-9 justify-center items-center">
                                                     <div className='p-1'>Subject:</div>
-                                                    <input type='text' id={`Details[${index}].Subject`} className='p-2 border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' onChange={formik.handleChange}/>
+                                                    <select id={`Details[${index}].Subject`} className='p-2 border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' defaultValue={item.Subject} onChange={formik.handleChange} >
+                                                        <option value="">-- Select Subject --</option>
+                                                        {
+                                                            getSubject.map((item, index) => {
+                                                                return (
+                                                                    <option value={item.label}>{item.label}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
                                                 </div>
                                                 <div className="flex rounded-l-sm w-full h-9 justify-center items-center">
                                                     <div className='p-2'>Type:</div>
