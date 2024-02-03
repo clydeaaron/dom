@@ -30,7 +30,7 @@ export default function Subjects() {
                 </div>
                 <div className='flex h-screen  min-w-[1000px] pt-5'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
-                        <div className='w-full rounded bg-[]'>
+                        <div className='w-full rounded'>
                             <h2 className='text-[30px] font-bold text-black'>Subject List</h2>
                             <div className='flex flex-row w-full rounded pt-4'>
                                 <div className='flex justify-start items-start w-full'>
@@ -46,7 +46,7 @@ export default function Subjects() {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex items-center justify-center mt-2 pt-5 h-full overflow-auto'>
+                        <div className='flex items-center justify-center pt-10 overflow-auto'>
                             <table className='w-full'>
                                 <thead>
                                     <tr>

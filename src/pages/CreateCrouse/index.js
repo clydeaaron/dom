@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import * as Yup from 'yup'
-import Downshift from 'downshift'
 import { CreationCourse, ViewAllSubject } from '../../functions'
+import routes from '../pagename'
 
 export default function CreateCourse() {
     const [rowsData, setRowsData] = useState([]);
@@ -28,7 +28,7 @@ export default function CreateCourse() {
             return;
         }
 
-        getSubject.push(data)
+        setGetSubjects(data)
     };
 
     /**
@@ -55,7 +55,11 @@ export default function CreateCourse() {
         const response = await CreationCourse({course: value?.Course, shorten: value?.Shorten, year: value?.Years, details: value?.Details});
         const { valid, msg } = response;
         console.log(response)
-        return alert(msg)
+        alert(msg)
+    
+        if (valid) {
+            window.location.href = routes.courses;
+        }
     }
 
     const formik = useFormik({

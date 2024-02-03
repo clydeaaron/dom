@@ -63,7 +63,7 @@ export default function Students() {
                                 <input type='text' id="Search" className='border rounded-md' onChange={e => ViewSpecifyStudents(e.target.value)}/>
                             </div>
                         </div>
-                        <div className='flex items-center justify-center pt-10'>
+                        <div className='flex items-center justify-center pt-10 overflow-auto'>
                             <table className='w-full'>
                                 <thead>
                                     <tr>

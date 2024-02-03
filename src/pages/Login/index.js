@@ -61,13 +61,18 @@ export default function Login() {
                         </div>
                         <div className='p-4'>
                             <div>Enter Password: </div>
-                            <input type="password" placeholder='Enter Password...' id="Password" className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} />
+                            <input type="password" placeholder='Enter Password...' id="Password" className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} onKeyPress={(e) => {
+                                    if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    formik.handleSubmit();
+                                    }
+                                }} />
                             {formik.touched.Password && formik.errors.Password ? (
                                     <div className='text-red text-[10px] py-2'>{formik.errors.Password}</div>
                                 ) : null}
                         </div>
                         <div className="flex justify-center items-center">
-                            <button type="submit" className='w-[150px] h-[37px] mx-auto mt-5 hover:bg-[#4eda49de] bg-[#23CD0799] rounded-[10px] text-[14px] ' onClick={formik.handleSubmit}> 
+                            <button type="submit" className='w-[150px] h-[37px] mx-auto mt-5 hover:bg-[#4eda49de] bg-[#23CD0799] rounded-[10px] text-[14px]' onClick={formik.handleSubmit}>
                                 Login
                             </button>
                         </div>

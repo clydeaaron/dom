@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import routes from '../../pages/pagename';
+import { useNavigate } from 'react-router-dom';
 import { ViewAllCourse } from '../../functions';
 
 export default function Navigation() {
+    const navigate = useNavigate();
     const [navigator, setNavigator] = useState([]);
     const [isActive, setActive] = useState(null);
 
+    
     useEffect(() => {
         fetchNavigations();
         
@@ -59,8 +62,9 @@ export default function Navigation() {
         //         </ul>
         //     </nav>
         // </div>
-        <div className='shadow-md fixed w-64 '>
-                <ul className={`md:flex md:flex-col md:items-center md:my-0 md:pb-0 pb-10 absolute md:static w-full h-screen transition-all duration-300 ease-in ${open ? 'top-20' : 'top-[-490px]'}`}>
+        <div className= "fixed grid grid-rows-3 grid-flow-col gap-4">
+            <div className="row-span-3 pt-2 w-64 h-screen shadow">
+                {/* <ul className={`md:flex md:flex-col md:items-center md:my-0 md:pb-0 pb-10 absolute md:static w-full h-screen transition-all duration-300 ease-in ${open ? 'top-20' : 'top-[-490px]'}`}>
                     {
                         navigator.map((link) => (
                             <li key={link.label} className='md:flex justify-center items-center bg-slate-50 p-5 w-full text-[19px] font-sansserif font-semibold my-2'>
@@ -71,7 +75,19 @@ export default function Navigation() {
                     <li className='md:flex justify-center items-center bg-slate-50 p-5 w-full text-[19px] font-sansserif font-semibold my-2'>
                         <a href={routes.login} className='text-black hover:text-white duration-500 '><ion-icon name="log-out-outline"></ion-icon><span>Logout</span></a>
                     </li>
-                </ul>
+                </ul> */}
+                {
+                    navigator.map((link) => {
+                        return (
+                            <>
+                                <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold indent-14 hover:bg-green active:bg-green focus:bg-green' onClick={() => navigate(link.link)}>
+                                    {link.icon} <span>{link.label}</span>
+                                </button>
+                            </>
+                        )
+                    })
+                }
+            </div>
         </div>
     );
 }
