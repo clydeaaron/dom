@@ -43,12 +43,12 @@ export default function CreateCourse() {
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                         <div className='flex flex-row'>
                             <div className='flex p-2'>
-                                <div className='px-3'>Course Name:<span className='text-red'>*</span></div>
-                                <input type='text' id="Course" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div className='px-5'>Course code: </div>
+                                <input type='text' id="Shorten" className='border rounded-md p-1' onChange={formik.handleChange}/>
                             </div>
                             <div className='flex p-2'>
-                                <div className='px-5'>Course Shorten: </div>
-                                <input type='text' id="Shorten" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div className='px-3'>Course Name:<span className='text-red'>*</span></div>
+                                <input type='text' id="Course" className='border rounded-md p-1' onChange={formik.handleChange}/>
                             </div>
                             <div className='flex p-2'>
                                 <div className='px-6'>Course Years:<span className='text-red'>*</span></div>

@@ -51,19 +51,21 @@ export default function Courses() {
                             <table className='w-full'>
                                 <thead>
                                     <tr>
+                                        <th className='bg-green p-2'>Course Code</th>
                                         <th className='bg-green p-2 rounded-tl-md'>Course</th>
-                                        <th className='bg-green p-2'>Shorten Name</th>
                                         <th className='bg-green p-2'>Years of levels</th>
                                         <th className='bg-green p-2'>Status</th>
                                         <th className='bg-green p-2 rounded-tr-md'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {courses.map((item, index) => {
+                                    {
+                                    courses
+                                    .map((item, index) => {
                                         return (
                                             <tr>
-                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.course_name}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.shortcut}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.course_name}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.years}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>

@@ -41,11 +41,12 @@ async function LoginValid({ Email, Password }) {
     }
 }
 
-async function insertSubject({ Subject, Type }) {
+async function insertSubject({ code, Subject, Type }) {
     try {
         const response = await axios.post(
             'https://sbaesthetic.online/DOM_PHP/AddSubject/',
             {
+                code: code,
                 Subject: Subject,
                 Type: Type
             },
@@ -180,9 +181,10 @@ async function CreateClass ({ Room, course, level, Subject }) {
 
 }
 
-async function InsertStudent({firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact}) {
+async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddStudent/', {
+            code: student_id,
             first_name: firstname,
             middle_name: middlename,
             last_name: lastname,

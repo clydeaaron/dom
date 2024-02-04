@@ -6,13 +6,14 @@ import routes from '../../pages/pagename';
 
 export default function AdditionalSubject() {
     const validationSchema = Yup.object().shape({
+        Code: Yup.string().label("Subject Code").required(),
         Subjects: Yup.string().label("Subjects").required(),
         Type: Yup.string().label("Subject Type").required(),
     })
 
 
     async function onSubmit(value) {
-        const response = await insertSubject({Subject: value?.Subjects, Type: value?.Type});
+        const response = await insertSubject({code: value?.Code, Subject: value?.Subjects, Type: value?.Type});
         console.log(response)
         alert(response.msg);
         
@@ -21,6 +22,7 @@ export default function AdditionalSubject() {
 
     const formik = useFormik ({
         initialValues: {
+            Code: "",
             Subjects: "",
             Type: "",
         },
@@ -40,6 +42,10 @@ export default function AdditionalSubject() {
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                         <div className='flex flex-row'>
+                        <div className='flex p-2'>
+                                <div className='px-3'>Subject Code:<span className='text-red'>*</span></div>
+                                <input type='text' id="Code" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                            </div>
                             <div className='flex p-2'>
                                 <div className='px-3'>Subject Name:<span className='text-red'>*</span></div>
                                 <input type='text' id="Subjects" className='border rounded-md p-1' onChange={formik.handleChange}/>

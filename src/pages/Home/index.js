@@ -57,10 +57,11 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {students
-                                        // .f ilter((item) => {
-                                        //     console.log(item.course.toUpperCase())
-                                        //     return  item.course.toUpperCase() === ids.toUpperCase() && (item.room.toUpperCase() === filter.toUpperCase() || filter === "");
-                                        // })
+                                        .filter((item) => {
+                                            const fullname = getName(item.firstname, item.middlename, item.lastname).toLowerCase();
+                                            const searchTerm = filter.toUpperCase();
+                                            return  item.course === ids && (filter == "" || fullname.includes(filter));
+                                        })
                                         .map((item, index) => {
                                             
                                             return (

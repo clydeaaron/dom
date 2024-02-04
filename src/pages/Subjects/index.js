@@ -9,6 +9,7 @@ import UpdateSubject from '../../components/update/UpdateSubject.js'
 export default function Subjects() {
 
     const [subject, setSubject] = useState([]);
+    const [filter, setFilter] = useState("");
 
     useEffect(() => {
         ViewSubject()
@@ -42,7 +43,7 @@ export default function Subjects() {
                                 </div>
                                 <div className='flex flex-row justify-end items-end gap-4 w-full'>
                                     <h1 className='font-bold'>Search Subject: </h1>
-                                    <input type='text' id="Search" className='border rounded-md'/>
+                                    <input type='text' id="Search" onChange={e => setFilter(e.target.value)} className='border rounded-md px-2'/>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +59,15 @@ export default function Subjects() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {subject.map((item, index) => (
+                                    {subject
+                                    .filter((item) => {
+                                        const search = filter.toLowerCase();
+                                        const id = item.id.toLowerCase();
+                                        const label = item.label.toLowerCase()
+
+                                        return id.includes(search) || label.includes(filter)
+                                    })
+                                    .map((item, index) => (
                                         <tr key={index}>
                                             <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.id}</td>
                                             <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.label}</td>

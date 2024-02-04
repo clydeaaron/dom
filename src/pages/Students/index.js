@@ -9,6 +9,7 @@ import UpdateStudent from '../../components/update/UpdateStudent'
 
 export default function Students() {
     const [student, setStudent] = useState([]);
+    const [filter, setFilter] = useState("");
 
     useEffect(() => {
         ViewAllStudents()
@@ -16,21 +17,6 @@ export default function Students() {
 
     async function ViewAllStudents() {
         const response = await ViewAllStudent();
-
-        if(response.valid){
-            setStudent(response.data);
-        } else {
-            console.log(response.error)
-        }
-    }
-
-    async function ViewSpecifyStudents(name) {
-        setStudent([]);
-        const response = ViewSpecifyStudent(name);
-
-        if(name === "") {
-            return ViewAllStudents();
-        }
 
         if(response.valid){
             setStudent(response.data);
@@ -52,18 +38,23 @@ export default function Students() {
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='w-full rounded'>
                             <h2 className='text-[30px] font-bold'>Student List</h2>
-                            <div className='flex justify-end items-end gap-4 w-full rounded'>
-                                <Popup trigger={
-                                    <button className='p-2 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
-                                } >
-                                    <AddStudent />
-                                </Popup>
+                            <div className='flex justify-start items-start gap-4 w-full rounded'>
+                                <div className='flex justify-start items-start gap-4 w-full rounded' >
+                                    <Popup trigger={
+                                        <button className='p-2 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
+                                    } >
+                                        <AddStudent />
+                                    </Popup>
+                                </div>
                                 
-                                <h1 className='font-bold'>Search Subject: </h1>
-                                <input type='text' id="Search" className='border rounded-md' onChange={e => ViewSpecifyStudents(e.target.value)}/>
+                                <div className='flex justify-end items-end gap-4 w-full rounded' >
+                                    <h1 className='font-bold'>Search Subject: </h1>
+                                    <input type='text' id="Search" className='border rounded-md' onChange={e => setFilter(e.target.value)}/>
+                                </div>
                             </div>
+                            
                         </div>
-                        <div className='flex items-center justify-center pt-10 overflow-auto'>
+                        <div className='flex items-center justify-center pt-5 overflow-auto'>
                             <table className='w-full'>
                                 <thead>
                                     <tr>
@@ -76,7 +67,16 @@ export default function Students() {
                                 </thead>
                                 <tbody>
                                     {
-                                        student.map((item, index) => (
+                                        student
+                                        .filter(item => {
+                                            const fullName = getName(item.firstname, item.middlename, item.lastname).toLowerCase();
+                                            const searchTerm = filter.toLowerCase();
+                                        
+                                            return filter === "" || 
+                                                item.student_id.includes(searchTerm) || 
+                                                fullName.includes(searchTerm);
+                                        })
+                                        .map((item, index) => (
                                             <tr key={index}>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.student_id}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</td>

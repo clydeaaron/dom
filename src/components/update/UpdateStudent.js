@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
-import { DeleteCourse, DeleteStudent, UpdateStudents, ViewAllCourse } from '../../functions';
+import { DeleteStudent, UpdateStudents, ViewAllCourse } from '../../functions';
 import routes from '../../pages/pagename';
 
 export default function UpdateStudent( data ) {
@@ -9,7 +9,7 @@ export default function UpdateStudent( data ) {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        ViewCourse();
+        setCourses(FetchCourse());
     },[])
 
     const validationSchema = Yup.object().shape({
@@ -23,12 +23,10 @@ export default function UpdateStudent( data ) {
         Contact: Yup.string().label("Contact Number").required()
     })
 
-    async function ViewCourse(){
+    async function FetchCourse(){
         const response = await ViewAllCourse();
-        console.log(courses)
 
-        setCourses(response.data)
-        
+        return response.data
     }
 
     async function onDelete(id) {
@@ -60,10 +58,6 @@ export default function UpdateStudent( data ) {
         window.location.href = routes.student;
     }
 
-    async function onDelete(id) {
-        const response = await DeleteStudent({id: id});
-        alert(response.msg)
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -85,7 +79,7 @@ export default function UpdateStudent( data ) {
             <div className='flex h-screen justify-center items-center '>
                 <div className='flex-col justify-center bg-white w-auto h-auto rounded-xl'>
                     <div className='flex flex-col shadow-md bgf justify-start items-start bg-slate-200 w-full rounded-t-md h-auto p-5 '>
-                        <h1>Add New Student</h1>
+                        <h1>Update Student</h1>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                         <div className='flex flex-row'>

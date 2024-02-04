@@ -8,10 +8,11 @@ export default function AddStudent() {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        ViewCourse();
+        setCourses(FetchCourse());
     },[])
 
     const validationSchema = Yup.object().shape({
+        student_id: Yup.string().label("Student_id").required(),
         FirstName: Yup.string().label("First Name").required(),
         MiddleName: Yup.string().label("Middle Name"),
         LastName: Yup.string().label("First Name").required(),
@@ -21,16 +22,15 @@ export default function AddStudent() {
         Contact: Yup.string().label("Contact Number").required()
     })
 
-    async function ViewCourse(){
+    async function FetchCourse(){
         const response = await ViewAllCourse();
-        console.log(courses)
 
-        setCourses(response.data)
-        
+        return response.data
     }
 
     async function onSubmit(value){
         const response = await InsertStudent({
+            student_id: value?.student_id,
             firstname: value?.FirstName,
             middlename: value?.MiddleName,
             lastname: value?.LastName,
@@ -42,11 +42,12 @@ export default function AddStudent() {
         });
         
         alert(response.msg);
-        // return window.location.href = routes.student
+        return window.location.href = routes.student
     }
 
     const formik = useFormik({
         initialValues: {
+            student_id: "",
             FirstName: "",
             MiddleName: "",
             LastName: "",
@@ -67,6 +68,12 @@ export default function AddStudent() {
                         <h1>Add New Student</h1>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
+                        <div className='flex flex-row'>
+                            <div className='flex p-2'>
+                                <div className='px-6'>Student ID:<span className='text-red'>*</span></div>
+                                <input type='text' id="StudentID" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.student_id} disabled/>
+                            </div>
+                        </div>
                         <div className='flex flex-row'>
                             <div className='flex p-2'>
                                 <div className='px-6'>First Name:<span className='text-red'>*</span></div>

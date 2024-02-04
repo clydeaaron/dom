@@ -18,7 +18,6 @@ export default function AdditionalUser() {
     });
 
     async function onSubmit(values) {
-        console.log("sada")
         const response = await CreateUser({
             user: values.username,
             email: values.Email,

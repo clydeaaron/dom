@@ -80,7 +80,7 @@ export default function Navigation() {
                     navigator.map((link) => {
                         return (
                             <>
-                                <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold indent-14 hover:bg-green active:bg-green focus:bg-green' onClick={() => navigate(link.link)}>
+                                <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold indent-14 hover:bg-green active:bg-green focus:bg-green' onClick={() => window.location.href = link.link}>
                                     {link.icon} <span>{link.label}</span>
                                 </button>
                                 
