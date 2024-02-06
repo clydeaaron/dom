@@ -120,15 +120,30 @@ export default function UpdateCourse() {
                             <div className='flex flex-row'>
                                 <div className='flex p-2'>
                                     <div className='px-3'>Course Name:<span className='text-red'>*</span></div>
-                                    <input type='text' id="Course" className='border rounded-md p-1' defaultValue={formik.values.Course} onChange={formik.handleChange}/>
+                                    <div>
+                                        <input type='text' id="Course" className='border rounded-md p-1' defaultValue={formik.values.Course} onChange={formik.handleChange}/>
+                                        {formik.touched.Course && formik.errors.Course ? (
+                                            <div className='text-red text-[10px] py-2'>{formik.errors.Course}</div>
+                                        ) : null}
+                                    </div>
                                 </div>
                                 <div className='flex p-2'>
-                                    <div className='px-5'>Course Shorten: </div>
-                                    <input type='text' id="Shorten" className='border rounded-md p-1' defaultValue={formik.values.Shorten} onChange={formik.handleChange}/>
+                                    <div className='px-5'>Course Code: </div>
+                                    <div>
+                                        <input type='text' id="Shorten" className='border rounded-md p-1' defaultValue={formik.values.Shorten} onChange={formik.handleChange}/>
+                                        {formik.touched.Shorten && formik.errors.Shorten ? (
+                                            <div className='text-red text-[10px] py-2'>{formik.errors.Shorten}</div>
+                                        ) : null}
+                                    </div>
                                 </div>
                                 <div className='flex p-2'>
                                     <div className='px-6'>Course Years:<span className='text-red'>*</span></div>
-                                    <input type="number" id="Years" className='border rounded-md p-1' max="10" defaultValue={formik.values.Years} onChange={formik.handleChange}/>
+                                    <div>
+                                        <input type="number" id="Years" className='border rounded-md p-1' max="10" defaultValue={formik.values.Years} onChange={formik.handleChange}/>
+                                        {formik.touched.Years && formik.errors.Years ? (
+                                            <div className='text-red text-[10px] py-2'>{formik.errors.Years}</div>
+                                        ) : null}
+                                    </div>
                                 </div>
                             </div>
                             <div className='flex justify-center items-center'>
