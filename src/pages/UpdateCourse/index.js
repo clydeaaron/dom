@@ -5,6 +5,7 @@ import AdminNavigation from '../../components/cards/AdminNavigation'
 import * as Yup from 'yup'
 import Downshift from 'downshift'
 import { CreationCourse, UpdateCourses, ViewAllSubject, ViewSpecificCourse } from '../../functions'
+import routes from '../pagename'
 
 export default function UpdateCourse() {
     const [rowsData, setRowsData] = useState([]);
@@ -78,8 +79,10 @@ export default function UpdateCourse() {
             years: values.Years,
             details: values.Details,
         });
-        console.log(response)
+
         alert(response.msg);
+
+        return window.location.href = routes.courses;
     };
 
     const formik = useFormik({

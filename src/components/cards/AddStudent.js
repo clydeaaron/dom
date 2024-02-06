@@ -42,7 +42,7 @@ export default function AddStudent() {
         });
         
         alert(response.msg);
-        return window.location.href = routes.student
+        return window.location.reload();
     }
 
     const formik = useFormik({
