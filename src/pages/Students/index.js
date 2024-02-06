@@ -48,7 +48,7 @@ export default function Students() {
                                 </div>
                                 
                                 <div className='flex justify-end items-end gap-4 w-full rounded' >
-                                    <h1 className='font-bold'>Search Subject: </h1>
+                                    <h1 className='font-bold'>Search Student: </h1>
                                     <input type='text' id="Search" className='border rounded-md' onChange={e => setFilter(e.target.value)}/>
                                 </div>
                             </div>
