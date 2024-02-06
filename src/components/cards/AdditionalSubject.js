@@ -37,26 +37,43 @@ export default function AdditionalSubject() {
                     <div className='flex flex-row justify-start items-start bg-slate-100 w-full rounded-t-md h-auto p-5 '>
                         <h1 className='w-full'>Add New Subjects</h1>
                         <div className='flex justify-end items-end w-full'>
-                            <button><ion-icon name="close-outline"></ion-icon></button>
+                            <form>
+                                <button><ion-icon name="close-outline"></ion-icon></button>
+                            </form>
                         </div>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                         <div className='flex flex-row'>
                         <div className='flex p-2'>
                                 <div className='px-3'>Subject Code:<span className='text-red'>*</span></div>
-                                <input type='text' id="Code" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='text' id="Code" className='border rounded-md p-1' onChange={formik.handleChange}/> 
+                                    {formik.touched.Code && formik.errors.Code ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Code}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             <div className='flex p-2'>
                                 <div className='px-3'>Subject Name:<span className='text-red'>*</span></div>
-                                <input type='text' id="Subjects" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='text' id="Subjects" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                    {formik.touched.Subjects && formik.errors.Subjects ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Subjects}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             <div className='flex p-2'>
                                 <div className='px-6'>Subject Type:<span className='text-red'>*</span></div>
-                                <select id="Type" className='border rounded-md p-1' onChange={formik.handleChange} >
-                                    <option disabled selected>-- Selected Subject Type --</option>
-                                    <option value="Minor"> Minor </option>
-                                    <option value="Major"> Major </option>
-                                </select>
+                                <div>
+                                    <select id="Type" className='border rounded-md p-1' onChange={formik.handleChange} >
+                                        <option disabled selected>-- Selected Subject Type --</option>
+                                        <option value="Minor"> Minor </option>
+                                        <option value="Major"> Major </option>
+                                    </select>
+                                    {formik.touched.Type && formik.errors.Type ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Type}</div>
+                                    ) : null}
+                                </div>
                             </div>
                         </div>
                         

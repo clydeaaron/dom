@@ -83,11 +83,13 @@ export default function CreateCourse() {
                 </div>
                 <div className='flex h-3/4 min-w-[1000px] pt-5 pr-5 '>
                     <div className='flex-col justify-center bg-white w-auto h-auto rounded-xl overflow-auto'>
-                        <div className='flex flex-row justify-start items-start bg-slate-100 w-full rounded-t-md h-auto p-5 '>
-                            <h1 className='w-full'>Add New Course</h1>
-                            <div className='flex justify-end items-end w-full'>
-                                <button><ion-icon name="close-outline"></ion-icon></button>
+                        <div className='flex flex-col justify-start items-start bg-slate-100 w-full rounded-t-md h-auto p-5 '>
+                            <div className='flex justify-start items-start w-full'>
+                                <button onClick={() => window.history.back()}>
+                                    <ion-icon name="arrow-back-outline"></ion-icon>
+                                </button>
                             </div>
+                            <h1 className='w-full'>Add New Course</h1>
                         </div>
 
                         <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>

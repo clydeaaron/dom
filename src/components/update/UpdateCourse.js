@@ -60,7 +60,7 @@ export default function UpdateCourse(data) {
                 <h1 className='w-full'>Update Course</h1>
                 <div className='flex justify-end items-end w-full'>
                 <button onClick={() => window.history.back()}>
-                    <ion-icon name='close-outline'></ion-icon>
+                    <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
                 </div>
             </div>

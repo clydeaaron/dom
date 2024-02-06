@@ -2,13 +2,12 @@ import { useFormik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import * as Yup from "yup";
 import { InsertStudent, ViewAllCourse } from '../../functions';
-import routes from '../../pages/pagename';
 
 export default function AddStudent() {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        setCourses(FetchCourse());
+        FetchCourse();
     },[])
 
     const validationSchema = Yup.object().shape({
@@ -16,16 +15,17 @@ export default function AddStudent() {
         FirstName: Yup.string().label("First Name").required(),
         MiddleName: Yup.string().label("Middle Name"),
         LastName: Yup.string().label("First Name").required(),
-        Birthdate: Yup.date().label("Birthdate").default(() => new Date()),
+        Birthdate: Yup.date().label("Birthdate").default(() => new Date()).required(),
         Year: Yup.number().integer().positive().label("Year").required(),
+        Gender: Yup.string().label('Gender').required(),
         Course: Yup.string().label("Course").required(),
-        Contact: Yup.string().label("Contact Number").required()
+        Contact: Yup.string().label("Contact Number").matches(/^\d+$/, "Contact number must contain only digits").max(11, "Contact number must be at most 11 digits").required("Contact number is required")
     })
 
     async function FetchCourse(){
         const response = await ViewAllCourse();
 
-        return response.data
+        return setCourses(response.data)
     }
 
     async function onSubmit(value){
@@ -64,67 +64,117 @@ export default function AddStudent() {
         <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>
             <div className='flex h-screen justify-center items-center '>
                 <div className='flex-col justify-center bg-white w-auto h-auto rounded-xl'>
-                    <div className='flex flex-col shadow-md bgf justify-start items-start bg-slate-200 w-full rounded-t-md h-auto p-5 '>
-                        <h1>Add New Student</h1>
+                    <div className='flex flex-row shadow-md bgf justify-start items-start bg-slate-200 w-full rounded-t-md h-auto p-5 '>
+                        <h1 className='w-full'>Add New Student</h1>
+                        <div className='flex justify-end items-end w-full'>
+                            <form>
+                                <button><ion-icon name="close-outline"></ion-icon></button>
+                            </form>
+                        </div>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                         <div className='flex flex-row'>
                             <div className='flex p-2'>
                                 <div className='px-6'>Student ID:<span className='text-red'>*</span></div>
-                                <input type='text' id="StudentID" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.student_id} disabled/>
+                                <div>
+                                    <input type='text' id="StudentID" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.student_id} />
+                                    {formik.touched.student_id && formik.errors.student_id ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.student_id}</div>
+                                    ) : null}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-row'>
                             <div className='flex p-2'>
                                 <div className='px-6'>First Name:<span className='text-red'>*</span></div>
-                                <input type='text' id="FirstName" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='text' id="FirstName" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                    {formik.touched.FirstName && formik.errors.FirstName ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.FirstName}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             <div className='flex p-2'>
                                 <div className='px-5'>Middle Name: </div>
-                                <input type='text' id="MiddleName" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='text' id="MiddleName" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                    {formik.touched.MiddleName && formik.errors.MiddleName ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.MiddleName}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             <div className='flex p-2'>
                                 <div className='px-6'>Last Name:<span className='text-red'>*</span></div>
-                                <input type='text' id="LastName" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='text' id="LastName" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                    {formik.touched.LastName && formik.errors.LastName ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.LastName}</div>
+                                    ) : null}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-row'>
                             <div className='flex p-2  w-full'>
                                 <div className='px-7 w-[32%]'>Birthdate:<span className='text-red'>*</span></div>
-                                <input type='date' id="Birthdate" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='date' id="Birthdate" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                    {formik.touched.Birthdate && formik.errors.Birthdate ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Birthdate}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             <div className='flex p-2  w-full'>
                                 <div className='px-7 w-[35%]'>Course:<span className='text-red'>*</span></div>
-                                <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange}>
-                                    <option selected disabled>--- Select a course ---</option>
-                                    {
-                                        courses.map((item, index) => (
-                                            <option key={index} value={item.shortcut}>{item.course_name}</option>
-                                        ))
-                                    }
-                                </select>
+                                <div>
+                                    <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange}>
+                                        <option selected disabled>--- Select a course ---</option>
+                                        {
+                                            courses.map((item, index) => (
+                                                <option key={index} value={item.shortcut}>{item.course_name}</option>
+                                            ))
+                                        }
+                                    </select>
+                                    {formik.touched.Course && formik.errors.Course ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Course}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             
                         </div>
                         <div className='flex flex-row'>
                             <div className='flex p-2  w-full'>
                                 <div className='px-6 w-[32%]'>Gender:<span className='text-red'>*</span></div>
-                                <select id="gender" className='border rounded-md p-1' onChange={formik.handleChange}>
-                                    <option selected disabled>--- Select a Gender ---</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
+                                <div>
+                                    <select id="gender" className='border rounded-md p-1' onChange={formik.handleChange}>
+                                        <option selected disabled>--- Select a Gender ---</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    {formik.touched.gender && formik.errors.gender ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.gender}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             <div className='flex p-2  w-full'>
                                 <div className='px-6 w-[35%]'>Year:<span className='text-red'>*</span></div>
-                                <input type='number' id="Year" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='number' id="Year" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                    {formik.touched.Year && formik.errors.Year ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Year}</div>
+                                    ) : null}
+                                </div>
                             </div>
                             
                         </div>
                         <div className='flex flex-row'>
                             <div className='flex p-2  w-full'>
                                 <div className='px-6'>Contact Number:<span className='text-red'>*</span></div>
-                                <input type='text' id="Contact" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                <div>
+                                    <input type='string' pattern="[0-9]*" id="Contact" className='border rounded-md p-1' maxLength="11" max="11" onChange={formik.handleChange}/>
+                                    {formik.touched.Contact && formik.errors.Contact ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Contact}</div>
+                                    ) : null}
+                                </div>
                             </div>
                         </div>
                         <div className='flex flex-row justify-end items-end'>
