@@ -7,10 +7,10 @@ export default function UpdateGrade(data) {
     const { id, prelim, midterm, prefinal, finals, subject } = data.data;
     
     const validationSchema = Yup.object().shape({
-        prelim: Yup.number().integer().label("Prelim").required(),
-        midterm: Yup.number().integer().label("Midterm").required(),
-        prefinal: Yup.number().integer().label("Pre-Finals").required(),
-        finals: Yup.number().integer().label("Finals").required(),
+        prelim: Yup.number().label("Prelim").required(),
+        midterm: Yup.number().label("Midterm").required(),
+        prefinal: Yup.number().label("Pre-Finals").required(),
+        finals: Yup.number().label("Finals").required(),
     })
 
     async function onSubmit(value) {

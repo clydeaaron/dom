@@ -61,7 +61,7 @@ export default function Home() {
                                             const fullname = getName(item.firstname, item.middlename, item.lastname).toLowerCase();
                                             const student_id = item.student_id.toLowerCase();
                                             const searchTerm = filter.toLowerCase();
-                                            return  item.course === ids && (filter == "" || fullname.includes(searchTerm) || student_id.includes(searchTerm));
+                                            return  item.course === ids || ids === null && (filter == "" || fullname.includes(searchTerm) || student_id.includes(searchTerm));
                                         })
                                         .map((item, index) => {
                                             

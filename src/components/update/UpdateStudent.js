@@ -35,7 +35,7 @@ export default function UpdateStudent( data ) {
         const { msg, valid } = response;
         if (valid) {
             alert(msg);
-            window.location.href = routes.courses;
+            window.location.reload();
         } else {
             alert(msg);
         }
@@ -75,6 +75,8 @@ export default function UpdateStudent( data ) {
         validationSchema,
         onSubmit
     })
+
+    console.log(formik)
 
     return (
         <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>

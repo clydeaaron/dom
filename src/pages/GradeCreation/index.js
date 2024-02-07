@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ViewStudentNo } from '../../functions';
-import { GWA, getName } from '../../helper';
+import { final_grade, getName } from '../../helper';
 import Header from '../../components/cards/header';
 import Navigation from '../../components/cards/Navigation';
 import Popup from 'reactjs-popup';
@@ -83,7 +83,7 @@ export default function GradeCreation() {
                         <div className='max-h-[2200px] overflow-auto'>
                             <div className='w-full rounded h-[2200px]'>
                                 
-                                <div className='grid grid-cols-4 w-full h-[200px] gap-4'>
+                                <div className='grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 w-full h-[200px] gap-4'>
                                     {
                                         formData.details
                                         .filter((item) => { 
@@ -96,10 +96,10 @@ export default function GradeCreation() {
                                                         <div className='p-3 w-full'>
                                                             {item.subject}
                                                             <div className='p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]'>
-                                                                GWA: 
+                                                                GPA: 
                                                                 <span className='px-3'>
                                                                     {
-                                                                        GWA(item.prelim, item.midterm, item.prefinal, item.finals, item.unit)
+                                                                        parseFloat(final_grade(item.prelim, item.midterm, item.prefinal, item.finals)).toFixed(2)
                                                                     }
                                                                 </span>
                                                             </div>
