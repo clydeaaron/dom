@@ -33,8 +33,8 @@ export default function GradeCreation() {
         setFormData((prevData) => ({
             ...prevData,
             ids: value,
-            student: [...prevData.student, ...data],
-            details: [...prevData.details, ...data2],
+            student: data,
+            details: data2,
         }));
     }
 
@@ -105,7 +105,7 @@ export default function GradeCreation() {
                                                             </div>
                                                         </div>
                                                         <div className='w-full mt-10% p-3 rounded'>
-                                                            <Popup trigger={<button className='shadow w-full mt-[10%] rounded  bg-green text-white text-center'>
+                                                            <Popup trigger={<button className='shadow w-full mt-[15%] rounded bg-green text-white text-center'>
                                                                 View Grade
                                                             </button>}>
                                                                 <UpdateGrade data={item}/>

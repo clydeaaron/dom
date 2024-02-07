@@ -40,7 +40,7 @@ export default function UpdateGrade(data) {
                     <div className='flex flex-row justify-start items-start bg-slate-100 w-full rounded-t-md h-auto p-5 '>
                         <h1 className='w-full'>Update Grade</h1>
                         <div className='flex justify-end items-end w-full'>
-                            <button onClick={() => window.history.back()}>
+                            <button onClick={() => window.location.reload()}>
                                 <ion-icon name='close-outline'></ion-icon>
                             </button>
                         </div>

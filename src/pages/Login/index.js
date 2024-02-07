@@ -51,7 +51,7 @@ export default function Login() {
                     <div className='w-[50%] h-[120%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md bg-white'>
                         <div className='p-4 text-[20px] sm:text-[22px] md:text-[25px] lg:text-[28px] text-center  flex flex-col justify-center items-center'>
                             <div className='bg-Logo bg-cover bg-no-repeat w-20 h-14'></div>
-                            Welcome to CAVSU Academic Depertment Management
+                            Welcome to CVSU Academic Department Management
                         </div>
                         <div className='p-4'>
                             <div>Enter Username: </div>
