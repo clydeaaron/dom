@@ -42,13 +42,16 @@ export default function Login() {
 
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
-            <div className='w-screen '>
+            {/* <div className='w-screen '>
                     <Header />
-            </div>
+            </div> */}
             <div className='flex flex-row justify-center items-center static p-auto w-screen h-screen'>
                 <div className='w-full h-full bg-Login bg-cover bg-no-repeat'></div>
                 <div className='flex flex-row justify-center items-center h-80 w-full '>
                     <div className='w-[50%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md'>
+                        <div className='p-4 text-[20px] sm:text-[22px] md:text-[25px] lg:text-[28px] text-center'>
+                            Welcome to CAVSU Academic Depertment Management
+                        </div>
                         <div className='p-4'>
                             <div>Enter Username: </div>
                             <input type="text" placeholder='Enter Username...' id="Email"  className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} />
