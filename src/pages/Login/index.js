@@ -42,16 +42,13 @@ export default function Login() {
 
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
-            <div className='bg-white shadow-md w-full'>
-                <Header />
+            <div className='w-screen '>
+                    <Header />
             </div>
             <div className='flex flex-row justify-center items-center static p-auto w-screen h-screen'>
-                
-                {/* <div className='w-screen '>
-                    <Navigation />
-                </div> */}
-                <div className='flex flex-row justify-center items-center h-80 w-96 shadow-lg '>
-                    <div className='text-[14px]'>
+                <div className='w-full h-full bg-Login bg-cover bg-no-repeat'></div>
+                <div className='flex flex-row justify-center items-center h-80 w-full '>
+                    <div className='w-[50%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md'>
                         <div className='p-4'>
                             <div>Enter Username: </div>
                             <input type="text" placeholder='Enter Username...' id="Email"  className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} />
@@ -71,7 +68,7 @@ export default function Login() {
                                     <div className='text-red text-[10px] py-2'>{formik.errors.Password}</div>
                                 ) : null}
                         </div>
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center p-2">
                             <button type="submit" className='w-[150px] h-[37px] mx-auto mt-5 hover:bg-[#4eda49de] bg-[#23CD0799] rounded-[10px] text-[14px]' onClick={formik.handleSubmit}>
                                 Login
                             </button>
