@@ -48,8 +48,9 @@ export default function Login() {
             <div className='flex flex-row justify-center items-center static p-auto w-screen h-screen'>
                 <div className='w-full h-full bg-Login bg-cover bg-no-repeat'></div>
                 <div className='flex flex-row justify-center items-center h-80 w-full '>
-                    <div className='w-[50%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md'>
-                        <div className='p-4 text-[20px] sm:text-[22px] md:text-[25px] lg:text-[28px] text-center'>
+                    <div className='w-[50%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md bg-white'>
+                        <div className='p-4 text-[20px] sm:text-[22px] md:text-[25px] lg:text-[28px] text-center  flex flex-col justify-center items-center'>
+                            <div className='bg-Logo bg-cover bg-no-repeat w-20 h-14'></div>
                             Welcome to CAVSU Academic Depertment Management
                         </div>
                         <div className='p-4'>
