@@ -37,11 +37,11 @@ export default function Students() {
                 <div className='flex h-screen  min-w-[1000px] pt-5'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='w-full rounded'>
-                            <h2 className='text-[30px] font-bold'>Student List</h2>
-                            <div className='flex justify-start items-start gap-4 w-full rounded'>
+                            <h2 className='text-[30px] font-bold text-black'>Student List</h2>
+                            <div className='flex flex-row w-full rounded pt-4'>
                                 <div className='flex justify-start items-start gap-4 w-full rounded' >
                                     <Popup trigger={
-                                        <button className='p-2 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
+                                        <button className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Student</button>
                                     } >
                                         <AddStudent />
                                     </Popup>
@@ -54,7 +54,7 @@ export default function Students() {
                             </div>
                             
                         </div>
-                        <div className='flex items-center justify-center pt-5 overflow-auto'>
+                        <div className='flex items-center justify-center pt-10 overflow-auto'>
                             <table className='w-full'>
                                 <thead>
                                     <tr>

@@ -37,10 +37,10 @@ export default function Home() {
                     <Navigation />
                 </div>
                 <div className='flex h-screen  min-w-[1000px] pt-5'>
-                <div className='flex flex-row  static h-[600px] w-screen pl-12 pt-2 shadow-lg min-w-[1300px] pr-3'>
+                <div className='flex flex-row  static h-[600px] w-screen pl-12 pt-2 min-w-[1300px] pr-3'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='flex flex-row justify-end items-end p-4'>
-                            <div className='px-5'>Search Classroom: </div>
+                            <div className='px-5'>Search Student: </div>
                             <input type='text' className='rounded-sm border p-1' id="filter_name" onChange={(e) => setFilter(e.target.value)} placeholder='Search'/>
                         </div>
                         <div className='max-h-[500px] overflow-auto border '>
@@ -59,8 +59,9 @@ export default function Home() {
                                     {students
                                         .filter((item) => {
                                             const fullname = getName(item.firstname, item.middlename, item.lastname).toLowerCase();
-                                            const searchTerm = filter.toUpperCase();
-                                            return  item.course === ids && (filter == "" || fullname.includes(filter));
+                                            const student_id = item.student_id.toLowerCase();
+                                            const searchTerm = filter.toLowerCase();
+                                            return  item.course === ids && (filter == "" || fullname.includes(searchTerm) || student_id.includes(searchTerm));
                                         })
                                         .map((item, index) => {
                                             

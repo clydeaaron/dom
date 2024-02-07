@@ -75,6 +75,7 @@ export default function UpdateStudent( data ) {
         validationSchema,
         onSubmit
     })
+
     return (
         <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>
             <div className='flex h-screen justify-center items-center '>
@@ -83,7 +84,7 @@ export default function UpdateStudent( data ) {
                         <h1 className='w-full'>Update Student</h1>
                         <div className='flex justify-end items-end w-full'>
                             <form>
-                                <button><ion-icon name="close-outline"></ion-icon></button>
+                                <button type="submit"><ion-icon name="close-outline"></ion-icon></button>
                             </form>
                         </div>
                     </div>
@@ -141,14 +142,12 @@ export default function UpdateStudent( data ) {
                             <div className='flex p-2  w-full'>
                                 <div className='px-7 w-[35%]'>Course:<span className='text-red'>*</span></div>
                                 <div>
-                                    <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Course}>
-                                        <option selected disabled>--- Select a course ---</option>
-                                        {
-                                            courses.map((item, index) => (
-                                                <option key={index} value={item.shortcut}>{item.course_name}</option>
-                                            ))
-                                        }
-                                    </select>
+                                <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Course}>
+                                    <option disabled>--- Select a course ---</option>
+                                    {courses.map((item, index) => (
+                                        <option key={index} value={item.shortcut}>{item.course_name}</option>
+                                    ))}
+                                </select>
                                     {formik.touched.Course && formik.errors.Course ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.Course}</div>
                                     ) : null}
