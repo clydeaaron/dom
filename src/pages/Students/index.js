@@ -70,11 +70,14 @@ export default function Students() {
                                         student
                                         .filter(item => {
                                             const fullName = getName(item.firstname, item.middlename, item.lastname).toLowerCase();
+                                            const student = item.student_id.toLowerCase();
                                             const searchTerm = filter.toLowerCase();
+                                            const course = item.course.toLowerCase();
                                         
                                             return filter === "" || 
-                                                item.student_id.includes(searchTerm) || 
-                                                fullName.includes(searchTerm);
+                                                student.includes(searchTerm) || 
+                                                fullName.includes(searchTerm) ||
+                                                course.includes(searchTerm);
                                         })
                                         .map((item, index) => (
                                             <tr key={index}>

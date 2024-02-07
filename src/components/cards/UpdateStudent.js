@@ -25,12 +25,12 @@ export default function AddStudent(data) {
 
     const formik = useFormik({
         initialValues: {
-            FirstName: "",
-            MiddleName: "",
-            LastName: "",
-            Birthdate: "",
-            Year: 0,
-            Course: "",
+            FirstName: null,
+            MiddleName: null,
+            LastName: null,
+            Birthdate: null,
+            Year: null,
+            Course: null,
         },
         validationSchema,
         onSubmit

@@ -22,9 +22,9 @@ export default function AdditionalSubject() {
 
     const formik = useFormik ({
         initialValues: {
-            Code: "",
-            Subjects: "",
-            Type: "",
+            Code: null,
+            Subjects: null,
+            Type: null,
         },
         validationSchema,
         onSubmit

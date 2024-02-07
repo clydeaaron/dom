@@ -33,36 +33,36 @@ export default function Login() {
 
     const formik = useFormik({
         initialValues: {
-            Email: "",
-            Password: "",
+            Email: null,
+            Password: null,
         },
         validationSchema,
         onSubmit
     })
 
     return (
-        <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
+        <div className='flex justify-items-start p-auto w-screen h-screen font-serif bg-Login bg-cover bg-no-repeat'>
             {/* <div className='w-screen '>
                     <Header />
             </div> */}
             <div className='flex flex-row justify-center items-center static p-auto w-screen h-screen'>
-                <div className='w-full h-full bg-Login bg-cover bg-no-repeat'></div>
-                <div className='flex flex-row justify-center items-center h-80 w-full '>
-                    <div className='w-[50%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md bg-white'>
+                {/* <div className='w-screen h-screen ></div> */}
+                <div className='flex flex-row justify-center items-center h-[50%] w-full '>
+                    <div className='w-[50%] h-[120%] text-[14px] flex flex-col justify-center items-center shadow-md rounded-md bg-white'>
                         <div className='p-4 text-[20px] sm:text-[22px] md:text-[25px] lg:text-[28px] text-center  flex flex-col justify-center items-center'>
                             <div className='bg-Logo bg-cover bg-no-repeat w-20 h-14'></div>
                             Welcome to CAVSU Academic Depertment Management
                         </div>
                         <div className='p-4'>
                             <div>Enter Username: </div>
-                            <input type="text" placeholder='Enter Username...' id="Email"  className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} />
+                            <input type="text" placeholder='Enter Username...' id="Email"  className='px-4 w-72 py-2 border border-gray rounded-[10px] ' defaultValue={formik.values.Email} onChange={formik.handleChange} />
                             {formik.touched.Email && formik.errors.Email ? (
-                                    <div className='text-red text-[10px] py-2'>{formik.errors.Password}</div>
+                                    <div className='text-red text-[10px] py-2'>{formik.errors.Email}</div>
                                 ) : null}
                         </div>
                         <div className='p-4'>
                             <div>Enter Password: </div>
-                            <input type="password" placeholder='Enter Password...' id="Password" className='px-4 w-72 py-2 border border-gray rounded-[10px] ' onChange={formik.handleChange} onKeyPress={(e) => {
+                            <input type="password" placeholder='Enter Password...' id="Password" className='px-4 w-72 py-2 border border-gray rounded-[10px] ' defaultValue={formik.values.Password} onChange={formik.handleChange} onKeyPress={(e) => {
                                     if (e.key === 'Enter') {
                                     e.preventDefault();
                                     formik.handleSubmit();

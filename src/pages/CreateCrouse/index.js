@@ -64,9 +64,9 @@ export default function CreateCourse() {
 
     const formik = useFormik({
         initialValues: {
-            Course: "",
-            Shorten: "",
-            Years: "",
+            Course: null,
+            Shorten: null,
+            Years: null,
             Details: [{}],
         },
         validationSchema,

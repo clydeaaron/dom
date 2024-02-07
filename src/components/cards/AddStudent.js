@@ -11,7 +11,7 @@ export default function AddStudent() {
     },[])
 
     const validationSchema = Yup.object().shape({
-        student_id: Yup.string().label("Student_id").required(),
+        StudentID: Yup.string().label("Student_id").required(),
         FirstName: Yup.string().label("First Name").required(),
         MiddleName: Yup.string().label("Middle Name"),
         LastName: Yup.string().label("First Name").required(),
@@ -30,7 +30,7 @@ export default function AddStudent() {
 
     async function onSubmit(value){
         const response = await InsertStudent({
-            student_id: value?.student_id,
+            student_id: value?.StudentID,
             firstname: value?.FirstName,
             middlename: value?.MiddleName,
             lastname: value?.LastName,
@@ -47,19 +47,20 @@ export default function AddStudent() {
 
     const formik = useFormik({
         initialValues: {
-            student_id: "",
-            FirstName: "",
-            MiddleName: "",
-            LastName: "",
-            Birthdate: "",
-            Gender: "",
-            Year: 0,
-            Course: "",
-            Contact: "",
+            StudentID: null,
+            FirstName: null,
+            MiddleName: null,
+            LastName: null,
+            Birthdate: null,
+            Gender: null,
+            Year: null,
+            Course: null,
+            Contact: null,
         },
         validationSchema,
         onSubmit
     })
+
     return (
         <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>
             <div className='flex h-screen justify-center items-center '>
@@ -78,8 +79,8 @@ export default function AddStudent() {
                                 <div className='px-6'>Student ID:<span className='text-red'>*</span></div>
                                 <div>
                                     <input type='text' id="StudentID" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.student_id} />
-                                    {formik.touched.student_id && formik.errors.student_id ? (
-                                        <div className='text-red text-[10px] py-2'>{formik.errors.student_id}</div>
+                                    {formik.touched.StudentID && formik.errors.StudentID ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.StudentID}</div>
                                     ) : null}
                                 </div>
                             </div>
@@ -145,13 +146,13 @@ export default function AddStudent() {
                             <div className='flex p-2  w-full'>
                                 <div className='px-6 w-[32%]'>Gender:<span className='text-red'>*</span></div>
                                 <div>
-                                    <select id="gender" className='border rounded-md p-1' onChange={formik.handleChange}>
+                                    <select id="Gender" className='border rounded-md p-1' onChange={formik.handleChange}>
                                         <option selected disabled>--- Select a Gender ---</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
-                                    {formik.touched.gender && formik.errors.gender ? (
-                                        <div className='text-red text-[10px] py-2'>{formik.errors.gender}</div>
+                                    {formik.touched.Gender && formik.errors.Gender ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Gender}</div>
                                     ) : null}
                                 </div>
                             </div>

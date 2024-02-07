@@ -40,15 +40,15 @@ export default function AdditionalUser() {
 
     const formik = useFormik({
         initialValues: {
-            FirstName: "",
-            MiddleName: "",
-            LastName: "",
-            username: "",
-            Email: "",
-            password: "",
-            gender: "",
-            Birthdate: "",
-            user_type: ""
+            FirstName: null,
+            MiddleName: null,
+            LastName: null,
+            username: null,
+            Email: null,
+            password: null,
+            gender: null,
+            Birthdate: null,
+            user_type: null
         },
         validationSchema,
         onSubmit
