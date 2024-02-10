@@ -19,6 +19,7 @@ export default function AddStudent() {
         Year: Yup.number().integer().positive().label("Year").required(),
         Gender: Yup.string().label('Gender').required(),
         Course: Yup.string().label("Course").required(),
+        status: Yup.string().label("Status").required(),
         Contact: Yup.string().label("Contact Number").matches(/^\d+$/, "Contact number must contain only digits").max(11, "Contact number must be at most 11 digits").required("Contact number is required")
     })
 
@@ -38,7 +39,8 @@ export default function AddStudent() {
             Gender: value?.Gender,
             Year: value?.Year,
             Course: value?.Course,
-            Contact: value?.Contact
+            Contact: value?.Contact,
+            status: value?.status
         });
         
         alert(response.msg);
@@ -56,6 +58,7 @@ export default function AddStudent() {
             Year: null,
             Course: null,
             Contact: null,
+            status: null
         },
         validationSchema,
         onSubmit
@@ -174,6 +177,19 @@ export default function AddStudent() {
                                     <input type='string' pattern="[0-9]*" id="Contact" className='border rounded-md p-1' maxLength="11" max="11" onChange={formik.handleChange}/>
                                     {formik.touched.Contact && formik.errors.Contact ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.Contact}</div>
+                                    ) : null}
+                                </div>
+                            </div>
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6'>Contact Number:<span className='text-red'>*</span></div>
+                                <div>
+                                    <select id="status" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Gender}>
+                                        <option selected disabled>--- Select a Status ---</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Irregular">Irregular</option>
+                                    </select>
+                                    {formik.touched.status && formik.errors.status ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.status}</div>
                                     ) : null}
                                 </div>
                             </div>

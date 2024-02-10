@@ -1,10 +1,19 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
-import { insertSubject } from '../../functions';
+import { ViewAllSubject, insertSubject } from '../../functions';
 import routes from '../../pages/pagename';
 
-export default function AdditionalSubject() {
+export default function AdditionalSubject(prop) {
+    // const [subject, setSubject] = useState([]);
+    console.log(prop)
+    const [isAvail, SetIsAvail] = useState(false);
+
+    useEffect(() => {
+        // FetchSubject();
+        // console.log(subject)
+    },[])
+
     const validationSchema = Yup.object().shape({
         Code: Yup.string().label("Subject Code").required(),
         Subjects: Yup.string().label("Subjects").required(),
@@ -20,6 +29,20 @@ export default function AdditionalSubject() {
         return window.location.href = routes.subjects
     }
 
+    // async function FetchSubject() {
+    //     const response = await ViewAllSubject();
+    //     setSubject(response.data);
+    // }
+
+    // async function IDValidate() {
+    //     const id = formik.values.Code;
+
+    //     subject.map((item, index) => {
+    //         if(item.id == id) return setSubject(false)
+    //     })
+    //     return setSubject(true);
+    // }
+
     const formik = useFormik ({
         initialValues: {
             Code: null,
@@ -29,6 +52,8 @@ export default function AdditionalSubject() {
         validationSchema,
         onSubmit
     })
+
+    console.log(formik)
 
     return (
         <div className='bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 '>
@@ -43,16 +68,18 @@ export default function AdditionalSubject() {
                         </div>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
-                        <div className='flex flex-row'>
                         <div className='flex p-2'>
-                                <div className='px-3'>Subject Code:<span className='text-red'>*</span></div>
-                                <div>
-                                    <input type='text' id="Code" className='border rounded-md p-1' onChange={formik.handleChange}/> 
-                                    {formik.touched.Code && formik.errors.Code ? (
-                                        <div className='text-red text-[10px] py-2'>{formik.errors.Code}</div>
-                                    ) : null}
-                                </div>
+                            <div className='px-3'>Subject Code:<span className='text-red'>*</span></div>
+                            <div>
+                                <input type='text' id="Code" className='border rounded-md p-1' onChange={formik.handleChange}/> 
+                                {formik.touched.Code && formik.errors.Code ? (
+                                    <div className='text-red text-[10px] py-2'>{formik.errors.Code}</div>
+                                ) : null}
                             </div>
+                            {/* <div className='px-3'><button onClick={IDValidate} className='p-1 bg-slate-700'>Available</button></div> */}
+                        </div>
+                        <div className='flex flex-row'>
+                        
                             <div className='flex p-2'>
                                 <div className='px-3'>Subject Name:<span className='text-red'>*</span></div>
                                 <div>

@@ -37,7 +37,9 @@ export default function CreateCourse() {
                     <div className='flex flex-row justify-start items-start bg-slate-100 w-full rounded-t-md h-auto p-5 '>
                         <h1 className='w-full'>Add New Course</h1>
                         <div className='flex justify-end items-end w-full'>
-                            <button><ion-icon name="close-outline"></ion-icon></button>
+                            <form>
+                                <button type="submit"><ion-icon name="close-outline"></ion-icon></button>
+                            </form>
                         </div>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>

@@ -28,7 +28,7 @@ export default function UpdateCourse(data) {
         const response = await UpdateCourses({
         id: value?.id,
         course: value?.Course,
-        shortcut: value?.Shorten,
+        shorten: value?.Shorten,
         years: value?.Years,
         });
 
@@ -41,14 +41,14 @@ export default function UpdateCourse(data) {
         }
     }
 
-    async function onDelete() {
-        const response = await DeleteCourse({ id: id });
+    async function onDelete(ids) {
+        const response = await DeleteCourse({ id: ids });
         const { msg, valid } = response;
         if (valid) {
-        alert(msg);
-        window.location.href = routes.courses;
+            alert(msg);
+            window.location.href = routes.courses;
         } else {
-        alert(msg);
+            alert(msg);
         }
     }
 
@@ -66,59 +66,59 @@ export default function UpdateCourse(data) {
             </div>
             <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                 <div className='flex flex-row'>
-                <div className='flex p-2'>
-                    <div className='px-3'>
-                    Course Name:<span className='text-red'>*</span>
+                    <div className='flex p-2'>
+                        <div className='px-5'>Course Code:</div>
+                        <input
+                        type='text'
+                        id='Shorten'
+                        className='border rounded-md p-1'
+                        onChange={formik.handleChange}
+                        defaultValue={formik.values.Shorten}
+                        />
                     </div>
-                    <input
-                    type='text'
-                    id='Course'
-                    className='border rounded-md p-1'
-                    onChange={formik.handleChange}
-                    defaultValue={formik.values.Course}
-                    />
-                </div>
-                <div className='flex p-2'>
-                    <div className='px-5'>Course Shorten:</div>
-                    <input
-                    type='text'
-                    id='Shorten'
-                    className='border rounded-md p-1'
-                    onChange={formik.handleChange}
-                    defaultValue={formik.values.Shorten}
-                    />
-                </div>
-                <div className='flex p-2'>
-                    <div className='px-6'>
-                    Course Years:<span className='text-red'>*</span>
+                    <div className='flex p-2'>
+                        <div className='px-3'>
+                        Course Name:<span className='text-red'>*</span>
+                        </div>
+                        <input
+                        type='text'
+                        id='Course'
+                        className='border rounded-md p-1'
+                        onChange={formik.handleChange}
+                        defaultValue={formik.values.Course}
+                        />
                     </div>
-                    <input
-                    type='number'
-                    id='Years'
-                    className='border rounded-md p-1'
-                    onChange={formik.handleChange}
-                    defaultValue={formik.values.Years}
-                    />
-                </div>
+                    <div className='flex p-2'>
+                        <div className='px-6'>
+                        Course Years:<span className='text-red'>*</span>
+                        </div>
+                        <input
+                        type='number'
+                        id='Years'
+                        className='border rounded-md p-1'
+                        onChange={formik.handleChange}
+                        defaultValue={formik.values.Years}
+                        />
+                    </div>
                 </div>
                 <div className='flex flex-row'></div>
-                <div className='flex flex-row justify-end items-end p-3'>
-                <button
-                    type='button'
-                    className='border rounded-md px-10 py-2 bg-red text-white'
-                    onClick={onDelete}
-                >
-                    Delete
-                </button>
-                <button
-                    type='submit'
-                    className='border rounded-md p-2 bg-[#00A36C] text-white'
-                    onClick={formik.handleSubmit}
-                >
-                    Submit
-                </button>
+                    <div className='flex flex-row justify-end items-end p-3'>
+                    <button
+                        type='button'
+                        className='border rounded-md px-10 py-2 bg-red text-white'
+                        onClick={() => onDelete(id)}
+                    >
+                        Delete
+                    </button>
+                    <button
+                        type='submit'
+                        className='border rounded-md p-2 bg-[#00A36C] text-white'
+                        onClick={formik.handleSubmit}
+                    >
+                        Submit
+                    </button>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         </div>

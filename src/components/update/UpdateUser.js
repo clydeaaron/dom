@@ -176,7 +176,7 @@ export default function UpdateUser(data) {
                                         >
                                         <option value="" disabled>-- Select User Type --</option>
                                         <option value="Admin">Admin</option>
-                                        <option value="Prof">Professor</option>
+                                        <option value="Professor">Professor</option>
                                     </select>
                                     {formik.touched.user_type && formik.errors.user_type ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.user_type}</div>

@@ -22,7 +22,7 @@ export default function Login() {
                 case "Admin":
                     window.location.href = routes.student;
                     break;
-                case "Prof":
+                case "Professor":
                     window.location.href = routes.home;
                     break;
             }

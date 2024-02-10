@@ -5,7 +5,7 @@ import { DeleteStudent, UpdateStudents, ViewAllCourse } from '../../functions';
 import routes from '../../pages/pagename';
 
 export default function UpdateStudent( data ) {
-    const { student_id, firstname, middlename, lastname, birthdate, gender, course, year_level, contact_number} = data.data
+    const { student_id, firstname, middlename, lastname, birthdate, gender, course, year_level, contact_number, status} = data.data
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -21,6 +21,7 @@ export default function UpdateStudent( data ) {
         Year: Yup.number().integer().positive().label("Year").required(),
         Gender: Yup.string().label("Gender").required(),
         Course: Yup.string().label("Course").required(),
+        status: Yup.string().label("Status").required(),
         Contact: Yup.string().label("Contact Number").matches(/^\d+$/, "Contact number must contain only digits").max(11, "Contact number must be at most 11 digits").required("Contact number is required")
     })
 
@@ -51,7 +52,8 @@ export default function UpdateStudent( data ) {
             Gender: value?.Gender,
             Year: value?.Year,
             Course: value?.Course,
-            Contact: value?.Contact
+            Contact: value?.Contact,
+            status: value?.status
         });
 
         console.log(response)
@@ -71,6 +73,7 @@ export default function UpdateStudent( data ) {
             Year: year_level,
             Course: course,
             Contact: contact_number,
+            status: status
         },
         validationSchema,
         onSubmit
@@ -144,7 +147,7 @@ export default function UpdateStudent( data ) {
                             <div className='flex p-2  w-full'>
                                 <div className='px-7 w-[35%]'>Course:<span className='text-red'>*</span></div>
                                 <div>
-                                <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Course}>
+                                <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Course} disabled>
                                     <option disabled>--- Select a course ---</option>
                                     {courses.map((item, index) => (
                                         <option key={index} value={item.shortcut}>{item.course_name}</option>
@@ -161,12 +164,12 @@ export default function UpdateStudent( data ) {
                             <div className='flex p-2  w-full'>
                                 <div className='px-6 w-[32%]'>Gender:<span className='text-red'>*</span></div>
                                 <div>
-                                    <select id="gender" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Gender}>
+                                    <select id="Gender" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Gender}>
                                         <option selected disabled>--- Select a Gender ---</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
-                                    {formik.touched.gender && formik.errors.Cogenderde ? (
+                                    {formik.touched.Gender && formik.errors.Gender ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.gender}</div>
                                     ) : null}
                                 </div>
@@ -189,6 +192,19 @@ export default function UpdateStudent( data ) {
                                     <input type='string' pattern="[0-9]*" id="Contact" className='border rounded-md p-1' maxLength="11" onChange={formik.handleChange} defaultValue={formik.values.Contact}/>
                                     {formik.touched.Contact && formik.errors.Contact ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.Contact}</div>
+                                    ) : null}
+                                </div>
+                            </div>
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6'>Contact Number:<span className='text-red'>*</span></div>
+                                <div>
+                                    <select id="status" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Gender}>
+                                        <option selected disabled>--- Select a Status ---</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Irregular">Irregular</option>
+                                    </select>
+                                    {formik.touched.status && formik.errors.status ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.status}</div>
                                     ) : null}
                                 </div>
                             </div>

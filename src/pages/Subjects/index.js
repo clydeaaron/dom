@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup'
 import AdditionalSubject from '../../components/cards/AdditionalSubject.js'
 import { ViewAllSubject } from '../../functions/index.js'
 import UpdateSubject from '../../components/update/UpdateSubject.js'
+import routes from '../pagename.js'
 
 export default function Subjects() {
 
@@ -29,17 +30,18 @@ export default function Subjects() {
                 <div className='min-w-[300px] '>
                     <AdminNavigation />
                 </div>
-                <div className='flex h-screen  min-w-[1000px] pt-5'>
+                <div className='flex h-screen min-w-[2000px] pt-5'>
                     <div className=' w-screen h-80 text-[20px] p-3'>
                         <div className='w-full rounded'>
                             <h2 className='text-[30px] font-bold text-black'>Subject List</h2>
                             <div className='flex flex-row w-full rounded pt-4'>
                                 <div className='flex justify-start items-start w-full'>
-                                    <Popup trigger={
+                                    {/* <Popup trigger={
                                         <button className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add New Subjects</button>
                                     } >
                                         <AdditionalSubject />
-                                    </Popup>
+                                    </Popup> */}
+                                    <a href={routes.subject_creation} className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add New Subjects</a>
                                 </div>
                                 <div className='flex flex-row justify-end items-end gap-4 w-full'>
                                     <h1 className='font-bold'>Search Subject: </h1>

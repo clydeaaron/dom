@@ -91,7 +91,6 @@ async function ViewAllClass() {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response)
 
         return response.data;
     } catch(err) {
@@ -165,7 +164,6 @@ async function CreateClass ({ Room, course, level, Subject }) {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response.data)
 
         const { valid, msg } = response.data
 
@@ -181,7 +179,7 @@ async function CreateClass ({ Room, course, level, Subject }) {
 
 }
 
-async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact}) {
+async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact, status}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddStudent/', {
             code: student_id,
@@ -193,14 +191,13 @@ async function InsertStudent({student_id, firstname, middlename,lastname, Gender
             year_level: Year,
             course: Course,
             contact: Contact,
+            status: status
         },
         {
             header: {
                 'Content-Type': 'application/json'
             }
         })
-
-        console.log(response)
 
         return response.data;
     } catch (err) {
@@ -286,7 +283,6 @@ async function UpdateSubjects({ id, Subject, Type }) {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response)
         return response.data
     } catch(err) {
         console.log(err)
@@ -311,14 +307,13 @@ async function DeleteSubject({ id }) {
     }
 } 
 
-async function UpdateCourses({ id, course, shorten, years, details}) {
+async function UpdateCourses({ id, course, shorten, years}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateCourses/', {
             id: id,
             course: course,
             shortcut: shorten,
-            years: years,
-            detail: details
+            years: years
         }, {
             header: {
                 'Content-Type': 'application/json'
@@ -348,7 +343,7 @@ async function DeleteCourse({id}) {
     }
 }
 
-async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact}) {
+async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact, status}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateStudent/', {
             id: id,
@@ -360,14 +355,13 @@ async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birth
             year_level: Year,
             course: Course,
             contact: Contact,
+            status: status
         },
         {
             header: {
                 'Content-Type': 'application/json'
             }
         })
-
-        console.log(response)
 
         return response.data;
     } catch (err) {
@@ -401,7 +395,6 @@ async function ViewClassDetail({id}) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
         return response.data
     } catch(err) {
         console.log(err)
@@ -421,7 +414,6 @@ async function UpdateClassroom({ Room, course, level, Subject  }){
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
         return response.data
     } catch(err) {
         console.log(err)
@@ -437,7 +429,6 @@ async function ViewAllUser() {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response)
         return response.data;
     } catch(err) {
         console.log(err)
@@ -463,7 +454,6 @@ async function CreateUser({ user, email, password, fname, mname, lname, birthdat
             }
         });
     
-        console.log(response);
         return response.data;
         } catch (err) {
         console.error(err);
@@ -502,7 +492,7 @@ async function UpdateUsers({ id, user, email, password, fname, mname, lname, bir
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
+
         return response.data
     } catch(err) {
         console.log(err)
@@ -520,7 +510,7 @@ async function EnrollClass({ id, student }) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
+
         return response.data
     } catch(err) {
         console.log(err)
@@ -537,7 +527,7 @@ async function FetchEnroll({ id }) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
+
         return response.data
     } catch(err) {
         console.log(err)
@@ -554,7 +544,7 @@ async function EditClassGrade({ students }) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
+        
         return response.data
     } catch(err) {
         console.log(err)
@@ -674,6 +664,22 @@ async function UpdateCourse({id, course, shorten, years, details}) {
     }
 }
 
+async function FetchAllProfessor() {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewAllProfessor/', {}, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
 export {
     LoginValid,
     insertSubject,
@@ -709,5 +715,6 @@ export {
     ViewSpecificCourse,
     ViewStudentNo,
     UpdateGrades,
-    UpdateCourse
+    UpdateCourse,
+    FetchAllProfessor
 }

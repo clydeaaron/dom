@@ -11,7 +11,7 @@ const routes = {
     EditClassroom: "/EditClassroom",
     course_creation: "/NewCourse",
     createGrade: "/GradeCreation",
-    updateCourse: "/CourseUpdate"
+    updateCourse: "/CourseUpdate",
 }
 
 export default routes;

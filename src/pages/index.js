@@ -27,5 +27,5 @@ export {
     UpdateClassRoom,
     CreateCourse,
     GradeCreation,
-    UpdateCourse
+    UpdateCourse,
 }

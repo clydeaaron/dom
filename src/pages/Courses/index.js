@@ -3,9 +3,11 @@ import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import { ViewAllCourse } from '../../functions';
 import routes from '../pagename';
+// import Popup from 'reactjs-popup';
+// import CreateCourse from '../../components/cards/CreateCourse';
+// import UpdateCourse from '../../components/update/UpdateCourse';
 
 export default function Courses() {
-
     const [courses, setCourses] = useState([]);
     useEffect(() => {
         ViewCourse()
@@ -17,15 +19,6 @@ export default function Courses() {
 
         setCourses(response.data)
     }
-
-    // async function SpecifyCourse(course) {
-    //     const response = await ViewSpecifyCourse({course: course});
-
-    //     if(course === "") {
-    //         return ViewCourse();
-    //     }
-    //     if(response.valid) return setCourses(response.data)
-    // }
 
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
@@ -42,6 +35,9 @@ export default function Courses() {
                             <h2 className='text-[30px] font-bold'>Courses List</h2>
                             <div className='flex w-full pt-4'>
                                 <div className='flex w-full'>
+                                    {/* <Popup trigger={ <button className='p-1 rounded border bg-[#468f29] text-white'> <ion-icon name="add-circle-outline"></ion-icon> Add Course </button>}>
+                                        <CreateCourse />
+                                    </Popup> */}
                                     <a href={routes.course_creation} className='p-1 rounded border bg-[#468f29] text-white'><ion-icon name="add-circle-outline"></ion-icon> Add Course</a>
                                 </div>
                             </div>

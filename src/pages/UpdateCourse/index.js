@@ -163,7 +163,7 @@ export default function UpdateCourse() {
                                                         {
                                                             getSubject.map((item, index) => {
                                                                 return (
-                                                                    <option value={item.label}>{item.label}</option>
+                                                                    <option value={item.id}>{item.label}</option>
                                                                 )
                                                             })
                                                         }
