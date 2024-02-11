@@ -6,6 +6,7 @@ import { getName } from '../../helper';
 import { ViewAllUser } from '../../functions';
 import AdditionalUser from '../../components/cards/AdditionalUser';
 import UpdateUser from '../../components/update/UpdateUser';
+import routes from '../pagename';
 
 export default function Users() {
     const [user, setUser] = useState([]);
@@ -68,6 +69,12 @@ export default function Users() {
                                         <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.user_type}</td>
                                         <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                         <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
+                                            {
+                                                item.user_type === "Professor" ? 
+                                                (
+                                                    <a href={routes.adminChecklist + "?id=" + item.username} className='p-1 border text-white bg-blue'>Checklist</a>
+                                                ): null
+                                            }
                                             <Popup trigger={
                                             <button className='shadow rounded-md p-1 text-white bg-green mx-2'> View </button>
                                             }>

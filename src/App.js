@@ -2,8 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import routes from "./pages/pagename";
-import { Courses, Home, Login, Rooms, Subjects, Students, Users, Enroll, UpdateClassRoom, CreateCourse, GradeCreation, UpdateCourse, MakeSubject } from './pages';
-import CreateClasses from './pages/CreateClasses';
+import { Courses, Home, Login, Rooms, Subjects, Students, Users, Enroll, UpdateClassRoom, CreateCourse, GradeCreation, UpdateCourse, CreateClasses, UpdateProf, AdminChecklist } from './pages';
 
 
 
@@ -24,6 +23,8 @@ const App = () => {
         <Route path={routes.course_creation} element={<CreateCourse/>} />
         <Route path={routes.createGrade} element={<GradeCreation /> } />
         <Route path={routes.updateCourse} element={<UpdateCourse/>} />
+        <Route path={routes.UpdateCheckList} element={<UpdateProf/>} />
+        <Route path={routes.adminChecklist} element={<AdminChecklist />} />
       </Routes>
     </Router>
   );

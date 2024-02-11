@@ -518,11 +518,10 @@ async function EnrollClass({ id, student }) {
     }
 }
 
-async function FetchEnroll({ id }) {
+async function FetchEnroll() {
     try{ 
-        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecifyEnroll/', {
-            room: id
-        },{ 
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecifyEnroll/', {},
+        { 
             header: {
                 'Content-Type': 'application/json'
             }
@@ -680,6 +679,62 @@ async function FetchAllProfessor() {
     }
 }
 
+async function UpdateCheckList({id, professor}) {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/InsertProfessor/', {
+            id: id,
+            professor: professor
+        }, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function ViewProfessorChecklist({id}) {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/FetchProfessorChecklist/', {
+            id: id
+        }, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function insertCheckList({professor, subject}) {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddChecklist/', {
+            professor: professor,
+            subject: subject
+        }, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
 export {
     LoginValid,
     insertSubject,
@@ -716,5 +771,8 @@ export {
     ViewStudentNo,
     UpdateGrades,
     UpdateCourse,
-    FetchAllProfessor
+    FetchAllProfessor,
+    UpdateCheckList,
+    ViewProfessorChecklist,
+    insertCheckList
 }

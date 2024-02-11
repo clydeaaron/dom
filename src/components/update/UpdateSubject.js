@@ -54,11 +54,11 @@ export default function UpdateSubject(data) {
                         </div>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
+                        <div className='flex p-2'>
+                            <div className='px-4'>Subject Code: </div>
+                            <label className='border rounded-md p-1 w-1/4'>{formik.values.id}</label>
+                        </div>
                         <div className='flex flex-row'>
-                            <div className='flex p-2'>
-                                <div className='px-3'>Subject Code: </div>
-                                <label className='border rounded-md p-1'>{formik.values.id}</label>
-                            </div>
                             <div className='flex p-2'>
                                 <div className='px-3'>Subject Name:<span className='text-red'>*</span></div>
                                 <div>

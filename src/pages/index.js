@@ -12,6 +12,8 @@ import UpdateClassRoom from "./UpdateClassRoom";
 import CreateCourse from "./CreateCrouse";
 import GradeCreation from "./GradeCreation";
 import UpdateCourse from "./UpdateCourse";
+import UpdateProf from "./UpdateProf";
+import AdminChecklist from "./AdminChecklist";
 
 export {
     Login,
@@ -28,4 +30,6 @@ export {
     CreateCourse,
     GradeCreation,
     UpdateCourse,
+    UpdateProf,
+    AdminChecklist
 }
