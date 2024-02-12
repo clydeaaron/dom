@@ -3,13 +3,8 @@ import React from 'react'
 import * as Yup from "yup";
 import { getName } from '../../helper';
 
-export default function GradeCreation(student) {
-    let { FirstName, MiddleName, LastName, course } = student.datas;
-
-    const validationSchema = Yup.object().shape({
-        Course: Yup.string().label("Course").required(),
-    })
-    
+export default function GradeCreation(prop) { 
+    const { id, label} = prop.data
     const formik = useFormik({
 
     })
@@ -22,14 +17,17 @@ export default function GradeCreation(student) {
                         <h1>Create a Grade</h1>
                     </div>
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
+                        {
+                            
+                        }
                         <div className='flex flex-row'>
                             <div className='flex p-2 text-[14px]'>
-                                <div className='px-7 font-bold'>Student: </div>
-                                <div>{getName(FirstName, MiddleName, LastName)}</div>
+                                <div className='px-7 font-bold'>Subject Code: </div>
+                                <div>{id}</div>
                             </div>
                             <div className='flex p-2 text-[14px]'>
-                                <div className='px-7 font-bold'>Course: </div>
-                                <div>{course}</div>
+                                <div className='px-7 font-bold'>Subject Label: </div>
+                                <div>{label}</div>
                             </div>
                             <div className='flex p-2 font-bold text-[14px]'>
                                 <div className='px-7'>Subject: </div>

@@ -621,14 +621,11 @@ async function ViewStudentNo({ids}) {
     }
 }
 
-async function UpdateGrades ({ id, prelim, midterm, prefi, finals }) {
+async function UpdateGrades ({ id, grade }) {
     try {
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateGrade/', {
             id: id,
-            prelim: prelim,
-            midterm: midterm,
-            prefi: prefi,
-            finals: finals
+            grade: grade,
         }, {
             header: {
                 'Content-Type': 'application/json'
@@ -679,11 +676,12 @@ async function FetchAllProfessor() {
     }
 }
 
-async function UpdateCheckList({id, professor}) {
+async function UpdateCheckList({id, professor, student}) {
     try {
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/InsertProfessor/', {
             id: id,
-            professor: professor
+            professor: professor,
+            student: student
         }, 
         {
             header: {
@@ -698,11 +696,9 @@ async function UpdateCheckList({id, professor}) {
     }
 }
 
-async function ViewProfessorChecklist({id}) {
+async function ViewProfessorChecklist() {
     try {
-        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/FetchProfessorChecklist/', {
-            id: id
-        }, 
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/FetchProfessorChecklist/', {}, 
         {
             header: {
                 'Content-Type': 'application/json'
@@ -732,6 +728,74 @@ async function insertCheckList({professor, subject}) {
     } catch(err) {
         console.log(err)
         throw new Error("An error occurred during the data update")
+    }
+}
+
+async function ViewProfile({id}) {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/ViewSpecificUser/', {
+            user: id,
+        }, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function UpdatePassword({password, username}) {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdatePassword/', {
+            password: password,
+            username: username
+        }, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
+async function UpdateProfiles({ id, user, email, firstname, mname, lname, birthdate, gender, image }) {
+    try {
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('user', user);
+        formData.append('email', email);
+        formData.append('firstname', firstname);
+        formData.append('mname', mname);
+        formData.append('lname', lname);
+        formData.append('birthdate', birthdate);
+        formData.append('gender', gender);
+        formData.append('profile', image); // Assuming profile is a File object
+
+        const response = await axios.post(
+            'https://sbaesthetic.online/DOM_PHP/UpdateProfile/',
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'// Use multipart/form-data for file upload
+                }
+            }
+        );
+
+        console.log(response.data)
+        return response.data;
+    } catch (err) {
+        console.error(err);
+        throw new Error("An error occurred during the data update");
     }
 }
 
@@ -774,5 +838,8 @@ export {
     FetchAllProfessor,
     UpdateCheckList,
     ViewProfessorChecklist,
-    insertCheckList
+    insertCheckList,
+    ViewProfile,
+    UpdateProfiles,
+    UpdatePassword
 }

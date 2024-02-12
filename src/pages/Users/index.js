@@ -76,7 +76,7 @@ export default function Users() {
                                                 ): null
                                             }
                                             <Popup trigger={
-                                            <button className='shadow rounded-md p-1 text-white bg-green mx-2'> View </button>
+                                            <button className='shadow rounded-md p-1 text-white bg-green mx-2'> Update </button>
                                             }>
                                             <UpdateUser data={item} />
                                             </Popup>

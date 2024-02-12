@@ -86,7 +86,7 @@ export default function Students() {
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.year_level + " - " + item.course}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
-                                                    <Popup trigger={<button className='shadow rounded-md p-1 text-white bg-green mx-2'> View </button>}>
+                                                    <Popup trigger={<button className='shadow rounded-md p-1 text-white bg-green mx-2'> Update </button>}>
                                                         <UpdateStudent data={item} />
                                                     </Popup>
                                                 </td>

@@ -5,7 +5,6 @@ import Popup from 'reactjs-popup'
 import AdditionalSubject from '../../components/cards/AdditionalSubject.js'
 import { ViewAllSubject } from '../../functions/index.js'
 import UpdateSubject from '../../components/update/UpdateSubject.js'
-import routes from '../pagename.js'
 
 export default function Subjects() {
 
@@ -77,7 +76,7 @@ export default function Subjects() {
                                             <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                             <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
                                                 <Popup trigger={
-                                                    <button className='shadow rounded-md p-1 text-white bg-green mx-2'> View </button>
+                                                    <button className='shadow rounded-md p-1 text-white bg-green mx-2'> Update </button>
                                                 }>
                                                     <UpdateSubject data={item} />
                                                 </Popup>

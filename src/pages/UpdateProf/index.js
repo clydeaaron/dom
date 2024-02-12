@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
-import { FetchEnroll, UpdateCheckList, ViewAllCourse, ViewAllSubject } from '../../functions';
+import { FetchEnroll, UpdateCheckList, ViewAllCourse, ViewAllSubject, ViewProfessorChecklist } from '../../functions';
 import { getName } from '../../helper';
 
 export default function UpdateProf() {
+    const [ids, setID] = useState("");
     const [filterSubject, setFilterSubject] = useState("");
     const [professor, setProfessor] = useState("");
     const [filterStudent, setFilterStudent] = useState("");
@@ -15,8 +16,9 @@ export default function UpdateProf() {
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        setFilterSubject(urlParams.get('id'));
-        setProfessor(urlParams.get("professor"))
+        setFilterSubject(urlParams.get('subject'));
+        setProfessor(urlParams.get("professor"));
+        setID(urlParams.get("id"));
         FetchSubject();
         FetchStudent();
         FetchCourse();
@@ -48,18 +50,17 @@ export default function UpdateProf() {
     }
 
     async function onDelete(value) {
-        const response = await UpdateCheckList({ id: value, professor: ""});
+        const response = await UpdateCheckList({ id: "", professor: "", student: value});
 
         alert(response.msg)
-        window.location.reload();
-        // window. history.back()
+        FetchStudent()
     }
 
     async function onSubmit(value) {
-        const response = await UpdateCheckList({ id: value, professor: professor});
+        const response = await UpdateCheckList({ id: ids, professor: professor, student: value });
 
         alert(response.msg)
-        window.location.reload()
+        FetchStudent()
     }
 
 console.log(student)

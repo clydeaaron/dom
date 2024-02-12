@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import routes from '../../pages/pagename';
 import { useNavigate } from 'react-router-dom';
 import { ViewAllCourse } from '../../functions';
+import Popup from 'reactjs-popup';
+import UpdateProfile from '../update/UpdateProfile';
 
 export default function Navigation() {
     const navigate = useNavigate();
@@ -77,17 +79,25 @@ export default function Navigation() {
                     </li>
                 </ul> */}
                 {
-                    navigator.map((link) => {
-                        return (
-                            <>
-                                <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold hover:bg-green active:bg-green focus:bg-green' onClick={() => window.location.href = link.link}>
-                                    {link.icon} <span>{link.label}</span>
-                                </button>
+                    // navigator.map((link) => {
+                    //     return (
+                    //         <>
+                    //             <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold hover:bg-green active:bg-green focus:bg-green' onClick={() => window.location.href = link.link}>
+                    //                 {link.icon} <span>{link.label}</span>
+                    //             </button>
                                 
-                            </>
-                        )
-                    })
+                    //         </>
+                    //     )
+                    // })
                 }
+                <Popup trigger={
+                    <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold hover:bg-green active:bg-green focus:bg-green' onClick={() => navigate(routes.login)}>
+                        <ion-icon name="people-outline"></ion-icon> <span>Profile</span>
+                    </button>
+                }>
+                    <UpdateProfile />
+                </Popup>
+                
                 <button type="submit" className='w-full h-auto p-2 rounded-sm text-left text-sm font-semibold hover:bg-green active:bg-green focus:bg-green' onClick={() => navigate(routes.login)}>
                     <ion-icon name="log-out-outline"></ion-icon> <span>logout</span>
                 </button>

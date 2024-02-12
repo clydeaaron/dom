@@ -14,16 +14,16 @@ export default function Login() {
 
     async function onSubmit(value) {
         const response = await LoginValid({ Email: value?.Email, Password: value?.Password});
-        const { valid , data } = response
-        console.log(response)
+        const { valid , data, username } = response
 
         if(valid) {
+            localStorage.setItem("username", username);
             switch(data) {
                 case "Admin":
                     window.location.href = routes.student;
                     break;
                 case "Professor":
-                    window.location.href = routes.home;
+                    window.location.href = routes.home + "?username=" + username;
                     break;
             }
         } else {

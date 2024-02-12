@@ -15,8 +15,9 @@ export default function AdminChecklist() {
         setProfessor(urlParams.get('id'));
         fetchChecklist();
     },[])
+
     const fetchChecklist = async() => {
-        const response = await ViewProfessorChecklist({id: professor});
+        const response = await ViewProfessorChecklist();
         const { valid, data } = response;
         if(valid) {
             setCheckList(data);
@@ -49,9 +50,9 @@ export default function AdminChecklist() {
                             <table className='w-full'>
                                 <thead>
                                     <tr>
-                                        <th className='bg-green p-2 rounded-tl-md'>Subject</th>
-                                        <th className='bg-green p-2'>Status</th>
-                                        <th className='bg-green p-2 rounded-tr-md'>Actions</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tl-md'>Subject</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Status</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,10 +62,10 @@ export default function AdminChecklist() {
                                     .map((item, index) => {
                                         return (
                                             <tr>
-                                                <td className='text-center  py-1 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.label}</td>
-                                                <td className='text-center  py-1 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
-                                                <td className='text-center  py-1 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
-                                                    <a href={routes.UpdateCheckList + "?id=" + item.id + "&professor=" + professor} className='shadow rounded-md p-1 text-white bg-green mx-2' >View</a>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.label}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
+                                                    <a href={routes.UpdateCheckList + "?subject=" + item.code + "&professor=" + professor + "&id=" + item.id} className='shadow rounded-md p-1 text-white bg-green mx-2' >Update</a>
                                                 </td>
                                             </tr>
                                         )
