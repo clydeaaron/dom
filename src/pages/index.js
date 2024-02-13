@@ -15,6 +15,7 @@ import UpdateCourse from "./UpdateCourse";
 import UpdateProf from "./UpdateProf";
 import AdminChecklist from "./AdminChecklist";
 import Checklist from "./CheckList";
+import ViewChecklist from "./ViewChecklist";
 
 export {
     Login,
@@ -33,5 +34,6 @@ export {
     UpdateCourse,
     UpdateProf,
     AdminChecklist,
-    Checklist
+    Checklist,
+    ViewChecklist
 }

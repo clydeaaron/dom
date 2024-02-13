@@ -14,7 +14,8 @@ const routes = {
     updateCourse: "/CourseUpdate",
     UpdateCheckList: "/UpdateProf",
     adminChecklist: "/AdminChecklist",
-    ChecklistGrade: "/UpdateChecklist"
+    ChecklistGrade: "/UpdateChecklist",
+    viewChecklist: "ViewChecklist"
 }
 
 export default routes;

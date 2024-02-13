@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import routes from "./pages/pagename";
-import { Courses, Home, Login, Rooms, Subjects, Students, Users, Enroll, UpdateClassRoom, CreateCourse, GradeCreation, UpdateCourse, CreateClasses, UpdateProf, AdminChecklist, Checklist } from './pages';
+import { Courses, Home, Login, Rooms, Subjects, Students, Users, Enroll, UpdateClassRoom, CreateCourse, GradeCreation, UpdateCourse, CreateClasses, UpdateProf, AdminChecklist, Checklist, ViewChecklist } from './pages';
 
 
 
@@ -26,6 +26,7 @@ const App = () => {
         <Route path={routes.UpdateCheckList} element={<UpdateProf/>} />
         <Route path={routes.adminChecklist} element={<AdminChecklist />} />
         <Route path={routes.ChecklistGrade} element={<Checklist /> } />
+        <Route path={routes.viewChecklist} element={<ViewChecklist/>} /> 
       </Routes>
     </Router>
   );

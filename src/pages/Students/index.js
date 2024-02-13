@@ -3,9 +3,10 @@ import AddStudent from '../../components/cards/AddStudent'
 import Header from '../../components/cards/header'
 import AdminNavigation from '../../components/cards/AdminNavigation'
 import Popup from 'reactjs-popup'
-import { ViewAllStudent, ViewSpecifyStudent } from '../../functions'
+import { ViewAllStudent } from '../../functions'
 import { getName } from '../../helper'
 import UpdateStudent from '../../components/update/UpdateStudent'
+import ImportStudent from '../../components/cards/ImportStudent'
 
 export default function Students() {
     const [student, setStudent] = useState([]);
@@ -45,6 +46,10 @@ export default function Students() {
                                     } >
                                         <AddStudent />
                                     </Popup>
+                                    <Popup trigger={<button className='p-1 rounded border bg-primary text-black' > Import </button>} >
+                                        <ImportStudent />
+                                    </Popup>
+                                    
                                 </div>
                                 
                                 <div className='flex justify-end items-end gap-4 w-full rounded' >

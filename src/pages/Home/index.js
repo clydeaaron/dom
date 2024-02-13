@@ -81,8 +81,11 @@ export default function Home() {
                                                             </button>}>
                                                                 <GradeCreation data={item} />
                                                             </Popup> */}
+                                                            <a href={routes.ChecklistGrade + "?id=" + item.id} className='shadow w-full mt-[15%] rounded bg-primary text-black text-center'>
+                                                                Update Students
+                                                            </a>
                                                             <a href={routes.ChecklistGrade + "?id=" + item.id} className='shadow w-full mt-[15%] rounded bg-green text-white text-center'>
-                                                                View Students
+                                                                Update Students
                                                             </a>
                                                         </div>
                                                     </div>

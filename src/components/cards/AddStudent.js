@@ -181,7 +181,7 @@ export default function AddStudent() {
                                 </div>
                             </div>
                             <div className='flex p-2  w-full'>
-                                <div className='px-6'>Contact Number:<span className='text-red'>*</span></div>
+                                <div className='px-6'>Status:<span className='text-red'>*</span></div>
                                 <div>
                                     <select id="status" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Gender}>
                                         <option selected disabled>--- Select a Status ---</option>

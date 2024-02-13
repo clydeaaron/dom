@@ -799,6 +799,51 @@ async function UpdateProfiles({ id, user, email, firstname, mname, lname, birthd
     }
 }
 
+// async function StudentReader({ file }) {
+//     try {
+//         const formData = new FormData();
+//         form Data.append('student', file); 
+
+//         const response = await axios.post(
+//             'https://sbaesthetic.online/DOM_PHP/CreateClass/',
+//             formData,
+//             {
+//                 headers: {
+//                     'Content-Type': 'multipart/form-data' // Use multipart/form-data for file upload
+//                 }
+//             }
+//         );
+
+//         return response.data;
+//     } catch (err) {
+//         console.error(err);
+//         throw new Error("An error occurred during the data update");
+//     }
+// }
+
+async function StudentReader({ files }) {
+    try {
+        const formData = new FormData();
+        formData.append('student', files); // Assuming only one file is selected
+
+        const response = await axios.post(
+            'https://sbaesthetic.online/DOM_PHP/CreateClass/',
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Change content type to multipart/form-data
+                }
+            }
+        );
+
+        console.log(response.data);
+        return response.data;
+    } catch (err) {
+        console.error(err);
+        throw new Error("An error occurred during the data update");
+    }
+}
+
 export {
     LoginValid,
     insertSubject,
@@ -841,5 +886,6 @@ export {
     insertCheckList,
     ViewProfile,
     UpdateProfiles,
-    UpdatePassword
+    UpdatePassword,
+    StudentReader
 }

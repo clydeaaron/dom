@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import Navigation from '../../components/cards/Navigation'
-import { FetchEnroll, UpdateGrades } from '../../functions';
+import { FetchEnroll } from '../../functions';
 import { getName } from '../../helper';
 
-export default function Checklist() {
+export default function ViewChecklist() {
     const [filter, setFilter] = useState("");
     const [id, setID] = useState("")
     const [student, setStudent] = useState([]);
@@ -22,10 +22,6 @@ export default function Checklist() {
         if(valid) {
             setStudent(data)
         }
-    }
-
-    const handleChange = async(id, grade) => {
-        const response = await UpdateGrades({id: id, grade: grade})
     }
 
     return (
@@ -100,23 +96,7 @@ export default function Checklist() {
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.student_id}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.course}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>
-                                                        <select className='w-full'defaultValue={item.grade} onChange={(e) => {handleChange({id: item.student_id, grade: e.target.value})}}>
-                                                            <option value="1.00">1.00</option>
-                                                            <option value="1.25">1.25</option>
-                                                            <option value="1.50">1.50</option>
-                                                            <option value="1.75">1.75</option>
-                                                            <option value="2.00">2.00</option>
-                                                            <option value="1.25">2.25</option>
-                                                            <option value="1.50">2.50</option>
-                                                            <option value="1.75">2.75</option>
-                                                            <option value="3.00">3.00</option>
-                                                            <option value="4.00">4.00</option>
-                                                            <option value="5.00">5.00</option>
-                                                            <option value="INC">INC</option>
-                                                            <option value="DROP">DROP</option>
-                                                        </select>
-                                                    </th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.grade}</th>
                                                 </tr>
                                             )
                                         }) 

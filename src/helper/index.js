@@ -1,5 +1,5 @@
 export function getName(firstName, middleName, lastName){
-    return middleName ? `${firstName} ${middleName} ${lastName}` : `${firstName} ${lastName}`;
+    return middleName ? `${lastName}, ${firstName} ${middleName}` : `${lastName}, ${firstName}`;
 }
 
 export function final_grade(prelim, midterm, prefi, finals) {
