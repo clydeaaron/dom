@@ -75,16 +75,16 @@ export default function Home() {
                                                         <div className='p-3 w-full text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]'>
                                                             <span className='font-bold'>Subject:</span> {item.label}    
                                                         </div>
-                                                        <div className='w-full mt-10% p-3 rounded'>
+                                                        <div className='flex flex-row gap-3 w-full mt-10% p-3 rounded'>
                                                             {/* <Popup trigger={<button className='shadow w-full mt-[15%] rounded bg-green text-white text-center'>
                                                                 View Students
                                                             </button>}>
                                                                 <GradeCreation data={item} />
                                                             </Popup> */}
-                                                            <a href={routes.ChecklistGrade + "?id=" + item.id} className='shadow w-full mt-[15%] rounded bg-primary text-black text-center'>
-                                                                Update Students
+                                                            <a href={routes.viewChecklist + "?id=" + item.id} className='shadow w-full mt-[15%] rounded text-[16px] bg-primary text-black text-center'>
+                                                                View Students
                                                             </a>
-                                                            <a href={routes.ChecklistGrade + "?id=" + item.id} className='shadow w-full mt-[15%] rounded bg-green text-white text-center'>
+                                                            <a href={routes.ChecklistGrade + "?id=" + item.id} className='shadow w-full mt-[15%] rounded text-[16px] bg-green text-white text-center'>
                                                                 Update Students
                                                             </a>
                                                         </div>

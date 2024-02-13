@@ -36,7 +36,7 @@ export default function ViewChecklist() {
                 <div className='flex h-screen  min-w-[1000px] pt-5'>
                     <div className='flex flex-row  static h-[600px] w-screen pl-12 pt-2 min-w-[1300px] pr-3'>
                         <div className=' w-screen h-80 text-[20px] p-3'>
-                            <button onClick={() => window.location.reload()}> <ion-icon name="chevron-back-outline"></ion-icon> Back </button>
+                            <button onClick={() => window.history.back()}> <ion-icon name="chevron-back-outline"></ion-icon> Back </button>
                             <div className='text-[20px] w-full font-bold'>Checklist</div>
                             <div className='border rounded-md'>
                                 <div className='text-[20px] font-bold w-full p-2 bg-green rounded-md'>

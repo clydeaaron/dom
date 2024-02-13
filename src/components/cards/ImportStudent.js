@@ -23,8 +23,9 @@ export default function ImportStudent() {
     return (
         <div className="bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 flex justify-center items-center">
             <form onSubmit={formik.handleSubmit} className="bg-white w-96 rounded-xl">
-                <div className="bg-slate-100 rounded-t-md p-5">
+                <div className="flex flex-row bg-slate-100 rounded-t-md p-5">
                     <h1 className="text-xl font-semibold">Import Student</h1>
+                    <button onClick={() => window.location.reload()}><ion-icon name="close-outline"></ion-icon></button>
                 </div>
                 <div className="bg-slate-100 rounded-b-md p-5">
                     <label htmlFor="file" className="block mb-2">Import Students:</label>
