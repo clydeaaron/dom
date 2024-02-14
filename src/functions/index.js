@@ -553,14 +553,13 @@ async function EditClassGrade({ students }) {
     }
 }
 
-async function CreationCourse({course, shorten, year, details}) {
+async function CreationCourse({course, shorten, details}) {
     try{
-        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreationCourse/', JSON.stringify({
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreationCourse/', {
             course: course,
             shorten: shorten,
-            years: year,
-            detail: details
-        }), {
+            detail: JSON.stringify(details)
+        }, {
             header: {
                 'Content-Type': 'application/json'
             }

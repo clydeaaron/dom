@@ -59,12 +59,21 @@ export default function UpdateCourse() {
     });
 
     const addFields = () => {
-        const rowInput = {
+        const newRow = {
             Subject: "",
             Type: "",
             Unit: "",
+            Semester: ""
         };
-        setRowsData([...rowsData, rowInput]);
+        
+        // Update the formik values with the new row
+        formik.setValues({
+            ...formik.values,
+            Details: [...formik.values.Details, newRow]
+        });
+    
+        // Update the local state for rowsData
+        setRowsData([...rowsData, newRow]);
     };
 
     const removeRows = (index) => {
@@ -81,9 +90,8 @@ export default function UpdateCourse() {
             details: values.Details,
         });
 
-        // alert(response.msg);
-        console.log(response.msg)
-        // return window.location.href = routes.courses;
+        alert(response.msg);
+        return window.location.href = routes.courses;
     };
 
     const formik = useFormik({
@@ -91,7 +99,6 @@ export default function UpdateCourse() {
             id: "",
             Course: "",
             Shorten: "",
-            Years: "",
             Details: [], // Initialize with empty array, will be updated in useEffect
         },
         validationSchema,
@@ -114,7 +121,7 @@ export default function UpdateCourse() {
                                     <ion-icon name="arrow-back-outline"></ion-icon>
                                 </button>
                             </div>
-                            <h1 className='w-full'>Add New Course</h1>
+                            <h1 className='w-full'>Update Course</h1>
                         </div>
 
                         <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>

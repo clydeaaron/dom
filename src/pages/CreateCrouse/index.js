@@ -66,12 +66,13 @@ export default function CreateCourse() {
         initialValues: {
             Course: null,
             Shorten: null,
-            Years: null,
             Details: [{}],
         },
         validationSchema,
         onSubmit
     })
+
+    console.log(formik)
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif '>
             <div className='bg-white shadow-md w-full'>
@@ -109,15 +110,6 @@ export default function CreateCourse() {
                                         <input type='text' id="Shorten" className='border rounded-md p-1' onChange={formik.handleChange}/>
                                         {formik.touched.Shorten && formik.errors.Shorten ? (
                                             <div className='text-red text-[10px] py-2'>{formik.errors.Shorten}</div>
-                                        ) : null}
-                                    </div>
-                                </div>
-                                <div className='flex p-2'>
-                                    <div className='px-6'>Course Years:<span className='text-red'>*</span></div>
-                                    <div>
-                                        <input type="number" id="Years" className='border rounded-md p-1' max="10" onChange={formik.handleChange}/>
-                                        {formik.touched.Years && formik.errors.Years ? (
-                                            <div className='text-red text-[10px] py-2'>{formik.errors.Years}</div>
                                         ) : null}
                                     </div>
                                 </div>
