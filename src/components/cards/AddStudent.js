@@ -38,6 +38,7 @@ export default function AddStudent() {
             Birthdate: value?.Birthdate,
             Gender: value?.Gender,
             Year: value?.Year,
+            Semester: value?.Semester,
             Course: value?.Course,
             Contact: value?.Contact,
             status: value?.status
@@ -56,6 +57,7 @@ export default function AddStudent() {
             Birthdate: null,
             Gender: null,
             Year: null,
+            Semester: null,
             Course: null,
             Contact: null,
             status: null
@@ -128,7 +130,7 @@ export default function AddStudent() {
                                 </div>
                             </div>
                             <div className='flex p-2  w-full'>
-                                <div className='px-7 w-[35%]'>Course:<span className='text-red'>*</span></div>
+                                <div className='px-7 w-[25%]'>Course:<span className='text-red'>*</span></div>
                                 <div>
                                     <select id="Course" className='border rounded-md p-1' onChange={formik.handleChange}>
                                         <option selected disabled>--- Select a course ---</option>
@@ -160,7 +162,7 @@ export default function AddStudent() {
                                 </div>
                             </div>
                             <div className='flex p-2  w-full'>
-                                <div className='px-6 w-[35%]'>Year:<span className='text-red'>*</span></div>
+                                <div className='px-6 w-[25%]'>Year:<span className='text-red'>*</span></div>
                                 <div>
                                     <input type='number' id="Year" className='border rounded-md p-1' onChange={formik.handleChange}/>
                                     {formik.touched.Year && formik.errors.Year ? (
@@ -168,7 +170,19 @@ export default function AddStudent() {
                                     ) : null}
                                 </div>
                             </div>
-                            
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6 w-[35%]'>Semester:<span className='text-red'>*</span></div>
+                                <div>
+                                    <select id='Semester'  className='border rounded-md p-1 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]' onChange={formik.handleChange}>
+                                                        <option value="" disable>-- Semseter --</option>
+                                                        <option value="1st">1st</option>
+                                                        <option value="2nd">2nd</option>
+                                                    </select>
+                                    {formik.touched.Semester && formik.errors.Semester ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Semester}</div>
+                                    ) : null}
+                                </div>
+                            </div>
                         </div>
                         <div className='flex flex-row'>
                             <div className='flex p-2  w-full'>

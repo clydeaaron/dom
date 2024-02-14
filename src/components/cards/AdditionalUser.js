@@ -143,7 +143,7 @@ export default function AdditionalUser() {
                                 <div className='px-6 w-[32%]'>Gender:<span className='text-red'>*</span></div>
                                 <div>
                                     <select id="gender" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.gender}>
-                                        <option value="" disabled>--- Select a Gender ---</option>
+                                        <option selected disabled>--- Select a Gender ---</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
@@ -156,7 +156,7 @@ export default function AdditionalUser() {
                                 <div className='px-6'>User Type:<span className='text-red'>*</span></div>
                                 <div>
                                     <select id='user_type' class='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.user_type}>
-                                        <option value="" disabled>-- Select User Type --</option>
+                                        <option selected disabled>-- Select User Type --</option>
                                         <option value="Admin">Admin</option>
                                         <option value="Professor">Professor</option>
                                     </select>

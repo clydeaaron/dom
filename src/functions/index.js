@@ -179,7 +179,7 @@ async function CreateClass ({ Room, course, level, Subject }) {
 
 }
 
-async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact, status}) {
+async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year, Semester, Course, Contact, status}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddStudent/', {
             code: student_id,
@@ -189,6 +189,7 @@ async function InsertStudent({student_id, firstname, middlename,lastname, Gender
             birthdate: Birthdate,
             gender: Gender,
             year_level: Year,
+            semester: Semester,
             course: Course,
             contact: Contact,
             status: status
@@ -307,13 +308,13 @@ async function DeleteSubject({ id }) {
     }
 } 
 
-async function UpdateCourses({ id, course, shorten, years}) {
+async function UpdateCourses({ id, course, shorten, details}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateCourses/', {
             id: id,
             course: course,
             shortcut: shorten,
-            years: years
+            detail: JSON.stringify(details)
         }, {
             header: {
                 'Content-Type': 'application/json'
@@ -343,7 +344,7 @@ async function DeleteCourse({id}) {
     }
 }
 
-async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year,Course, Contact, status}) {
+async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year, Semester, Course, Contact, status}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateStudent/', {
             id: id,
@@ -353,6 +354,7 @@ async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birth
             birthdate: Birthdate,
             gender: Gender,
             year_level: Year,
+            semester: Semester,
             course: Course,
             contact: Contact,
             status: status
@@ -639,14 +641,13 @@ async function UpdateGrades ({ id, grade }) {
     }
 }
 
-async function UpdateCourse({id, course, shorten, years, details}) {
+async function UpdateCourse({id, course, shorten, details}) {
     try {
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateCourses/', {
             id: id,
             course: course,
             shorten: shorten,
-            years: years,
-            detail: details
+            detail: JSON.stringify(details)
         }, {
             header: {
                 'Content-Type': 'application/json'
@@ -712,11 +713,13 @@ async function ViewProfessorChecklist() {
     }
 }
 
-async function insertCheckList({professor, subject}) {
+async function insertCheckList({professor, subject, semester, year}) {
     try {
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddChecklist/', {
             professor: professor,
-            subject: subject
+            subject: subject,
+            semester: semester,
+            year: year
         }, 
         {
             header: {

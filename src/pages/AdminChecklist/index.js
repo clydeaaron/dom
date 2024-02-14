@@ -9,6 +9,8 @@ import routes from '../pagename';
 export default function AdminChecklist() {
     const [professor, setProfessor] = useState("");
     const [checklist, setCheckList] = useState([]);
+    const [semester, setSemester] = useState("");
+    const [filter, setFilter] = useState("");
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -44,28 +46,48 @@ export default function AdminChecklist() {
                                     </Popup>
                                 </div>
                             </div>
-                            
-                        </div>
+                            <div className='flex justify-end items-end gap-4 w-full rounded' >
+                                    <h1 className='font-bold'>Semester: </h1>
+                                    <select className='border rounded-md' onChange={e => setSemester(e.target.value)}>
+                                        <option selected disabled> -- Select Semester --</option>
+                                        <option value="1st">1st</option>
+                                        <option value="2nd">2nd</option>
+                                    </select>
+                                    <h1 className='font-bold'>Search: </h1>
+                                    <input type='text' id="Search" className='border rounded-md' onChange={e => setFilter(e.target.value)}/>
+                                </div>
+                            </div>
                         <div className='flex items-center justify-center pt-10'>
                             <table className='w-full'>
                                 <thead>
                                     <tr>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tl-md'>Subject</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Status</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Year & Semester</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                     checklist
-                                    .filter((item) => {return item.professor_id === professor})
+                                    .filter((item) => {
+                                        const search = filter.toLowerCase();
+                                        const label = item.label.toLowerCase();
+                                
+                                        // Check if the item matches the professor and if the label includes the search term
+                                        // Also, ensure that the item's semester matches the selected semester
+                                        return item.professor_id === professor &&
+                                            (filter === null || label.includes(search)) &&
+                                            (semester !== "" || item.semester.toString() === semester.toString());
+                                    })
                                     .map((item, index) => {
                                         return (
                                             <tr>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.label}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
+                                                <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{(item.year ? item  .year + " year" : "") + " - " + item.semester}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
-                                                    <a href={routes.UpdateCheckList + "?subject=" + item.code + "&professor=" + professor + "&id=" + item.id} className='shadow rounded-md p-1 text-white bg-green mx-2' >Update</a>
+                                                    <a href={routes.UpdateCheckList + "?subject=" + item.code + "&professor=" + professor + "&id=" + item.id + "&semester=" + item.semester + "&year=" + item.year} className='shadow rounded-md p-1 text-white bg-green mx-2' >Update</a>
                                                 </td>
                                             </tr>
                                         )

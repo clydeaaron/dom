@@ -11,6 +11,7 @@ import ImportStudent from '../../components/cards/ImportStudent'
 export default function Students() {
     const [student, setStudent] = useState([]);
     const [filter, setFilter] = useState("");
+    const [semester, setSemester] = useState("");
 
     useEffect(() => {
         ViewAllStudents()
@@ -53,7 +54,13 @@ export default function Students() {
                                 </div>
                                 
                                 <div className='flex justify-end items-end gap-4 w-full rounded' >
-                                    <h1 className='font-bold'>Search Student: </h1>
+                                    <h1 className='font-bold'>Semester: </h1>
+                                    <select className='border rounded-md' onChange={e => setSemester(e.target.value)}>
+                                        <option selected disabled> -- Select Semester --</option>
+                                        <option value="1st">1st</option>
+                                        <option value="2nd">2nd</option>
+                                    </select>
+                                    <h1 className='font-bold'>Search: </h1>
                                     <input type='text' id="Search" className='border rounded-md' onChange={e => setFilter(e.target.value)}/>
                                 </div>
                             </div>
@@ -66,6 +73,7 @@ export default function Students() {
                                         <th className='bg-green p-2 rounded-tl-md'>Student ID</th>
                                         <th className='bg-green p-2'>Student Name</th>
                                         <th className='bg-green p-2'>Year & Course</th>
+                                        <th className='bg-green p-2'>Semester</th>
                                         <th className='bg-green p-2'>Status</th>
                                         <th className='bg-green p-2 rounded-tr-md'>Actions</th>
                                     </tr>
@@ -75,20 +83,23 @@ export default function Students() {
                                         student
                                         .filter(item => {
                                             const fullName = getName(item.firstname, item.middlename, item.lastname).toLowerCase();
-                                            const student = item.student_id.toLowerCase();
+                                            const studentID = item.student_id.toLowerCase();
                                             const searchTerm = filter.toLowerCase();
                                             const course = item.course.toLowerCase();
-                                        
-                                            return filter === "" || 
-                                                student.includes(searchTerm) || 
+                                            
+                                            return (filter === "" || 
+                                                (studentID.includes(searchTerm) || 
                                                 fullName.includes(searchTerm) ||
-                                                course.includes(searchTerm);
+                                                course.includes(searchTerm) ||
+                                                searchTerm === "")
+                                            ) && (item.semester.toString() === semester.toString());
                                         })
                                         .map((item, index) => (
                                             <tr key={index}>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.student_id}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.year_level + " - " + item.course}</td>
+                                                <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.semester}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                                 <td className='text-center py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
                                                     <Popup trigger={<button className='shadow rounded-md p-1 text-white bg-green mx-2'> Update </button>}>

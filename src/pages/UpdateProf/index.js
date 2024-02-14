@@ -9,6 +9,8 @@ export default function UpdateProf() {
     const [filterSubject, setFilterSubject] = useState("");
     const [professor, setProfessor] = useState("");
     const [filterStudent, setFilterStudent] = useState("");
+    const [year, setYear] = useState(null);
+    const [semester, setSemester] = useState(null);
     const [course, setCourse] = useState("");
     const [subject, setSubject] = useState([]);
     const [allCourse, setAllCourse] = useState([]);
@@ -19,6 +21,8 @@ export default function UpdateProf() {
         setFilterSubject(urlParams.get('subject'));
         setProfessor(urlParams.get("professor"));
         setID(urlParams.get("id"));
+        setYear(urlParams.get("year"));
+        setSemester(urlParams.get("semester"));
         FetchSubject();
         FetchStudent();
         FetchCourse();
@@ -127,7 +131,8 @@ console.log(student)
                                             const fullname =getName(item.firstname, item.middlename, item.lastname).toLowerCase();
                                             const student_id = item.student_id.toLowerCase();
                                             const search = filterStudent.toLowerCase();
-                                            return (student_subject.includes(filterSubject.toLowerCase()) || filterSubject == "") && (student_course.includes(course.toLowerCase()) || course == "") && (fullname.includes(search) || student_id.includes(search) || search == "")
+                                            
+                                            return (student_subject === filterSubject.toLowerCase() && (ids === item.classroom || item.classroom === "")) && (student_course.includes(course.toLowerCase()) || course == "") && (fullname.includes(search) || student_id.includes(search) || search == "") 
                                         } )
                                         .map((item, index) => {
                                             return (

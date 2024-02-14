@@ -52,7 +52,7 @@ export default function CreateCourse() {
     };
 
     const onSubmit = async(value) => {
-        const response = await CreationCourse({course: value?.Course, shorten: value?.Shorten, year: value?.Years, details: value?.Details});
+        const response = await CreationCourse({course: value?.Course, shorten: value?.Shorten, details: value?.Details});
         const { valid, msg } = response;
         console.log(response)
         alert(msg)
@@ -147,15 +147,27 @@ export default function CreateCourse() {
                                                 </div>
                                                 <div className="flex rounded-l-sm w-full h-9 justify-center items-center">
                                                     <div className='p-2'>Type:</div>
-                                                    <select id={`Details[${index}].Type`}  className='p-2 border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' onChange={formik.handleChange}>
+                                                    <select id={`Details[${index}].Type`}  className='p-2 w-[100px] border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] 'defaultValue={item.Type}  onChange={formik.handleChange}>
                                                         <option value="" disable>-- Select Subject Type --</option>
                                                         <option value="Minor">Minor</option>
                                                         <option value="Major">Major</option>
                                                     </select>
                                                 </div>
-                                                <div className="flex rounded-l-sm w-full h-9 justify-center items-center">
+                                                <div className="flex rounded-l-sm w-1/4 h-9 justify-center items-center">
+                                                    <div className='p-2'>Year:</div>
+                                                    <input type="number" id={`Details[${index}].Year`} className='p-2 w-[100px] border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' max="5" defaultValue={item.year} onChange={formik.handleChange}/>
+                                                </div>
+                                                <div className="flex rounded-l-sm w-1/4 h-9 justify-center items-center">
+                                                    <div className='p-2'>Semester:</div>
+                                                    <select id={`Details[${index}].Semester`}  className='p-2 w-[150px] border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] 'defaultValue={item.semester}  onChange={formik.handleChange}>
+                                                        <option value="" disable>-- Semseter --</option>
+                                                        <option value="1st">1st</option>
+                                                        <option value="2nd">2nd</option>
+                                                    </select>
+                                                </div>
+                                                <div className="flex rounded-l-sm w-1/4 h-9 justify-center items-center">
                                                     <div className='p-2'>Unit:</div>
-                                                    <input type="number" id={`Details[${index}].Unit`} className='p-2 border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' max="5" onChange={formik.handleChange}/>
+                                                    <input type="number" id={`Details[${index}].Unit`} className='p-2 border w-[100px] text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' max="5" defaultValue={item.Unit} onChange={formik.handleChange}/>
                                                 </div>
                                                 <div className="flex w-[35%] rounded-l-sm p-auto h-9 justify-center items-center">
                                                     <button className='p-1 w-[50px] rounded-lg text-sm whitespace-nowrap border' onClick={() => removeRows(index)}>

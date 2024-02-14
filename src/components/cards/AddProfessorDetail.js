@@ -9,7 +9,9 @@ export default function AddProfessorDetail(prop) {
 
     const validationSchema = Yup.object().shape({
         professor: Yup.string().label("Professor").required(),
-        subject: Yup.string().label("Subject").required()
+        subject: Yup.string().label("Subject").required(),
+        year: Yup.number().integer().label("Year").required(),
+        Semester: Yup.string().label("Semester").required(),
     })
 
     useEffect(() => {
@@ -25,7 +27,12 @@ export default function AddProfessorDetail(prop) {
     }
     
     async function onSubmit(value) {
-        const response = await insertCheckList({professor: value?.professor, subject: value?.subject})
+        const response = await insertCheckList({
+            professor: value?.professor, 
+            subject: value?.subject,
+            semester: value?.Semester,
+            year: value?.year
+        })
         const { msg } = response;
         alert(msg)
     }
@@ -34,6 +41,8 @@ export default function AddProfessorDetail(prop) {
         initialValues: {
             professor: professor,
             subject: null,
+            year: null,
+            Semester: null
         },
         validationSchema,
         onSubmit
@@ -51,7 +60,7 @@ export default function AddProfessorDetail(prop) {
                     <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
                         
                         <div className='flex flex-row'>
-                        <div className='flex p-2'>
+                            <div className='flex p-2'>
                                 <div className='px-2'>Professor username: </div>
                                 <div>
                                     <input type='text' id="professor" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.professor} disabled/>
@@ -73,6 +82,30 @@ export default function AddProfessorDetail(prop) {
                                     </select>
                                     {formik.touched.subject && formik.errors.subject ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.subject}</div>
+                                    ) : null}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex flex-row justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
+                            <div className='flex p-2'>
+                                <div className='px-2'>Year: <span className='text-red'>*</span></div>
+                                <div>
+                                    <input type='text' id="year" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.year}/>
+                                    {formik.touched.year && formik.errors.year ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.year}</div>
+                                    ) : null}
+                                </div>
+                            </div>
+                            <div className='flex p-2 '>
+                                <div className='px-6 w-[35%]'>Semester:<span className='text-red'>*</span></div>
+                                <div>
+                                    <select id='Semester'  className='border rounded-md p-1 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]' onChange={formik.handleChange}>
+                                        <option value="" disable>-- Semseter --</option>
+                                        <option value="1st">1st</option>
+                                        <option value="2nd">2nd</option>
+                                    </select>
+                                    {formik.touched.Semester && formik.errors.Semester ? (
+                                        <div className='text-red text-[10px] py-2'>{formik.errors.Semester}</div>
                                     ) : null}
                                 </div>
                             </div>

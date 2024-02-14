@@ -29,10 +29,11 @@ export default function UpdateCourse() {
                     id: courseId,
                     Course: data[0].course_name,
                     Shorten: data[0].shortcut,
-                    Years: data[0].years,
                     Details: details.map((item) => ({
                         Subject: item.subject,
                         Type: item.type,
+                        Year: item.year,
+                        Semester: item.semester,
                         Unit: item.unit,
                     })),
                 });
@@ -41,6 +42,8 @@ export default function UpdateCourse() {
                     Subject: item.subject,
                     Type: item.type,
                     Unit: item.unit,
+                    Year: item.year,
+                    Semester: item.semester
                 })));
 
                 setGetSubjects(subjects);
@@ -53,7 +56,6 @@ export default function UpdateCourse() {
     const validationSchema = Yup.object().shape({
         Course: Yup.string().label("Course").required(),
         Shorten: Yup.string().label("Shorten Course").required(),
-        Years: Yup.number().integer().label("Years in Course").required(),
     });
 
     const addFields = () => {
@@ -76,13 +78,12 @@ export default function UpdateCourse() {
             id: values.id,
             course: values.Course,
             shorten: values.Shorten,
-            years: values.Years,
             details: values.Details,
         });
 
-        alert(response.msg);
-
-        return window.location.href = routes.courses;
+        // alert(response.msg);
+        console.log(response.msg)
+        // return window.location.href = routes.courses;
     };
 
     const formik = useFormik({
@@ -136,15 +137,6 @@ export default function UpdateCourse() {
                                         ) : null}
                                     </div>
                                 </div>
-                                <div className='flex p-2'>
-                                    <div className='px-6'>Course Years:<span className='text-red'>*</span></div>
-                                    <div>
-                                        <input type="number" id="Years" className='border rounded-md p-1' max="10" defaultValue={formik.values.Years} onChange={formik.handleChange}/>
-                                        {formik.touched.Years && formik.errors.Years ? (
-                                            <div className='text-red text-[10px] py-2'>{formik.errors.Years}</div>
-                                        ) : null}
-                                    </div>
-                                </div>
                             </div>
                             <div className='flex justify-center items-center'>
                                 <button className='border p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] rounded-md bg-red' onClick={addFields}>Add Subject</button>
@@ -165,21 +157,33 @@ export default function UpdateCourse() {
                                                                 return (
                                                                     <option value={item.id}>{item.label}</option>
                                                                 )
-                                                            })
+                                                            }) 
                                                         }
                                                     </select>
                                                 </div>
                                                 <div className="flex rounded-l-sm w-full h-9 justify-center items-center">
                                                     <div className='p-2'>Type:</div>
-                                                    <select id={`Details[${index}].Type`}  className='p-2 border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] 'defaultValue={item.Type}  onChange={formik.handleChange}>
+                                                    <select id={`Details[${index}].Type`}  className='p-2 w-[100px] border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] 'defaultValue={formik.values.Details[index].Type}  onChange={formik.handleChange}>
                                                         <option value="" disable>-- Select Subject Type --</option>
                                                         <option value="Minor">Minor</option>
                                                         <option value="Major">Major</option>
                                                     </select>
                                                 </div>
-                                                <div className="flex rounded-l-sm w-full h-9 justify-center items-center">
+                                                <div className="flex rounded-l-sm w-1/4 h-9 justify-center items-center">
+                                                    <div className='p-2'>Year:</div>
+                                                    <input type="number" id={`Details[${index}].Year`} className='p-2 w-[100px] border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' max="5" defaultValue={formik.values.Details[index].Year} onChange={formik.handleChange}/>
+                                                </div>
+                                                <div className="flex rounded-l-sm w-1/4 h-9 justify-center items-center">
+                                                    <div className='p-2'>Semester:</div>
+                                                    <select id={`Details[${index}].Semester`}  className='p-2 w-[150px] border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] 'defaultValue={formik.values.Details[index].Semester}  onChange={formik.handleChange}>
+                                                        <option value="" disable>-- Semester --</option>
+                                                        <option value="1st">1st</option>
+                                                        <option value="2nd">2nd</option>
+                                                    </select>
+                                                </div>
+                                                <div className="flex rounded-l-sm w-1/4 h-9 justify-center items-center">
                                                     <div className='p-2'>Unit:</div>
-                                                    <input type="number" id={`Details[${index}].Unit`} className='p-2 border text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' max="5" defaultValue={item.Unit} onChange={formik.handleChange}/>
+                                                    <input type="number" id={`Details[${index}].Unit`} className='p-2 border w-[100px] text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] ' max="5" defaultValue={item.Unit} onChange={formik.handleChange}/>
                                                 </div>
                                                 <div className="flex w-[35%] rounded-l-sm p-auto h-9 justify-center items-center">
                                                     <button className='p-1 w-[50px] rounded-lg text-sm whitespace-nowrap border' onClick={() => removeRows(index)}>
