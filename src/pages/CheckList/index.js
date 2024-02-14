@@ -24,8 +24,10 @@ export default function Checklist() {
         }
     }
 
-    const handleChange = async(id, grade) => {
+    const handleChange = async({id, grade}) => {
         const response = await UpdateGrades({id: id, grade: grade})
+        const { msg }  = response ;
+        alert(msg)
     }
 
     return (
@@ -42,7 +44,7 @@ export default function Checklist() {
                         <div className=' w-screen h-80 text-[20px] p-3'>
                             <button onClick={() => window.history.back()}> <ion-icon name="chevron-back-outline"></ion-icon> Back </button>
                             <div className='text-[20px] w-full font-bold'>Checklist</div>
-                            <div className='border rounded-md'>
+                            <div className='border rounded-md bg-white'>
                                 <div className='text-[20px] font-bold w-full p-2 bg-green rounded-md'>
                                     STANDARD TRANSMUTATION TABLE FOR ALL COURSE
                                 </div>
@@ -86,7 +88,7 @@ export default function Checklist() {
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Student ID</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Student Name</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Course</th>
-                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Actions</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Grade</th>
                                     </tr>
                                     {
                                         student
@@ -96,20 +98,21 @@ export default function Checklist() {
                                         .map((item, index) => {
                                             return (
                                                 <tr>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{index+1}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.student_id}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.course}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>
-                                                        <select className='w-full'defaultValue={item.grade} onChange={(e) => {handleChange({id: item.student_id, grade: e.target.value})}}>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white w-1/7'>{index+1}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.student_id}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.course}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>
+                                                        <select className='w-full bg-white 'defaultValue={item.grade} onChange={(e) => {handleChange({id: item.id, grade: e.target.value})}}>
+                                                            <option selected disabled>-- Select Grade --</option>
                                                             <option value="1.00">1.00</option>
                                                             <option value="1.25">1.25</option>
                                                             <option value="1.50">1.50</option>
                                                             <option value="1.75">1.75</option>
                                                             <option value="2.00">2.00</option>
-                                                            <option value="1.25">2.25</option>
-                                                            <option value="1.50">2.50</option>
-                                                            <option value="1.75">2.75</option>
+                                                            <option value="2.25">2.25</option>
+                                                            <option value="2.50">2.50</option>
+                                                            <option value="2.75">2.75</option>
                                                             <option value="3.00">3.00</option>
                                                             <option value="4.00">4.00</option>
                                                             <option value="5.00">5.00</option>

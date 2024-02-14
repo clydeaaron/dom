@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/cards/header'
 import Navigation from '../../components/cards/Navigation'
-import { ViewAllClass, ViewAllStudent, ViewProfessorChecklist } from '../../functions';
+import { FetchEnroll, ViewAllClass, ViewAllStudent, ViewProfessorChecklist, countStudent } from '../../functions';
 import routes from '../pagename';
 import { getName } from '../../helper';
 import Popup from 'reactjs-popup';
@@ -16,19 +16,19 @@ export default function Home() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         setID(urlParams.get('username'));
-        FetchAllStudent();
+        EnrollStudent();
         fetchChecklist();
     }, []);
     
-    async function FetchAllStudent() {
-        const response = await ViewAllStudent();
-        const { valid, data, error } = response;
-        if (valid) {
-            setStudents(data);
-        } else {
-            console.error(error);
-        }
-    }
+    // async function FetchAllStudent() {
+    //     const response = await ViewAllStudent();
+    //     const { valid, data, error } = response;
+    //     if (valid) {
+    //         setStudents(data);
+    //     } else {
+    //         console.error(error);
+    //     }
+    // }
 
     const fetchChecklist = async() => {
         const response = await ViewProfessorChecklist({id: ids});
@@ -37,8 +37,26 @@ export default function Home() {
             setChecklist(data);
         }
     }
+
+    async function EnrollStudent () {
+        const response = await FetchEnroll();
+        const { valid, data } = response;
+
+        if(valid) {
+            setStudents(data)
+        }
+    }
     
-    console.log(checklist)
+    function getEnrolledCount(classroom) {
+        let count = 0;
+        students.forEach((item) => {
+            if (item.classroom === classroom) {
+                count += 1;
+            }
+        });
+        return count;
+    }
+    console.log(students)
     return (
         <div className='fixed justify-items-start p-auto w-screen h-screen font-serif'>
             <div className='bg-white shadow-md w-full'>
@@ -74,6 +92,9 @@ export default function Home() {
                                                     <div className='h-full w-full border rounded-md mt-2'>
                                                         <div className='p-3 w-full text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]'>
                                                             <span className='font-bold'>Subject:</span> {item.label}    
+                                                        </div>
+                                                        <div className='p-3 w-full text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]'>
+                                                            <span className='font-bold'>Student Enrolled:</span> { getEnrolledCount(item.id) }    
                                                         </div>
                                                         <div className='flex flex-row gap-3 w-full mt-10% p-3 rounded'>
                                                             {/* <Popup trigger={<button className='shadow w-full mt-[15%] rounded bg-green text-white text-center'>

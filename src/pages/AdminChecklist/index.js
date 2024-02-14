@@ -78,7 +78,7 @@ export default function AdminChecklist() {
                                         // Also, ensure that the item's semester matches the selected semester
                                         return item.professor_id === professor &&
                                             (filter === null || label.includes(search)) &&
-                                            (semester !== "" || item.semester.toString() === semester.toString());
+                                            (semester == "" || item.semester.toString() === semester.toString());
                                     })
                                     .map((item, index) => {
                                         return (

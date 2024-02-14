@@ -117,7 +117,7 @@ export default function UpdateStudent( data ) {
                                 </div>
                             </div>
                             <div className='flex p-2'>
-                                <div className='px-5'>Middle Name: </div>
+                                <div className='px-5'>Middle Initial: </div>
                                 <div>
                                     <input type='text' id="MiddleName" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.MiddleName}/>
                                     {formik.touched.MiddleName && formik.errors.MiddleName ? (

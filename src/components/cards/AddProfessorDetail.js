@@ -97,7 +97,7 @@ export default function AddProfessorDetail(prop) {
                                 </div>
                             </div>
                             <div className='flex p-2 '>
-                                <div className='px-6 w-[35%]'>Semester:<span className='text-red'>*</span></div>
+                                <div className='px-6 w-1/2'>Semester:<span className='text-red'>*</span></div>
                                 <div>
                                     <select id='Semester'  className='border rounded-md p-1 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]' onChange={formik.handleChange}>
                                         <option value="" disable>-- Semseter --</option>

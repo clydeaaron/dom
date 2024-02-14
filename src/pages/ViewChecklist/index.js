@@ -38,7 +38,7 @@ export default function ViewChecklist() {
                         <div className=' w-screen h-80 text-[20px] p-3'>
                             <button onClick={() => window.history.back()}> <ion-icon name="chevron-back-outline"></ion-icon> Back </button>
                             <div className='text-[20px] w-full font-bold'>Checklist</div>
-                            <div className='border rounded-md'>
+                            <div className='border rounded-md bg-white '>
                                 <div className='text-[20px] font-bold w-full p-2 bg-green rounded-md'>
                                     STANDARD TRANSMUTATION TABLE FOR ALL COURSE
                                 </div>
@@ -82,7 +82,7 @@ export default function ViewChecklist() {
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Student ID</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Student Name</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Course</th>
-                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Actions</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Grades</th>
                                     </tr>
                                     {
                                         student
@@ -92,11 +92,11 @@ export default function ViewChecklist() {
                                         .map((item, index) => {
                                             return (
                                                 <tr>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{index+1}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.student_id}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.course}</th>
-                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>{item.grade}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{index+1}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.student_id}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.course}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.grade}</th>
                                                 </tr>
                                             )
                                         }) 

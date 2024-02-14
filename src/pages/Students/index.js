@@ -86,13 +86,13 @@ export default function Students() {
                                             const studentID = item.student_id.toLowerCase();
                                             const searchTerm = filter.toLowerCase();
                                             const course = item.course.toLowerCase();
-                                            
+
                                             return (filter === "" || 
                                                 (studentID.includes(searchTerm) || 
                                                 fullName.includes(searchTerm) ||
                                                 course.includes(searchTerm) ||
                                                 searchTerm === "")
-                                            ) && (item.semester.toString() === semester.toString());
+                                            ) && (semester == "" || item.semester.toString() === semester.toString());
                                         })
                                         .map((item, index) => (
                                             <tr key={index}>

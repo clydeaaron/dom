@@ -22,10 +22,12 @@ export default function ImportStudent() {
 
     return (
         <div className="bg-zinc-400 bg-opacity-70 fixed inset-0 z-50 flex justify-center items-center">
-            <form onSubmit={formik.handleSubmit} className="bg-white w-96 rounded-xl">
+            <div>
                 <div className="flex flex-row bg-slate-100 rounded-t-md p-5">
                     <h1 className="text-xl font-semibold">Import Student</h1>
-                    <button onClick={() => window.location.reload()}><ion-icon name="close-outline"></ion-icon></button>
+                    <div className='w-full flex justify-end items-end'>
+                        <button onClick={() => window.location.reload()}><ion-icon name="close-outline"></ion-icon></button>
+                    </div>
                 </div>
                 <div className="bg-slate-100 rounded-b-md p-5">
                     <label htmlFor="file" className="block mb-2">Import Students:</label>
@@ -42,10 +44,11 @@ export default function ImportStudent() {
                                 Download Template
                             </button>
                         </a>
-                        <button type="submit" className="bg-green text-white px-4 py-2 rounded-md">Submit</button>
+                        <button type="submit" className="bg-green text-white px-4 py-2 rounded-md" onClick={formik.handleSubmit}>Submit</button>
                     </div>
                 </div>
-            </form>
+            </div>
+            
         </div>
     );
 }

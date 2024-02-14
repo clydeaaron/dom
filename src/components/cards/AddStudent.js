@@ -101,7 +101,7 @@ export default function AddStudent() {
                                 </div>
                             </div>
                             <div className='flex p-2'>
-                                <div className='px-5'>Middle Name: </div>
+                                <div className='px-5'>Middle Initial: </div>
                                 <div>
                                     <input type='text' id="MiddleName" className='border rounded-md p-1' onChange={formik.handleChange}/>
                                     {formik.touched.MiddleName && formik.errors.MiddleName ? (

@@ -846,6 +846,24 @@ async function StudentReader({ files }) {
     }
 }
 
+async function countStudent({id}) {
+    try {
+        const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CountStudent/', {
+            id: id,
+        }, 
+        {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data    
+    } catch(err) {
+        console.log(err)
+        throw new Error("An error occurred during the data update")
+    }
+}
+
 export {
     LoginValid,
     insertSubject,
@@ -889,5 +907,6 @@ export {
     ViewProfile,
     UpdateProfiles,
     UpdatePassword,
-    StudentReader
+    StudentReader,
+    countStudent
 }
