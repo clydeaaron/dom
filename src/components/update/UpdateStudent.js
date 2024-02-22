@@ -5,7 +5,7 @@ import { DeleteStudent, UpdateStudents, ViewAllCourse } from '../../functions';
 import routes from '../../pages/pagename';
 
 export default function UpdateStudent( data ) {
-    const { student_id, firstname, middlename, lastname, birthdate, gender, course, year_level, semester, contact_number, status} = data.data
+    const { student_id, firstname, middlename, lastname, birthdate, gender, course, year_level, semester, contact_number, status, SY, SY2, Section} = data.data
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -22,6 +22,9 @@ export default function UpdateStudent( data ) {
         Gender: Yup.string().label("Gender").required(),
         Course: Yup.string().label("Course").required(),
         status: Yup.string().label("Status").required(),
+        SY: Yup.string().label("School Year").required(),
+        SY2: Yup.string().label("School Year 2nd").required(),
+        Section: Yup.string().label("Section").required(),
         Contact: Yup.string().label("Contact Number").matches(/^\d+$/, "Contact number must contain only digits").max(11, "Contact number must be at most 11 digits").required("Contact number is required")
     })
 
@@ -54,7 +57,10 @@ export default function UpdateStudent( data ) {
             Semester: value?.Semester,
             Course: value?.Course,
             Contact: value?.Contact,
-            status: value?.status
+            status: value?.status,
+            SY: value?.SY,
+            SY2: value?.SY2,
+            Section: value?.Section,
         });
 
         alert(response.msg);
@@ -74,7 +80,10 @@ export default function UpdateStudent( data ) {
             Semester: semester,
             Course: course,
             Contact: contact_number,
-            status: status
+            status: status,
+            SY: SY,
+            SY2: SY2,
+            Section: Section,
         },
         validationSchema,
         onSubmit
@@ -219,6 +228,24 @@ export default function UpdateStudent( data ) {
                                     {formik.touched.status && formik.errors.status ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.status}</div>
                                     ) : null}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex flex-row'>
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6'>School Year:<span className='text-red'>*</span></div>
+                                <div>
+                                    <input type="text" id="SY" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.SY}/>
+                                </div>
+                                :
+                                <div>
+                                    <input type="text" id="SY2" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.SY2}/>
+                                </div>
+                            </div>
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6'>Section:<span className='text-red'>*</span></div>
+                                <div>
+                                    <input type="text" id="Section" className='border rounded-md p-1' onChange={formik.handleChange} defaultValue={formik.values.Section}/>
                                 </div>
                             </div>
                         </div>

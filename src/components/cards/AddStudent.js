@@ -20,6 +20,9 @@ export default function AddStudent() {
         Gender: Yup.string().label('Gender').required(),
         Course: Yup.string().label("Course").required(),
         status: Yup.string().label("Status").required(),
+        SY: Yup.string().label("School Year").required(),
+        SY2: Yup.string().label("School Year 2nd").required(),
+        Section: Yup.string().label("Section").required(),
         Contact: Yup.string().label("Contact Number").matches(/^\d+$/, "Contact number must contain only digits").max(11, "Contact number must be at most 11 digits").required("Contact number is required")
     })
 
@@ -41,7 +44,10 @@ export default function AddStudent() {
             Semester: value?.Semester,
             Course: value?.Course,
             Contact: value?.Contact,
-            status: value?.status
+            status: value?.status,
+            SY: value?.SY,
+            SY2: value?.SY2,
+            Section: value?.Section,
         });
         
         alert(response.msg);
@@ -60,7 +66,10 @@ export default function AddStudent() {
             Semester: null,
             Course: null,
             Contact: null,
-            status: null
+            status: null,
+            Sy: null,
+            SY2: null,
+            Section: null,
         },
         validationSchema,
         onSubmit
@@ -205,6 +214,24 @@ export default function AddStudent() {
                                     {formik.touched.status && formik.errors.status ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.status}</div>
                                     ) : null}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex flex-row'>
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6'>School Year:<span className='text-red'>*</span></div>
+                                <div>
+                                    <input type="text" id="SY" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                </div>
+                                :
+                                <div>
+                                    <input type="text" id="SY2" className='border rounded-md p-1' onChange={formik.handleChange}/>
+                                </div>
+                            </div>
+                            <div className='flex p-2  w-full'>
+                                <div className='px-6'>Section:<span className='text-red'>*</span></div>
+                                <div>
+                                    <input type="text" id="Section" className='border rounded-md p-1' onChange={formik.handleChange}/>
                                 </div>
                             </div>
                         </div>

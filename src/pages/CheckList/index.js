@@ -88,6 +88,7 @@ export default function Checklist() {
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Student ID</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Student Name</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Course</th>
+                                        <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7'>Section</th>
                                         <th className='bg-green p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] w-1/7 rounded-tr-md'>Grade</th>
                                     </tr>
                                     {
@@ -102,6 +103,7 @@ export default function Checklist() {
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.student_id}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{getName(item.firstname, item.middlename, item.lastname)}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.course}</th>
+                                                    <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.Section}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>
                                                         <select className='w-full bg-white 'defaultValue={item.grade} onChange={(e) => {handleChange({id: item.id, grade: e.target.value})}}>
                                                             <option selected disabled>-- Select Grade --</option>

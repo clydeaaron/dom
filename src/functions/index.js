@@ -179,7 +179,7 @@ async function CreateClass ({ Room, course, level, Subject }) {
 
 }
 
-async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year, Semester, Course, Contact, status}) {
+async function InsertStudent({student_id, firstname, middlename,lastname, Gender, Birthdate,Year, Semester, Course, Contact, status, SY, SY2, Section}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddStudent/', {
             code: student_id,
@@ -192,7 +192,10 @@ async function InsertStudent({student_id, firstname, middlename,lastname, Gender
             semester: Semester,
             course: Course,
             contact: Contact,
-            status: status
+            status: status,
+            section: Section,
+            sy: SY,
+            sy2: SY2
         },
         {
             header: {
@@ -344,7 +347,7 @@ async function DeleteCourse({id}) {
     }
 }
 
-async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year, Semester, Course, Contact, status}) {
+async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birthdate,Year, Semester, Course, Contact, status, SY, SY2, Section}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/UpdateStudent/', {
             id: id,
@@ -357,7 +360,10 @@ async function UpdateStudents({id, firstname, middlename,lastname, Gender, Birth
             semester: Semester,
             course: Course,
             contact: Contact,
-            status: status
+            status: status,
+            sy: SY,
+            sy2: SY2,
+            section: Section
         },
         {
             header: {
