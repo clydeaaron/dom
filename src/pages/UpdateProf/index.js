@@ -84,7 +84,7 @@ console.log(student)
                             <h1 className='w-full'>Update Check List</h1>
                         </div>
                         <div className='flex flex-col justify-start bg-slate-100 w-full rounded-t-md h-auto p-5'>
-                            <div className='flex flex-row w-full\'>
+                            <div className='flex flex-row w-full bg-green rounded-md'>
                                 <div className='w-1/2 p-2'>
                                     <div className='px-3'>Professor :<span className='text-red'>*</span></div>
                                     <label className="border block w-3/4 rounded-md text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-gray bg-slightwhite  p-1">{professor}</label>
@@ -98,7 +98,9 @@ console.log(student)
                                         ))}
                                     </select>
                                 </div>
-                                <div className='w-1/2 p-2'>
+                            </div>
+                            <div className='flex flex-row justify-end items-end'>
+                                <div className='w-1/4 p-2'>
                                     <div className='px-3'>Course :<span className='text-red'>*</span></div>
                                     <select id="course" onChange={(e) => setCourse(e.target.value)} className="border block w-3/4 rounded-md text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px]  bg-slightwhite  p-1">
                                         <option selected disabled> -- Select Course --</option>
@@ -107,8 +109,8 @@ console.log(student)
                                         ))}
                                     </select>
                                 </div>
-                                <div className='w-1/2 p-2'>
-                                    <div className='px-3'>Student :<span className='text-red'>*</span></div>
+                                <div className='w-1/4 p-2'>
+                                    <div className='px-3'>Search :<span className='text-red'>*</span></div>
                                     <input type="text" className="border block w-3/4 rounded-md text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] bg-slightwhite p-1" onChange={(e) => setFilterStudent(e.target.value)}/>
                                 </div>
                             </div>
@@ -121,6 +123,8 @@ console.log(student)
                                         <th className='bg-slightwhite text-lightgray px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] justify-center items-center whitespace-nowrap italic'>&nbsp;</th>
                                         <th className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>Student ID</th>
                                         <th className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>Student Name</th>
+                                        <th className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>Course</th>
+                                        <th className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>Section</th>
                                         <th className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>Action</th>
                                     </tr>
                                     {
@@ -130,9 +134,10 @@ console.log(student)
                                             const student_subject = item.subject.toLowerCase();
                                             const fullname =getName(item.firstname, item.middlename, item.lastname).toLowerCase();
                                             const student_id = item.student_id.toLowerCase();
+                                            const student_section = item.Section.toLowerCase();
                                             const search = filterStudent.toLowerCase();
                                             
-                                            return (student_subject === filterSubject.toLowerCase() && (ids === item.classroom || item.classroom === "")) && (student_course.includes(course.toLowerCase()) || course == "") && (fullname.includes(search) || student_id.includes(search) || search == "") && semester == item.semester
+                                            return (student_subject === filterSubject.toLowerCase() && (ids === item.classroom || item.classroom === "")) && (student_course.includes(course.toLowerCase()) || course == "") && (fullname.includes(search) || student_id.includes(search) || search == "") && (student_section.includes(search) || search == "") && semester == item.semester
                                         } )
                                         .map((item, index) => {
                                             return (
@@ -140,6 +145,8 @@ console.log(student)
                                                     <td className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>{index + 1}</td>
                                                     <td className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>{item.student_id}</td>
                                                     <td className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>{getName(item.firstname, item.middlename, item.lastname)}</td>
+                                                    <td className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>{item.course}</td>
+                                                    <td className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-center whitespace-nowrap italic'>{item.Section}</td>
                                                     <td className='bg-slightwhite px-2 py-2 text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-centerwhitespace-nowrap italic'>
                                                         
                                                         {

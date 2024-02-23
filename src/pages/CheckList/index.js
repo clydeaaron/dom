@@ -28,6 +28,7 @@ export default function Checklist() {
         const response = await UpdateGrades({id: id, grade: grade})
         const { msg }  = response ;
         alert(msg)
+        fetchEnrolls();
     }
 
     return (
@@ -105,22 +106,26 @@ export default function Checklist() {
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.course}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>{item.Section}</th>
                                                     <th className='p-2 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-white  w-1/7'>
-                                                        <select className='w-full bg-white 'defaultValue={item.grade} onChange={(e) => {handleChange({id: item.id, grade: e.target.value})}}>
-                                                            <option selected disabled>-- Select Grade --</option>
-                                                            <option value="1.00">1.00</option>
-                                                            <option value="1.25">1.25</option>
-                                                            <option value="1.50">1.50</option>
-                                                            <option value="1.75">1.75</option>
-                                                            <option value="2.00">2.00</option>
-                                                            <option value="2.25">2.25</option>
-                                                            <option value="2.50">2.50</option>
-                                                            <option value="2.75">2.75</option>
-                                                            <option value="3.00">3.00</option>
-                                                            <option value="4.00">4.00</option>
-                                                            <option value="5.00">5.00</option>
-                                                            <option value="INC">INC</option>
-                                                            <option value="DROP">DROP</option>
-                                                        </select>
+                                                        {
+                                                            item.grade ? item.grade :
+                                                            <select className='w-full bg-white 'defaultValue={item.grade} onChange={(e) => {handleChange({id: item.id, grade: e.target.value})}}>
+                                                                <option selected disabled>-- Select Grade --</option>
+                                                                <option value="1.00">1.00</option>
+                                                                <option value="1.25">1.25</option>
+                                                                <option value="1.50">1.50</option>
+                                                                <option value="1.75">1.75</option>
+                                                                <option value="2.00">2.00</option>
+                                                                <option value="2.25">2.25</option>
+                                                                <option value="2.50">2.50</option>
+                                                                <option value="2.75">2.75</option>
+                                                                <option value="3.00">3.00</option>
+                                                                <option value="4.00">4.00</option>
+                                                                <option value="5.00">5.00</option>
+                                                                <option value="INC">INC</option>
+                                                                <option value="DROP">DROP</option>
+                                                            </select>
+                                                        }
+                                                        
                                                     </th>
                                                 </tr>
                                             )
