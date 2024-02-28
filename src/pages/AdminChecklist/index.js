@@ -87,7 +87,7 @@ export default function AdminChecklist() {
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{item.status}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>{(item.year ? item  .year + " year" : "") + " - " + item.semester}</td>
                                                 <td className='text-center  py-2 p-auto text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] bg-[#fff7f7] w-1/7'>
-                                                    <a href={routes.UpdateCheckList + "?subject=" + item.code + "&professor=" + professor + "&id=" + item.id + "&semester=" + item.semester + "&year=" + item.year} className='shadow rounded-md p-1 text-white bg-green mx-2' >Update</a>
+                                                    <a href={routes.UpdateCheckList + "?subject=" + item.code + "&professor=" + professor + "&id=" + item.id + "&semester=" + item.semester + "&year=" + item.year + "&section=" + item.section} className='shadow rounded-md p-1 text-white bg-green mx-2' >Update</a>
                                                 </td>
                                             </tr>
                                         )

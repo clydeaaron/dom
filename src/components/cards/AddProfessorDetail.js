@@ -31,7 +31,8 @@ export default function AddProfessorDetail(prop) {
             professor: value?.professor, 
             subject: value?.subject,
             semester: value?.Semester,
-            year: value?.year
+            year: value?.year,
+            Section: value?.Section
         })
         const { msg } = response;
         alert(msg)
@@ -42,7 +43,8 @@ export default function AddProfessorDetail(prop) {
             professor: professor,
             subject: null,
             year: null,
-            Semester: null
+            Semester: null,
+            Section: null
         },
         validationSchema,
         onSubmit
@@ -107,6 +109,12 @@ export default function AddProfessorDetail(prop) {
                                     {formik.touched.Semester && formik.errors.Semester ? (
                                         <div className='text-red text-[10px] py-2'>{formik.errors.Semester}</div>
                                     ) : null}
+                                </div>
+                            </div>
+                            <div className='flex p-2 '>
+                                <div className='px-6 w-1/2'>Section:<span className='text-red'>*</span></div>
+                                <div>
+                                    <input type='text' id="Section" className='border rounded-md p-1 text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]' onChange={formik.handleChange} />
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,7 @@ export default function UpdateProf() {
     const [subject, setSubject] = useState([]);
     const [allCourse, setAllCourse] = useState([]);
     const [student, setStudent] = useState([]);
+    const [section, setSection] = useState("");
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -23,6 +24,7 @@ export default function UpdateProf() {
         setID(urlParams.get("id"));
         setYear(urlParams.get("year"));
         setSemester(urlParams.get("semester"));
+        setSection(urlParams.get("section"));
         FetchSubject();
         FetchStudent();
         FetchCourse();
@@ -97,6 +99,10 @@ console.log(student)
                                                 <option key={index} value={item.id}>{item.label}</option>
                                         ))}
                                     </select>
+                                </div>
+                                <div className='w-1/2 p-2'>
+                                    <div className='px-3'>Section :<span className='text-red'>*</span></div>
+                                    <label className="border block w-3/4 rounded-md text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px] text-gray bg-slightwhite  p-1">{section}</label>
                                 </div>
                             </div>
                             <div className='flex flex-row justify-end items-end'>

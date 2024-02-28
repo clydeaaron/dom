@@ -94,6 +94,9 @@ export default function Home() {
                                                             <span className='font-bold'>Subject:</span> {item.label}    
                                                         </div>
                                                         <div className='p-3 w-full text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]'>
+                                                            <span className='font-bold'>Section:</span> { item.section }    
+                                                        </div>
+                                                        <div className='p-3 w-full text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px]'>
                                                             <span className='font-bold'>Student Enrolled:</span> { getEnrolledCount(item.id) }    
                                                         </div>
                                                         <div className='flex flex-row gap-3 w-full mt-10% p-3 rounded'>

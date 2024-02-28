@@ -718,13 +718,14 @@ async function ViewProfessorChecklist() {
     }
 }
 
-async function insertCheckList({professor, subject, semester, year}) {
+async function insertCheckList({professor, subject, semester, year, Section}) {
     try {
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/AddChecklist/', {
             professor: professor,
             subject: subject,
             semester: semester,
-            year: year
+            year: year,
+            section: Section
         }, 
         {
             header: {
