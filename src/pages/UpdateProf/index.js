@@ -142,8 +142,9 @@ console.log(student)
                                             const student_id = item.student_id.toLowerCase();
                                             const student_section = item.Section.toLowerCase();
                                             const search = filterStudent.toLowerCase();
+                                            const SubjectFilter = filterSubject.toLowerCase();
                                             
-                                            return (student_subject === filterSubject.toLowerCase() && (ids === item.classroom || item.classroom === "")) && (student_course.includes(course.toLowerCase()) || course == "") && (fullname.includes(search) || student_id.includes(search) || search == "") && (student_section.includes(search) || search == "") && semester == item.semester
+                                            return (student_subject === SubjectFilter && (ids === item.classroom || item.classroom === "")) && (student_course.includes(course.toLowerCase()) || course == "") && (fullname.includes(search) || student_id.includes(search) || search == "" || student_section.includes(search) || search == "") && semester == item.semester
                                         } )
                                         .map((item, index) => {
                                             return (

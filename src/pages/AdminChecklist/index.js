@@ -72,13 +72,13 @@ export default function AdminChecklist() {
                                     checklist
                                     .filter((item) => {
                                         const search = filter.toLowerCase();
-                                        const label = item.label.toLowerCase();
-                                
+                                        const label = item.label ? item.label.toLowerCase() : null;
+                                    
                                         // Check if the item matches the professor and if the label includes the search term
                                         // Also, ensure that the item's semester matches the selected semester
                                         return item.professor_id === professor &&
                                             (filter === null || label.includes(search)) &&
-                                            (semester == "" || item.semester.toString() === semester.toString());
+                                            (semester === "" || item.semester.toString() === semester.toString());
                                     })
                                     .map((item, index) => {
                                         return (
