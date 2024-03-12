@@ -210,12 +210,11 @@ async function InsertStudent({student_id, firstname, middlename,lastname, Gender
     }
 }
 
-async function InsertCourse({Course, Shorten, years}) {
+async function InsertCourse({Course, Shorten}) {
     try{
         const response = await axios.post('https://sbaesthetic.online/DOM_PHP/CreateCourse/', {
             course: Course,
             shorten: Shorten,
-            years: years
         },{
             header: {
                 'Content-Type': 'application/json'

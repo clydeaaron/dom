@@ -10,21 +10,19 @@ export default function CreateCourse() {
     const validationSchema = Yup.object().shape({
         Course: Yup.string().label("Subjects").required(),
         Shorten: Yup.string().label("Shorten Course").required(),
-        Years: Yup.number().integer().label("Years per Course").required(),
     })
 
     const formik = useFormik({
         initialValues: {
             Course: "",
             Shorten: "",
-            Years: 0
         },
         validationSchema,
         onSubmit
     })
 
     async function onSubmit(value) {
-        const response = await InsertCourse({Course: value?.Course, Shorten: value?.Shorten, years: value?.Years});
+        const response = await InsertCourse({Course: value?.Course, Shorten: value?.Shorten});
 
         alert(response.msg);
         return window.location.href = routes.courses
@@ -51,10 +49,6 @@ export default function CreateCourse() {
                             <div className='flex p-2'>
                                 <div className='px-3'>Course Name:<span className='text-red'>*</span></div>
                                 <input type='text' id="Course" className='border rounded-md p-1' onChange={formik.handleChange}/>
-                            </div>
-                            <div className='flex p-2'>
-                                <div className='px-6'>Course Years:<span className='text-red'>*</span></div>
-                                <input type="number" id="Years" className='border rounded-md p-1' onChange={formik.handleChange}/>
                             </div>
                         </div>
                         <div className='flex flex-row'>

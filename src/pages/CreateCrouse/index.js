@@ -17,7 +17,6 @@ export default function CreateCourse() {
     const validationSchema = Yup.object().shape({
         Course: Yup.string().label("Course").required(),
         Shorten: Yup.string().label("Shorten Course").required(),
-        Years: Yup.number().integer().label("Years in Course").required()
     })
 
     const ViewSubject = async () => {
